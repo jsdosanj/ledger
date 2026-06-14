@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dosanjhlabs.com/ledger/sitemap.xml
+Sitemap: https://ledger.dosanjhlabs.com/sitemap.xml

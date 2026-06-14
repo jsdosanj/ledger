@@ -274,7 +274,7 @@ class LedgerSettingTab extends PluginSettingTab {
       .setName("Access token")
       .setDesc("Your DosanjhLabs access token. Kept only in this vault's plugin data; never put it in a note.")
       .addText((t) => { t.setPlaceholder("paste token").setValue(this.plugin.settings.token).onChange(async (v) => { this.plugin.settings.token = v.trim(); await this.plugin.saveSettings(); }); t.inputEl.type = "password"; })
-      .addExtraButton((b) => b.setIcon("globe").setTooltip("Get a token at dosanjhlabs.com").onClick(() => window.open("https://dosanjhlabs.com/ledger/account", "_blank")));
+      .addExtraButton((b) => b.setIcon("globe").setTooltip("Get a token at dosanjhlabs.com").onClick(() => window.open("https://ledger.dosanjhlabs.com/account", "_blank")));
 
     new Setting(containerEl)
       .setName("Verify sign-in")

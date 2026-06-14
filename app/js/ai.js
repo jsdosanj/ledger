@@ -35,7 +35,7 @@
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + key,
-            "HTTP-Referer": location.origin || "https://dosanjhlabs.com/ledger",
+            "HTTP-Referer": location.origin || "https://ledger.dosanjhlabs.com",
             "X-Title": "Ledger IT Docs",
           },
           body: { model: model, max_tokens: 900, messages: [{ role: "system", content: system }, { role: "user", content: user }] },

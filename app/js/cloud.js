@@ -117,7 +117,7 @@ function render(el) {
       if (f[0] === "cloud_sync") {
         const r = document.createElement("div"); r.className = "row"; r.style.cssText = "gap:.5rem;margin-top:.5rem";
         if (ok) { r.appendChild(btn("⬆ Sync KB up", "sm primary", syncUp)); r.appendChild(btn("⬇ Pull from cloud", "sm", syncDown)); }
-        else { const u = document.createElement("a"); u.className = "btn sm"; u.href = "https://dosanjhlabs.com/ledger/pricing.html"; u.target = "_blank"; u.textContent = "Upgrade to unlock"; r.appendChild(u); }
+        else { const u = document.createElement("a"); u.className = "btn sm"; u.href = "https://ledger.dosanjhlabs.com/pricing.html"; u.target = "_blank"; u.textContent = "Upgrade to unlock"; r.appendChild(u); }
         card.querySelector("div").appendChild(r);
       }
     });
