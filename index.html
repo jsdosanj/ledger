@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ledger — Obsidian, governed for your whole company | DosanjhLabs</title>
-<meta name="description" content="Your team already loves Obsidian. Ledger turns it into a company-grade documentation hub — a shared org vault with roles & permissions, review/approval governance, org-wide search, read-only published portals, and an audit trail. Portable Markdown with [[wikilinks]] and YAML frontmatter. Never locked in.">
+<meta name="description" content="Your team already loves Obsidian. Ledger turns it into a company-grade documentation hub — now with real two-way vault sync and an Obsidian community plugin that brings the enterprise layer inside Obsidian. Shared org vault, roles & permissions, review/approval governance, org-wide search, read-only portals, audit trail. Portable Markdown with [[wikilinks]] and YAML frontmatter. Never locked in.">
 <link rel="canonical" href="https://dosanjhlabs.com/ledger/">
 <meta property="og:title" content="Ledger — Obsidian for your whole company">
 <meta property="og:description" content="Obsidian for one person → Ledger for your whole company. Governed, searchable, permissioned, audit-ready — and still plain Markdown you can open in Obsidian and take with you.">
 <meta property="og:type" content="website">
 <link rel="stylesheet" href="assets/style.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Ledger","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"Turns an Obsidian vault into a governed, company-grade documentation hub: shared org vault, roles & permissions, review/approval governance, org-wide search, read-only published portals, and audit trail. Obsidian-compatible Markdown — no lock-in.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"DosanjhLabs"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Ledger","applicationCategory":"BusinessApplication","operatingSystem":"Web, Obsidian","description":"Turns an Obsidian vault into a governed, company-grade documentation hub: real two-way vault sync, an Obsidian community plugin for the enterprise layer inside Obsidian, a shared org vault, roles & permissions, review/approval governance, org-wide search, read-only published portals, and audit trail. Obsidian-compatible Markdown — no lock-in.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"DosanjhLabs"}}
 </script>
 </head>
 <body>
@@ -38,9 +38,9 @@
   <div class="spine">
     <p class="kicker">Obsidian, governed for your whole company</p>
     <h1>Your team already loves Obsidian. Ledger makes it a company-grade documentation hub.</h1>
-    <p class="lede">Point Ledger at an existing <strong>Obsidian vault</strong> and keep editing in Obsidian — your docs stay portable Markdown with <code>[[wikilinks]]</code> and YAML frontmatter. Ledger adds the layer Obsidian lacks: a shared org vault, <strong>roles &amp; permissions</strong>, <strong>review/approval governance</strong>, org-wide search, and <strong>read-only published portals</strong> for auditors. Governed, searchable, permissioned, audit-ready — never locked in.</p>
+    <p class="lede">Point Ledger at a real <strong>Obsidian vault folder</strong> and it syncs <strong>both ways</strong> — edit in Obsidian, edit in Ledger, and they converge, conflict-aware, never losing an edit. Or load the new <strong>Obsidian community plugin</strong> and get the enterprise layer <em>inside</em> Obsidian. Your docs stay portable Markdown with <code>[[wikilinks]]</code> and YAML frontmatter. Ledger adds the layer Obsidian lacks: a shared org vault, <strong>roles &amp; permissions</strong>, <strong>review/approval governance</strong>, org-wide search, and <strong>read-only published portals</strong> for auditors. Governed, searchable, permissioned, audit-ready — never locked in.</p>
     <div class="row" style="margin-top:1.6rem;gap:.7rem;flex-wrap:wrap">
-      <a class="btn primary" href="app/index.html">Try it free — import your vault →</a>
+      <a class="btn primary" href="app/index.html">Try it free — sync your vault →</a>
       <a class="btn" href="obsidian-workflow.html">See the Obsidian workflow</a>
     </div>
     <p class="muted small" style="margin-top:.8rem">No signup. The free tier runs entirely in your browser — your docs never leave your machine until you choose to sync.</p>
@@ -49,7 +49,23 @@
 
 <section class="wrap">
   <div class="callout">
-    <p class="mono small" style="margin:0"><strong>Obsidian for one person → Ledger for your whole company.</strong> Same Markdown files. Open in Obsidian, govern in Ledger, share a read-only portal.</p>
+    <p class="mono small" style="margin:0"><strong>Obsidian for one person → Ledger for your whole company</strong> — now delivered as a plugin you load <em>into</em> Obsidian. Same Markdown files. Open in Obsidian, govern in Ledger, share a read-only portal.</p>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>New: two ways to bring Obsidian to your whole company</h2>
+  <div class="grid g2" style="margin-top:1.2rem">
+    <div class="feature">
+      <h3>Real two-way vault sync <span class="badge brass">new</span></h3>
+      <p>Point Ledger at an actual Obsidian <strong>vault folder</strong> on disk and it syncs <strong>both directions, file by file</strong>. Edit a note in Obsidian, edit the same page in Ledger, and they converge. It's <strong>conflict-aware and never loses an edit</strong>: when both sides change a file, Obsidian (the file) wins and your prior Ledger version is kept in version history to diff and restore. New notes create on the other side; an edit always beats a delete. Optional auto-sync every 30 seconds and on focus.</p>
+      <p class="muted small">Uses the browser's File System Access API in Chromium-class browsers (Chrome, Edge, Brave, Arc). On Firefox/Safari, use the lossless Import/Export round-trip. <a href="obsidian-workflow.html#sync">How sync works →</a></p>
+    </div>
+    <div class="feature">
+      <h3>The Obsidian community plugin <span class="badge brass">new</span></h3>
+      <p>Don't want to leave Obsidian? Load the Ledger plugin and get the <strong>enterprise layer inside Obsidian</strong> — on Mac, Windows, Linux, or mobile. Push and pull your team's <strong>shared org vault</strong>, stamp <code>reviewed_on</code> reviews, run a <strong>governance report</strong> of stale and never-reviewed notes, and publish <strong>compliance evidence</strong> (structural signals only, never note bodies). It shares the same org vault as the web app, so they interoperate.</p>
+      <p class="muted small">You sign in by pasting a DosanjhLabs access token (the standard Obsidian-plugin pattern); the token lives only in local plugin data, never in a note. <a href="obsidian-workflow.html#plugin">About the plugin →</a></p>
+    </div>
   </div>
 </section>
 
@@ -84,7 +100,8 @@
   <div class="grid g2" style="margin-top:1.2rem">
     <div class="card spine">
       <ol>
-        <li><strong>Import your vault</strong> — paste or point Ledger at a folder of <code>.md</code>. Frontmatter, folders, tags and <code>[[wikilinks]]</code> carry over. (A sample KB is preloaded to explore.)</li>
+        <li><strong>Connect your vault</strong> — point Ledger at a real Obsidian vault <strong>folder</strong> for live two-way sync, or paste/import a bundle. Frontmatter, folders, tags and <code>[[wikilinks]]</code> carry over. (A sample KB is preloaded to explore.)</li>
+        <li><strong>Sign in</strong> — a first-class <strong>Sign in</strong> button in the top bar adds the shared org vault; signed-out stays fully local and makes zero network calls.</li>
         <li><strong>Browse spaces</strong> on the left rail — the "spine" — grouped by folder, with a tag cloud and org-wide search.</li>
         <li><strong>Open a page</strong> — rendered Markdown, a frontmatter table, wiki-links, backlinks, and a <strong>Links view</strong> showing what depends on it.</li>
         <li><strong>Govern it</strong> — see the <strong>owner</strong> and <strong>last-reviewed</strong> status; mark reviewed today; a Reviewer approves the version.</li>
@@ -102,7 +119,7 @@
         <li><strong>Cheaper</strong> — no 5-user minimum, no onboarding fee; free read-only portal users.</li>
         <li><strong>No secret honeypot</strong> — we store zero passwords by design.</li>
       </ul>
-      <p class="muted small">Opt-in cloud tier (DosanjhLabs SSO) adds the shared org vault, cross-device sync, PR review, MSP multi-client, audit trail, and "doc reviewed" evidence emission to Sightline. BYO-key AI drafts, summarizes, or answers over your docs — your key, called from your browser.</p>
+      <p class="muted small">Opt-in cloud tier (DosanjhLabs SSO) adds the shared org vault, cross-device sync, PR review, MSP multi-client, audit trail, and "doc reviewed" evidence emission to Sightline — reachable from the web app or the new Obsidian plugin. BYO-key AI drafts, summarizes, or answers over your docs — your key, called from your browser.</p>
       <a class="btn primary" href="app/index.html" style="margin-top:.6rem">Open the app →</a>
     </div>
   </div>

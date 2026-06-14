@@ -1,0 +1,10 @@
+{
+  "id": "ledger-enterprise",
+  "name": "Ledger — enterprise governance",
+  "version": "1.0.0",
+  "minAppVersion": "1.4.0",
+  "description": "Sign in to DosanjhLabs and add the enterprise layer Obsidian lacks: shared org-vault sync, doc-review governance, and compliance evidence. Your notes stay plain markdown; no secrets are stored.",
+  "author": "DosanjhLabs",
+  "authorUrl": "https://dosanjhlabs.com/ledger/",
+  "isDesktopOnly": false
+}

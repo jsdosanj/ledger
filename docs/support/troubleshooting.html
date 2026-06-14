@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Troubleshooting &amp; FAQ — Ledger Help</title>
+<meta name="description" content="Solutions to real Ledger problems: the app won't load, sync did nothing, permission denied on the vault folder, sign-in failed, a secret got flagged, a portal won't open, browser support, data loss & recovery, AI errors, and exporting & leaving.">
+<link rel="canonical" href="https://dosanjhlabs.com/ledger/docs/support/troubleshooting.html">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2" fill="#F4EEE2" stroke="#13233A" stroke-width="1.7"/><rect x="6" y="4" width="4" height="24" rx="1" fill="#C9A227"/><path d="M14 11h8M14 15h8M14 19h6" stroke="#13233A" stroke-width="1.5" stroke-linecap="round"/></svg>Ledger</a>
+    <a href="index.html">Help Center</a>
+    <a href="features.html">Features</a>
+    <a href="how-do-i.html">How do I…?</a>
+    <a class="cta" href="../../app/index.html">Open the app</a>
+  </div>
+</nav>
+
+<header class="hero wrap"><div class="spine"><p class="kicker"><a href="index.html">Help Center</a> · Troubleshooting</p><h1>Troubleshooting &amp; FAQ</h1><p class="lede">Real problems and real fixes, organized by symptom. If you hit an error message or something "just didn't work," find it below — almost everything is self-fixable.</p></div></header>
+
+<section class="wrap" style="max-width:840px">
+
+  <div class="callout">
+    <p style="margin:0"><strong>Jump to:</strong>
+      <a href="#loading">App won't load</a> ·
+      <a href="#sync">Sync did nothing</a> ·
+      <a href="#permission">Permission denied (vault)</a> ·
+      <a href="#signin">Sign-in failed</a> ·
+      <a href="#flagged">My secret got flagged</a> ·
+      <a href="#portal">Portal won't open</a> ·
+      <a href="#browser">Browser support</a> ·
+      <a href="#dataloss">Data loss &amp; recovery</a> ·
+      <a href="#reset">Resetting Ledger</a> ·
+      <a href="#ai">AI errors</a> ·
+      <a href="#leaving">Exporting &amp; leaving</a> ·
+      <a href="#faq">General FAQ</a>
+    </p>
+  </div>
+
+  <h2 id="loading">The app won't load / stuck on "Loading…" / templates &amp; sample KB missing</h2>
+  <p><strong>Most common cause:</strong> you opened the file directly as <code>file://…/app/index.html</code>. Browsers block <code>fetch()</code> on the <code>file://</code> protocol, so the app can't load its sample KB or templates.</p>
+  <ul>
+    <li><strong>Fix:</strong> serve over HTTP. From the project folder run <code>python3 -m http.server 8000</code> and open <code>http://localhost:8000/app/index.html</code>. See <a href="self-host.html">Self-hosting</a>.</li>
+    <li><strong>If templates won't load but the app otherwise works:</strong> same root cause — the <strong>Templates</strong> button says "Templates still loading…". Serve over HTTP and reload.</li>
+    <li><strong>If you self-host on a subpath</strong> and assets 404: confirm you kept the folder structure intact (the app uses relative paths like <code>../assets/…</code>). Don't move <code>app/</code> away from <code>assets/</code>.</li>
+    <li><strong>Browser extensions / strict content blockers</strong> can interfere — try a clean profile to isolate.</li>
+  </ul>
+
+  <h2 id="sync">"I ran a vault sync and nothing happened"</h2>
+  <p>A sync that reports <em>"already in sync"</em> means there was genuinely nothing to do — both sides matched. That's success, not failure. Other reasons it may look like nothing happened:</p>
+  <ul>
+    <li><strong>You changed files but they're not <code>.md</code>.</strong> Only Markdown files sync. Other file types are ignored.</li>
+    <li><strong>The change is inside a dot-folder.</strong> <code>.obsidian</code>, <code>.trash</code>, <code>.git</code>, and other dot-folders are skipped by design.</li>
+    <li><strong>Auto-sync already moved it.</strong> If auto-sync is on, the change may have synced quietly already; the next manual sync then shows "already in sync."</li>
+    <li><strong>You're on the wrong sync mechanism.</strong> Browser folder sync (<a href="vault-sync.html">⇄ Vault sync</a>) is separate from the cloud org vault (<a href="account-and-cloud.html">Sign in</a>) and the <a href="obsidian-plugin.html">Obsidian plugin</a>. Make sure you ran the one you meant.</li>
+    <li><strong>Permission expired.</strong> If the browser revoked folder access, sync errors instead of running — see <a href="#permission">Permission denied</a>.</li>
+  </ul>
+  <p><strong>To verify it's working:</strong> make a small edit to a note in Obsidian, click <strong>⇄ Sync now</strong> in Ledger, and watch for the summary ("1 pulled …"). Then edit in Ledger and sync again to confirm the push direction.</p>
+
+  <h2 id="permission">"Permission denied on the vault folder" / "Vault permission not granted — reconnect the folder"</h2>
+  <p>The browser controls folder access for security, and it can ask again or revoke it.</p>
+  <ul>
+    <li><strong>On return to the app:</strong> the browser re-asks permission for a previously connected folder. <strong>This is expected.</strong> Approve it and continue.</li>
+    <li><strong>If you denied the prompt:</strong> open the vault sync panel and click <strong>Change folder</strong> (or <strong>Connect Obsidian vault</strong>) and grant <strong>read &amp; write</strong> this time — read-only isn't enough, because Ledger needs to push edits back.</li>
+    <li><strong>If the error persists:</strong> click <strong>Disconnect</strong>, then reconnect the folder fresh. Your files are untouched by disconnecting.</li>
+    <li><strong>Right browser?</strong> Folder sync only works in Chromium browsers (Chrome/Edge/Brave/Arc). On Firefox/Safari you'll see the "this browser can't open a folder" message — use the <a href="vault-sync.html#fallback">Import/Export fallback</a>.</li>
+  </ul>
+
+  <h2 id="signin">Sign-in failed (web app or plugin)</h2>
+  <p><strong>In the web app:</strong></p>
+  <ul>
+    <li><strong>Nothing happens when I click sign in:</strong> a pop-up/redirect blocker may be interfering, or the sign-in script was blocked. Allow the redirect, or try a clean browser profile.</li>
+    <li><strong>"Cloud tier is unavailable":</strong> the cloud module couldn't load — you may be offline, behind a network policy that blocks it, or running an environment where it isn't deployed. The local app keeps working regardless; retry when you have connectivity.</li>
+    <li><strong>Redirected but came back signed out:</strong> complete the full sign-in on the hosted page; if it loops, clear cookies for the sign-in domain and retry.</li>
+  </ul>
+  <p><strong>In the Obsidian plugin (Verify fails):</strong></p>
+  <ul>
+    <li><strong>"add your access token first":</strong> paste your token in <strong>Settings → Ledger → Access token</strong>, then Verify.</li>
+    <li><strong>A 401 / "not signed in" with a token present:</strong> the token may be wrong, expired, or revoked — generate a fresh one. If a brand-new token still 401s, your environment may not yet accept pasted personal access tokens on the API (a known platform dependency — see the <a href="obsidian-plugin.html#security">plugin notes</a>).</li>
+    <li><strong>Wrong API base:</strong> confirm <strong>Settings → Ledger → API base</strong> is <code>https://api.dosanjhlabs.com</code> (only change it for staging/self-hosted setups).</li>
+  </ul>
+
+  <h2 id="flagged">"My page/secret got flagged on save"</h2>
+  <p>Ledger's <a href="security-privacy.html#scanner">save-time scanner</a> warns when a page looks like it contains a pasted secret. Two cases:</p>
+  <ul>
+    <li><strong>It really is a secret:</strong> good catch — don't store it. Remove the value and <a href="features.html#nosecrets">link a vault item</a> instead. Ledger stores no secrets by design.</li>
+    <li><strong>False positive</strong> (e.g. the words "password:" or "api key:" appear in normal documentation, or you reference a key <em>format</em>): the warning lists what it matched. You can click <strong>OK / Save anyway</strong> to proceed — the scanner is intentionally cautious and is a guardrail, not a hard block. To avoid the warning entirely, reword so it doesn't look like <code>password: value</code> (e.g. describe the field without a literal <code>:</code> + value).</li>
+  </ul>
+
+  <h2 id="portal">A published portal won't open / looks wrong</h2>
+  <ul>
+    <li><strong>Nothing downloaded:</strong> only <strong>Admin</strong> can publish. Switch the role picker to Admin, then click <strong>Publish ↗</strong> on the space header. A browser download blocker can also stop the file — allow downloads from the app.</li>
+    <li><strong>"That space has no pages":</strong> the folder you tried to publish is empty. Publish a space that has pages.</li>
+    <li><strong>The HTML file won't open:</strong> it's a standalone <code>.html</code> — double-click to open in any browser. If your OS opens it as text, right-click → Open with → your browser.</li>
+    <li><strong>It's out of date:</strong> a portal is a point-in-time snapshot. Re-publish to share the latest version.</li>
+    <li><strong>No secrets in it?</strong> Correct — portals carry no secret material by design, even if your space references credentials (those are vault links).</li>
+  </ul>
+
+  <h2 id="browser">Browser support &amp; "a feature is missing"</h2>
+  <table>
+    <thead><tr><th>Feature</th><th>Requirement</th></tr></thead>
+    <tbody>
+      <tr><td>Core app (editor, search, governance, portals, import/export)</td><td>Any modern browser, served over HTTP.</td></tr>
+      <tr><td><a href="vault-sync.html">Browser folder sync</a></td><td>Chromium-class desktop browser (Chrome/Edge/Brave/Arc). Not Firefox/Safari.</td></tr>
+      <tr><td>Sign-in / cloud sync / evidence</td><td>Network access to the DosanjhLabs platform.</td></tr>
+      <tr><td>AI</td><td>Your own provider key + network access to that provider.</td></tr>
+    </tbody>
+  </table>
+  <p>If folder sync controls are missing, you're likely on Firefox/Safari — use the <a href="vault-sync.html#fallback">Import/Export fallback</a> or the <a href="obsidian-plugin.html">Obsidian plugin</a>. If the Edit tab is missing, your <a href="features.html#roles">role</a> is read-only — switch to Admin or Editor.</p>
+
+  <h2 id="dataloss">Data loss &amp; recovery</h2>
+  <p>Local docs live in your browser's storage on this device. They can disappear if you clear browser data, use a different browser/profile, or open a private window. To protect against that:</p>
+  <ul>
+    <li><strong>Best practice:</strong> keep a copy outside the browser — <a href="vault-sync.html">sync to a vault folder</a>, sign in and sync to the <a href="account-and-cloud.html">org cloud</a>, or periodically <a href="features.html#export">Export all</a> to a Markdown bundle.</li>
+    <li><strong>Recover a previous version of a page:</strong> open it → <strong>History</strong> tab → <strong>Restore</strong>. Restores are non-destructive (the current version is snapshotted first).</li>
+    <li><strong>Recover a deleted page:</strong> if it's still in a connected vault folder or the org cloud, run a sync/pull to bring it back. If it only ever lived in the browser and you deleted it, it can't be recovered once gone — which is why a folder/cloud copy or an export matters.</li>
+    <li><strong>Switched devices:</strong> docs don't follow you automatically in the free tier. Export and import, or sign in and sync, to move them.</li>
+  </ul>
+
+  <h2 id="reset">Resetting Ledger / starting fresh</h2>
+  <p>To wipe the in-browser KB and re-seed the sample data:</p>
+  <ol>
+    <li><strong>Export first</strong> if you want to keep anything (<strong>Export all</strong>).</li>
+    <li>Clear Ledger's site data for this origin in your browser (clear <code>localStorage</code>/IndexedDB for the site, or use the browser's "clear site data" for that URL).</li>
+    <li>Reload the app — with no docs present, it re-seeds the sample KB on the next first run.</li>
+  </ol>
+  <p>This also clears the connected vault handle and the saved AI key, so you'll reconnect/re-enter those.</p>
+
+  <h2 id="ai">AI errors</h2>
+  <ul>
+    <li><strong>"No AI key set" / "Add an AI key first":</strong> open <strong>AI</strong>, pick a provider, paste your key, <strong>Save key</strong>. See <a href="ai.html#setup">AI setup</a>.</li>
+    <li><strong>"Blocked: the text may contain a secret or PII":</strong> the <a href="ai.html#scrubber">scrubber</a> stopped the draft because your notes look like they hold a secret/PII. Remove it (link a vault item) and retry.</li>
+    <li><strong>Provider error (401/403):</strong> bad or unauthorized key — re-check it in the provider's dashboard. (429: you're rate-limited or out of credit with the provider.)</li>
+    <li><strong>"No text in provider response":</strong> the model returned nothing usable — try again, a different model (Model override), or a different provider.</li>
+    <li><strong>Reminder:</strong> the call goes <em>directly</em> to your provider from your browser, so errors come from them, not from DosanjhLabs. AI output is advisory — review before adopting.</li>
+  </ul>
+
+  <h2 id="leaving">Exporting &amp; leaving (no lock-in)</h2>
+  <p>Ledger's source of truth is plain Markdown, so leaving is trivial:</p>
+  <ol>
+    <li>Click <strong>Export all</strong> to download the whole KB as a portable Markdown bundle (or <strong>Export .md</strong> per page).</li>
+    <li>Drop the files into an Obsidian vault, or commit them to a git repo — they're standard <code>.md</code> with frontmatter and <code>[[wiki-links]]</code> intact.</li>
+    <li>If you used a <a href="vault-sync.html">connected vault folder</a>, your files are already on disk — nothing to export.</li>
+  </ol>
+  <p>There's no proprietary database to escape. <code>git clone</code> / export is both your backup and your exit.</p>
+
+  <h2 id="faq">General FAQ</h2>
+  <p><strong>Do I need an account to use Ledger?</strong> No. The free, local-first tier works with no account and no network.</p>
+  <p><strong>Does anything leave my machine if I don't sign in?</strong> No — signed out, Ledger makes zero network calls.</p>
+  <p><strong>Can I store passwords in Ledger?</strong> No, by design. Link a password manager item from a credential page; a save-time scanner warns if you paste a secret. See <a href="security-privacy.html">Security &amp; privacy</a>.</p>
+  <p><strong>Is it really compatible with Obsidian?</strong> Yes — same Markdown, YAML frontmatter, <code>[[wiki-links]]</code>, folders, and tags. Import a vault, keep editing in Obsidian, export back out.</p>
+  <p><strong>Why are Mermaid diagrams shown as code?</strong> The renderer is dependency-free and displays <code>```mermaid</code> blocks as code rather than executing them into diagrams.</p>
+  <p><strong>How many versions does history keep?</strong> Up to the last 30 saves per page, locally.</p>
+  <p><strong>Where's the desktop app?</strong> The cross-platform "desktop" experience ships as the <a href="obsidian-plugin.html">Obsidian community plugin</a> — Obsidian is already the Mac/Windows/Linux/mobile host.</p>
+  <p><strong>Is there a graph view?</strong> There's a navigable <a href="features.html#links">Links view</a> (out-links + backlinks + a connectivity summary). A visual force-directed graph is on the roadmap.</p>
+
+  <h2 id="next">Still stuck?</h2>
+  <p>Re-check the topic page for the feature involved — it has the step-by-step details:</p>
+  <ul>
+    <li><a href="getting-started.html">Getting started</a> · <a href="features.html">Features</a> · <a href="vault-sync.html">Vault sync</a> · <a href="obsidian-plugin.html">Obsidian plugin</a> · <a href="ai.html">AI</a> · <a href="account-and-cloud.html">Cloud tier</a> · <a href="security-privacy.html">Security</a> · <a href="how-do-i.html">How do I…?</a></li>
+  </ul>
+
+</section>
+
+<footer class="footer"><div class="wrap"><p>© 2026 DosanjhLabs · <a href="index.html">Help Center</a> · <a href="../../index.html">Ledger</a> · A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p></div></footer>
+</body>
+</html>

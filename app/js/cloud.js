@@ -33,10 +33,17 @@ const B = () => window.LedgerBridge;
 
 function client() { if (!ks) ks = createKeystoneClient(CFG); return ks; }
 
-async function signIn() { await client().ensureSignedIn(); me = await client().whoami(); entCache = {}; rerenderTab(); }
+async function signIn() { await client().ensureSignedIn(); me = await client().whoami(); entCache = {}; rerenderTab(); refreshApp(); }
 async function signOut() {
   try { const c = await client().loadClerk(); if (c && typeof c.signOut === "function") await c.signOut(); } catch (_) {}
-  me = null; entCache = {}; rerenderTab();
+  me = null; entCache = {}; rerenderTab(); refreshApp();
+}
+// Re-render the app shell so the first-class "Sign in"/account button reflects state.
+function refreshApp() { try { B().rerender(); } catch (_) {} }
+// Auth state for the app's first-class account button (synchronous, no network).
+function status() {
+  const email = me && me.user ? (me.user.email || me.user.primaryEmail || me.user.id) : null;
+  return { signedIn: !!me, email: email };
 }
 async function checkEntitled(feature) {
   if (feature in entCache) return entCache[feature];
@@ -125,4 +132,4 @@ function render(el) {
 
 function esc(s) { return String(s == null ? "" : s).replace(/[&<>"'`]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;", "`": "&#96;" }[c])); }
 
-window.LedgerCloud = { render };
+window.LedgerCloud = { render, status, signIn, syncUp, syncDown };

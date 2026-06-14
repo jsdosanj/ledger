@@ -7,5 +7,7 @@
   <url><loc>https://dosanjhlabs.com/ledger/obsidian-workflow.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://dosanjhlabs.com/ledger/self-host.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://dosanjhlabs.com/ledger/docs/index.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://dosanjhlabs.com/ledger/docs/support/obsidian-plugin.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://dosanjhlabs.com/ledger/docs/support/vault-sync.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://dosanjhlabs.com/ledger/app/index.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 </urlset>

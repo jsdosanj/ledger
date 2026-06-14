@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security &amp; privacy — Ledger Help</title>
+<meta name="description" content="Ledger's security posture: no passwords or secrets stored, zero-network when signed out, where your data actually lives, the save-time secret scanner, and how the cloud tier and tokens are handled.">
+<link rel="canonical" href="https://dosanjhlabs.com/ledger/docs/support/security-privacy.html">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2" fill="#F4EEE2" stroke="#13233A" stroke-width="1.7"/><rect x="6" y="4" width="4" height="24" rx="1" fill="#C9A227"/><path d="M14 11h8M14 15h8M14 19h6" stroke="#13233A" stroke-width="1.5" stroke-linecap="round"/></svg>Ledger</a>
+    <a href="index.html">Help Center</a>
+    <a href="features.html">Features</a>
+    <a href="account-and-cloud.html">Cloud tier</a>
+    <a class="cta" href="../../app/index.html">Open the app</a>
+  </div>
+</nav>
+
+<header class="hero wrap"><div class="spine"><p class="kicker"><a href="index.html">Help Center</a> · Security &amp; privacy</p><h1>Security &amp; privacy</h1><p class="lede">Ledger is built so a breach of Ledger leaks no credentials — because there are none to leak. This page explains the no-secrets posture, the zero-network-when-signed-out guarantee, exactly where your data lives, and how the optional cloud tier and tokens are handled.</p></div></header>
+
+<section class="wrap" style="max-width:820px">
+
+  <h2 id="no-secrets">No passwords or secrets — by design</h2>
+  <p>Ledger stores <strong>zero secret material</strong>. It is not a password manager and never tries to be. Instead, credential pages <em>reference</em> an item in your real password manager (Bitwarden, 1Password, Keeper, Vaultwarden, etc.) by URL or ID — for example <code>vault://provider/item-id</code> — so the credential itself stays in the vault built to protect it.</p>
+  <p>This is a deliberate security stance with a simple payoff: if Ledger (local storage, the org vault, an exported file, or a published portal) were ever exposed, it would contain <strong>no passwords, keys, or seeds</strong>, because none were ever stored.</p>
+
+  <h2 id="scanner">The save-time secret scanner</h2>
+  <p>People sometimes paste a secret by reflex. To catch that, Ledger scans each page <strong>when you save</strong> for things that look like secrets — <code>password:</code>, <code>secret:</code>, <code>api_key:</code>, provider keys (<code>sk-…</code>), PEM private-key blocks, and seed-phrase-like strings. If it finds one, it warns you, names what it matched, and asks you to confirm before saving, nudging you toward a vault link instead.</p>
+  <p>It's a guardrail, not a vault — you can override it for a false positive (see <a href="troubleshooting.html#flagged">"My secret got flagged"</a>) — but the intended action is to remove the secret. The <a href="ai.html#scrubber">AI scrubber</a> applies the same idea to AI prompts, redacting or blocking likely secrets before any request leaves your browser.</p>
+
+  <h2 id="zero-network">Zero network when signed out</h2>
+  <p>While you're signed out, Ledger makes <strong>no non-local network calls</strong>. The only network-capable code (the cloud module) loads separately and only does anything when you click "Sign in." Until then, no third-party scripts (including the sign-in provider) are loaded, and your docs never leave your machine. This is verified by the project's test suite, which asserts the entire signed-out flow makes zero network calls.</p>
+
+  <h2 id="where-data-lives">Where your data lives</h2>
+  <table>
+    <thead><tr><th>Data</th><th>Where it's stored</th><th>Leaves your machine?</th></tr></thead>
+    <tbody>
+      <tr><td>Your documents (Markdown)</td><td>Browser <code>localStorage</code>, on this device</td><td>Only if you sign in and sync, or sync to a vault folder, or export.</td></tr>
+      <tr><td>Active page, selected role, sync state</td><td>Browser <code>localStorage</code> / IndexedDB</td><td>No.</td></tr>
+      <tr><td>AI provider key</td><td>Browser <code>localStorage</code></td><td>No — never sent to DosanjhLabs. Used only to call your chosen provider directly.</td></tr>
+      <tr><td>Connected vault folder handle</td><td>Browser IndexedDB</td><td>No — it's a permission handle, not your files.</td></tr>
+      <tr><td>On-disk Obsidian vault</td><td>Your disk (the folder you connected)</td><td>It's already on your machine; sync reads/writes those files.</td></tr>
+      <tr><td>Shared org vault (if signed in)</td><td>Your org's tenant store on the DosanjhLabs platform</td><td>Yes — but it's Markdown only, with no secrets.</td></tr>
+      <tr><td>Obsidian plugin access token</td><td><code>.obsidian/plugins/ledger-enterprise/data.json</code> in your vault</td><td>No (sent only as a bearer to authenticate API calls).</td></tr>
+    </tbody>
+  </table>
+  <div class="callout warn">
+    <p style="margin:0"><strong>Local storage is per-browser and not a backup.</strong> Clearing your browser data, using a different browser/profile, or a private window will not show your docs. Keep your own backups by <a href="features.html#export">exporting</a> or by <a href="vault-sync.html">syncing to a vault folder</a> or the cloud. See <a href="troubleshooting.html#dataloss">data loss &amp; recovery</a>.</p>
+  </div>
+
+  <h2 id="cloud-security">Cloud tier &amp; tenant isolation</h2>
+  <ul>
+    <li>Sign-in uses your DosanjhLabs account (Clerk SSO), loaded only on demand.</li>
+    <li>Every API call carries a short-lived bearer token. The <strong>tenant (your org) is always derived server-side</strong> from your verified session — there is no header a client can set to act as another tenant.</li>
+    <li>The shared org vault and evidence both carry <strong>Markdown / structural signals only</strong>. Page bodies are never sent in evidence; secrets are never stored anywhere.</li>
+    <li>For MSPs, the <code>msp</code> entitlement adds hard per-client isolation.</li>
+  </ul>
+
+  <h2 id="portals-security">Published portals</h2>
+  <p>A <a href="features.html#portals">published portal</a> is a static, read-only HTML file with no editing controls and no embedded credentials (there are none to embed). The Markdown is sanitized when rendered (HTML is escaped), so a portal can't be used to inject scripts. Treat the file like any shared document — it's a point-in-time snapshot of the space you published.</p>
+
+  <h2 id="disclaimer">What Ledger is not</h2>
+  <p>Ledger is a <strong>documentation aid</strong>. It is not a password manager, not a backup system, and not a compliance program. Keep your secrets in a real vault, keep your own backups, and run your own compliance controls — Ledger documents and governs your knowledge; it doesn't replace those tools.</p>
+
+  <h2 id="next">Related topics</h2>
+  <ul>
+    <li><a href="features.html#nosecrets">The no-secrets posture &amp; the scanner</a></li>
+    <li><a href="account-and-cloud.html">The cloud tier</a></li>
+    <li><a href="troubleshooting.html#dataloss">Data loss &amp; recovery</a></li>
+  </ul>
+
+</section>
+
+<footer class="footer"><div class="wrap"><p>© 2026 DosanjhLabs · <a href="index.html">Help Center</a> · <a href="../../index.html">Ledger</a> · A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p></div></footer>
+</body>
+</html>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Obsidian for your whole company — the Ledger workflow</title>
-<meta name="description" content="Obsidian for one person → Ledger for your whole company. Import an Obsidian vault, keep editing in Obsidian, and add the enterprise layer it lacks: a shared org vault, roles & permissions, review/approval governance, org-wide search, read-only published portals, audit trail, and SSO. Portable Markdown — never locked in.">
+<meta name="description" content="Obsidian for one person → Ledger for your whole company, now delivered as a plugin you load into Obsidian. Real two-way vault sync, a shared org vault, roles & permissions, review/approval governance, org-wide search, read-only published portals, audit trail, and SSO. Keep editing in Obsidian — portable Markdown, never locked in.">
 <link rel="canonical" href="https://dosanjhlabs.com/ledger/obsidian-workflow.html">
 <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -25,7 +25,11 @@
   <div class="spine">
     <p class="kicker">Obsidian, governed for your whole company</p>
     <h1>Obsidian for one person → Ledger for your whole company.</h1>
-    <p class="lede">Obsidian is perfect for a single person. The moment a company relies on those notes, you need governance Obsidian was never built to give. Ledger keeps your vault Obsidian-native — portable Markdown with <code>[[wikilinks]]</code> and YAML frontmatter — and adds the enterprise layer on top. Import a vault, keep editing in Obsidian, never get locked in.</p>
+    <p class="lede">Obsidian is perfect for a single person. The moment a company relies on those notes, you need governance Obsidian was never built to give. Ledger keeps your vault Obsidian-native — portable Markdown with <code>[[wikilinks]]</code> and YAML frontmatter — and adds the enterprise layer on top. Connect a real vault for <strong>two-way sync</strong>, or load the new <strong>Obsidian plugin</strong> to get that layer right inside Obsidian. Keep editing in Obsidian, never get locked in.</p>
+    <div class="row" style="margin-top:1.4rem;gap:.7rem;flex-wrap:wrap">
+      <a class="btn primary" href="app/index.html">Open the app — sync your vault →</a>
+      <a class="btn" href="#plugin">About the Obsidian plugin</a>
+    </div>
   </div>
 </header>
 
@@ -34,7 +38,7 @@
   <div class="grid g3" style="margin-top:1.2rem">
     <div class="feature"><h3>YAML frontmatter</h3><p>Structured fields (<code>type</code>, <code>owner</code>, <code>reviewed_on</code>, <code>hostname</code>…) are standard frontmatter Obsidian reads natively — and Ledger governs.</p></div>
     <div class="feature"><h3>[[Wikilinks]] + backlinks</h3><p>Wikilinks resolve in both Ledger and Obsidian, so backlinks and the dependency graph work either way. Ledger adds a navigable links/graph view.</p></div>
-    <div class="feature"><h3>Import &amp; round-trip</h3><p>Point Ledger at a folder of <code>.md</code> — folders, tags, frontmatter and links carry over. Export back out and re-open in Obsidian. No cage.</p></div>
+    <div class="feature"><h3>Live folder sync &amp; round-trip</h3><p>Point Ledger at a folder of <code>.md</code> for <a href="#sync">continuous two-way sync</a> — folders, tags, frontmatter and links carry over both ways. Or export back out and re-open in Obsidian. No cage.</p></div>
   </div>
 </section>
 
@@ -48,21 +52,69 @@
   </div>
 </section>
 
+<hr class="rule brass wrap">
+
+<section class="wrap" id="sync">
+  <h2>Real two-way vault sync <span class="badge brass">new</span></h2>
+  <p class="muted">Not a one-time import — a continuing link. Point Ledger at your real Obsidian vault <strong>folder</strong> and it reconciles both directions at the granularity of individual <code>.md</code> files.</p>
+  <div class="grid g2" style="margin-top:1.2rem">
+    <div class="feature">
+      <h3>Edit on either side; they converge</h3>
+      <p>Change a note in Obsidian, change the same page in Ledger, hit <strong>⇄ Sync now</strong> (or leave auto-sync on). Ledger keeps a per-file content snapshot from the last sync and uses it to decide what moved: only-one-side-changed copies across, new files create on the other side, and a delete only mirrors when the surviving side is unchanged.</p>
+    </div>
+    <div class="feature">
+      <h3>Conflict-aware — never loses an edit</h3>
+      <p>When <em>both</em> sides changed the same file, the on-disk file (Obsidian, your editor of record) wins — and your prior Ledger version is preserved in <strong>version history</strong>, where you can diff and restore it. An edit always beats a delete. Nothing silently disappears.</p>
+    </div>
+    <div class="feature">
+      <h3>Safe by construction</h3>
+      <p>Dot-folders like <code>.obsidian</code>, <code>.git</code> and <code>.trash</code> are skipped, so your config, plugins and themes are never touched. Only <code>.md</code> files sync. And because Ledger stores zero secrets, syncing the vault writes none.</p>
+    </div>
+    <div class="feature">
+      <h3>One more click to your team</h3>
+      <p>Once you're <strong>signed in</strong>, the sync panel adds <strong>☁ Push to org cloud</strong> — after reconciling Obsidian ↔ Ledger, push the merged result to your team's shared org vault. The chain is <strong>Obsidian ↔ Ledger ↔ org cloud</strong>.</p>
+    </div>
+  </div>
+  <p class="muted small" style="margin-top:1rem">Browser folder sync uses the <strong>File System Access API</strong> in Chromium-class desktop browsers (Chrome, Edge, Brave, Arc). On Firefox and Safari, use the lossless Import/Export round-trip instead. The desktop experience ships as the Obsidian plugin below.</p>
+</section>
+
+<hr class="rule wrap">
+
+<section class="wrap" id="plugin">
+  <h2>The Obsidian community plugin <span class="badge brass">new</span></h2>
+  <p class="muted">The flagship way to deliver "Obsidian for your whole company": a plugin you load <strong>into Obsidian itself</strong>. Because Obsidian is already the Mac/Windows/Linux/mobile host, the enterprise layer comes to you — no separate desktop app.</p>
+  <div class="grid g2" style="margin-top:1.2rem">
+    <div class="feature"><h3>Sign in, then sync the org vault</h3><p>Paste a DosanjhLabs access token, click <strong>Verify</strong>, and your status bar shows your org. Then <strong>Push</strong> your whole vault to the shared org cloud, or <strong>Pull</strong> it back. Pull is non-destructive — it updates changed notes and creates missing ones, and <strong>never deletes</strong> a local note.</p></div>
+    <div class="feature"><h3>Governance from the Command Palette</h3><p><strong>Mark current note reviewed</strong> stamps <code>reviewed_on</code> into frontmatter — the same field the web app reads. <strong>Show governance report</strong> opens a modal ranking notes never-reviewed → stale → fresh, with owner and age; click a row to jump to the note.</p></div>
+    <div class="feature"><h3>Compliance evidence, in Obsidian</h3><p><strong>Publish documentation evidence</strong> sends structural signals only — paths, titles, type, <code>reviewed_on</code>, counts — to the shared evidence graph for Sightline. <strong>Note bodies are never sent.</strong></p></div>
+    <div class="feature"><h3>It shares the web app's org vault</h3><p>The plugin reads and writes the same <code>kb-state</code> store the Ledger web app uses, so the two interoperate — work in Obsidian, govern in the web app, or both.</p></div>
+  </div>
+  <div class="callout" style="margin-top:1.2rem">
+    <p style="margin:0"><strong>How sign-in works, honestly:</strong> Obsidian can't run the web app's redirect-based sign-in cleanly, so the plugin authenticates with a <strong>pasted access token</strong> (the standard Obsidian-plugin pattern). The token is a long-lived bearer credential stored only in this vault's local plugin data — never in a note, never logged. Network goes through Obsidian's <code>requestUrl</code>, and the tenant is always derived server-side from your verified token.</p>
+  </div>
+  <p class="muted small" style="margin-top:1rem">Install today by copying the plugin folder into <code>&lt;your-vault&gt;/.obsidian/plugins/ledger-enterprise/</code> and enabling it — it's not yet listed in Obsidian's Community Plugins directory. One platform dependency: Keystone must accept pasted personal access tokens as bearer on the existing endpoints. <a href="docs/support/obsidian-plugin.html">Full plugin guide →</a></p>
+  <p><a class="btn primary" href="docs/support/obsidian-plugin.html">Read the plugin guide →</a> <a class="btn" href="docs/support/vault-sync.html">Browser sync guide</a></p>
+</section>
+
+<hr class="rule brass wrap">
+
 <section class="wrap">
   <h2>The flow</h2>
   <div class="card spine">
-    <pre><code># 1. import an existing Obsidian vault (paste a folder of .md, or self-host
-#    against your own git remote) — frontmatter + [[links]] + folders carry over
+    <pre><code># 1. connect your real Obsidian vault folder — Ledger syncs both ways,
+#    file by file (or import a bundle / self-host against your git remote).
+#    frontmatter + [[links]] + folders carry over
 
-# 2. keep editing in Obsidian — clone, edit offline, push
-git add . &amp;&amp; git commit -m "update access-control policy" &amp;&amp; git push
+# 2. keep editing in Obsidian — edits flow back into Ledger on the next
+#    sync; both-changed conflicts keep Obsidian's file and stash the prior
+#    Ledger version in history. (Or run the Obsidian plugin and never leave.)
 
 # 3. govern in Ledger — assign owners, mark reviewed, approve versions,
 #    set who-can-edit-which-space, search across the whole org
 
 # 4. publish a space as a read-only portal for auditors / non-editors</code></pre>
   </div>
-  <p class="muted small" style="margin-top:.8rem">A documentation governance aid. Two-way conflict-aware sync helper is on the roadmap; today the loop is plain git + the in-app vault importer.</p>
+  <p class="muted small" style="margin-top:.8rem">A documentation governance aid. Two-way folder sync is conflict-aware at the file level today; per-line 3-way auto-merge and real-time file watching are on the roadmap.</p>
   <p><a class="btn primary" href="app/index.html">Open the app — import a vault →</a> <a class="btn" href="self-host.html">Self-host guide</a></p>
 </section>
 
