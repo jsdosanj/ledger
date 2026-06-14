@@ -44,6 +44,15 @@
   // --- content hash (djb2) — change detection only, not crypto ---------------
   function hash(s) { var h = 5381, i = s.length; while (i) h = (h * 33) ^ s.charCodeAt(--i); return (h >>> 0).toString(16); }
 
+  // Reject path traversal at the FS boundary: a "../" segment, an absolute path,
+  // or a backslash could make the native bridge read/write/remove OUTSIDE the
+  // vault folder. Only plain in-vault relative paths are allowed to touch disk.
+  function safeRel(p) {
+    p = String(p == null ? "" : p);
+    if (p.charAt(0) === "/" || /\\/.test(p)) return false;
+    return p.split("/").every(function (s) { return s !== "" && s !== "." && s !== ".."; });
+  }
+
   // --- localStorage: snapshot + panel meta -----------------------------------
   function snap() { try { return JSON.parse(localStorage.getItem(SNAP_KEY) || "{}"); } catch (e) { return {}; } }
   function setSnap(o) { try { localStorage.setItem(SNAP_KEY, JSON.stringify(o)); } catch (e) {} }
@@ -148,6 +157,7 @@
     var keys = Object.keys(union);
     for (var i = 0; i < keys.length; i++) {
       var p = keys[i];
+      if (!safeRel(p)) continue; // never let a traversal path touch the vault FS
       var v = inVault[p] ? await backend.read(p) : null;
       var l = local[p] != null ? local[p] : null;
       var prev = s[p] || null;

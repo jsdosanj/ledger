@@ -42,6 +42,11 @@ var evIdx = src.indexOf("type: \"it_documentation\"");
 var refsIdx = src.indexOf("const refs =");
 ok(refsIdx >= 0 && /kind:\s*"doc"[\s\S]{0,200}reviewed_on/.test(src.slice(refsIdx, refsIdx + 400)) && !/body:/.test(src.slice(refsIdx, evIdx > 0 ? evIdx : refsIdx + 400)), "evidence refs are structural-only (no note bodies sent)");
 ok(!/console\.\w+\([^)]*token/i.test(src), "access token is never logged");
+// syncDown writes files from the shared (team-writable) kb-state — it must reject
+// path-traversal keys before vault.create so a "../" key can't escape the vault.
+ok(/function\s+safeVaultPath/.test(src), "syncDown has a path-traversal guard (safeVaultPath)");
+var sdIdx = src.indexOf("async syncDown");
+ok(sdIdx >= 0 && /safeVaultPath\(path\)/.test(src.slice(sdIdx, src.indexOf("async ", sdIdx + 5))), "syncDown calls safeVaultPath before writing each pulled note");
 
 console.log("");
 if (fails.length) { console.error("FAIL — " + fails.length + " issue(s):"); fails.forEach(function (f) { console.error("  - " + f); }); process.exit(1); }
