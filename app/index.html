@@ -33,6 +33,11 @@
      Local-first safe: no account, no Keystone, no server — the browser calls the
      user's chosen provider DIRECTLY with the user's own key from localStorage. -->
 <script src="js/ai.js"></script>
+<!-- Obsidian VAULT SYNC (real two-way folder sync). Plain global, loads before
+     app.js. In the browser it uses the File System Access API; in the desktop
+     app it uses window.LedgerNative. Local-first safe: no account required to
+     sync a local vault; signing in adds the shared ORG vault on top. -->
+<script src="js/vault-sync.js"></script>
 <script src="../assets/app.js"></script>
 <!-- OPT-IN cloud tier. ES module, loaded best-effort. If it fails to load
      (offline, blocked, not deployed) the app stays fully local-first — app.js
