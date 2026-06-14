@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docs — Ledger</title>
+<meta name="description" content="How to use Ledger: the doc tree, search, markdown editor with live preview, version history, templates, the no-secrets credential pattern, export, the optional cloud tier, and BYO-key AI.">
+<link rel="canonical" href="https://dosanjhlabs.com/ledger/docs/index.html">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../index.html"><svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2" fill="#F4EEE2" stroke="#13233A" stroke-width="1.7"/><rect x="6" y="4" width="4" height="24" rx="1" fill="#C9A227"/><path d="M14 11h8M14 15h8M14 19h6" stroke="#13233A" stroke-width="1.5" stroke-linecap="round"/></svg>Ledger</a>
+    <a href="../obsidian-workflow.html">Obsidian</a>
+    <a href="../self-host.html">Self-host</a>
+    <a href="../pricing.html">Pricing</a>
+    <a class="cta" href="../app/index.html">Open the app</a>
+  </div>
+</nav>
+
+<header class="hero wrap"><div class="spine"><p class="kicker">Documentation</p><h1>Using Ledger</h1><p class="lede">Everything below works in the free, local-first tier — no account, no network.</p></div></header>
+
+<section class="wrap" style="max-width:760px">
+  <h2>The doc tree &amp; search</h2>
+  <p>The left rail (the "spine") groups your pages by folder with a tag cloud beneath. Type in the search box to search-as-you-type across titles, paths, tags, frontmatter values, and body text. Click a result to open it.</p>
+
+  <h2>Reading a page</h2>
+  <p>Frontmatter renders as a tidy table at the top; the markdown body renders below with headings, tables, code, Mermaid blocks, task lists, and <code>[[wiki-links]]</code>. A meta bar shows tags and <strong>backlinks</strong> (which other pages link here).</p>
+
+  <h2>Editing</h2>
+  <p>The <strong>Edit</strong> tab is a split markdown editor with live preview. <kbd>Ctrl/Cmd+S</kbd> (or the Save button) commits — and snapshots the prior version into history. Set tags inline.</p>
+
+  <h2>Version history &amp; diff</h2>
+  <p>The <strong>History</strong> tab lists prior versions. View a line-level diff against the current version, or restore any prior version (the current one is kept too). Hosted mode adds full git history + pull-request review.</p>
+
+  <h2>Templates</h2>
+  <p>The <strong>Templates</strong> button starts a new page from a real IT-doc template: server/VM asset, network note, runbook/SOP, credential reference, SaaS app, onboarding/offboarding procedure.</p>
+
+  <div class="callout warn">
+    <h3 style="margin-top:0">We don't store passwords or secrets</h3>
+    <p><strong>Ledger holds zero secret material.</strong> Use a password manager (Bitwarden, 1Password, Keeper, Vaultwarden). For each credential, create a <em>credential reference</em> page that links the vault item by URL/ID — never paste the password, key, or seed. If you try to save a page that looks like it contains a secret, Ledger warns you and points you to the vault pattern.</p>
+  </div>
+
+  <h2>Export</h2>
+  <p>Export a single page as <code>.md</code>, or the whole KB as one portable markdown bundle. It's already files — there's nothing to "get out."</p>
+
+  <h2>Optional cloud tier</h2>
+  <p>The <strong>Cloud</strong> button opens sign-in (your DosanjhLabs account, via Clerk). Signed in, Pro features unlock: cross-device KB sync, PR review, MSP multi-client, and "doc reviewed / exists" evidence emission to Sightline. Signed out, Ledger makes zero network calls.</p>
+
+  <h2>BYO-key AI</h2>
+  <p>The <strong>AI</strong> button: paste your own OpenAI / Anthropic / OpenRouter key (stored locally; the browser calls the provider directly). Draft a doc from notes, summarize the open page, or ask questions over your docs with citations. A scrubber blocks pasted secrets before any request leaves your browser.</p>
+</section>
+
+<footer class="footer"><div class="wrap"><p>© 2026 DosanjhLabs · <a href="../index.html">Ledger</a> · A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p></div></footer>
+</body>
+</html>

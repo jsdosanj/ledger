@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Self-host Ledger — free, open-source IT documentation in git</title>
+<meta name="description" content="Self-host Ledger for free. The markdown-on-git IT documentation engine runs as a static app against your own git remote (GitHub, GitLab, or Gitea). No per-seat fee, no proprietary database, your data stays yours.">
+<link rel="canonical" href="https://dosanjhlabs.com/ledger/self-host.html">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2" fill="#F4EEE2" stroke="#13233A" stroke-width="1.7"/><rect x="6" y="4" width="4" height="24" rx="1" fill="#C9A227"/><path d="M14 11h8M14 15h8M14 19h6" stroke="#13233A" stroke-width="1.5" stroke-linecap="round"/></svg>Ledger</a>
+    <a href="obsidian-workflow.html">Obsidian</a>
+    <a href="vs-it-glue.html">vs IT Glue</a>
+    <a href="vs-hudu.html">vs Hudu</a>
+    <a href="self-host.html" aria-current="page">Self-host</a>
+    <a href="pricing.html">Pricing</a>
+    <a class="cta" href="app/index.html">Open the app</a>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="spine">
+    <p class="kicker">Open source · $0</p>
+    <h1>Self-host Ledger in 10 minutes.</h1>
+    <p class="lede">The markdown-on-git engine is a static app. Serve it anywhere, point it at your own git remote, and you own the whole stack — no per-seat fee, no proprietary database, your data on your infrastructure.</p>
+  </div>
+</header>
+
+<section class="wrap">
+  <h2>Quickstart</h2>
+  <div class="card spine">
+    <pre><code># 1. serve the static app (any static host works)
+git clone https://github.com/dosanjhlabs/ledger.git
+cd ledger
+python3 -m http.server 8000
+# open http://localhost:8000/app/index.html — it works fully offline, no account
+
+# 2. (optional) connect your own git remote for shared, versioned docs
+#    GitHub / GitLab / Gitea — Ledger uses the provider's API + webhooks,
+#    so PR review and history are just your repo's PRs and commits.</code></pre>
+  </div>
+  <p class="muted small" style="margin-top:.8rem">The free local tier needs nothing but a browser. The hosted/cloud tier (sign-in, cross-device sync, evidence emission) is opt-in and additive.</p>
+</section>
+
+<section class="wrap">
+  <h2>What you get for $0</h2>
+  <div class="grid g3" style="margin-top:1rem">
+    <div class="feature"><h3>The full engine</h3><p>Markdown editor + live preview, doc tree, instant search, version history, tags, wiki-links, export.</p></div>
+    <div class="feature"><h3>Your git remote</h3><p>Docs are commits in your repo. Diff, blame, branch, PR — natively, on infrastructure you control.</p></div>
+    <div class="feature"><h3>No lock-in</h3><p>It's already files. There's nothing to export — <code>git clone</code> is your backup and your exit.</p></div>
+  </div>
+  <p class="muted small" style="margin-top:1rem">Self-host support is community-only. Want managed hosting, SSO, and SLA? See <a href="pricing.html">Pro / Teams</a>.</p>
+</section>
+
+<footer class="footer"><div class="wrap"><p>© 2026 DosanjhLabs · <a href="index.html">Ledger</a> · A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p></div><p class="legal-links" style="margin-top:.75rem;font-size:.8rem;opacity:.8"><a href="https://dosanjhlabs.com/legal/privacy">Privacy</a> · <a href="https://dosanjhlabs.com/legal/terms">Terms</a> · <a href="https://dosanjhlabs.com/legal/acceptable-use">Acceptable Use</a> · <a href="https://dosanjhlabs.com/legal/disclaimer">Disclaimer</a> · <a href="https://dosanjhlabs.com/legal/refunds">Refunds</a></p></footer>
+</body>
+</html>

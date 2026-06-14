@@ -1,0 +1,70 @@
+{
+  "version": "1.0",
+  "note": "Seed sample IT knowledge base for a fictional client 'Northwind Clinic', so the app demonstrates the doc tree, search, wiki-links, frontmatter and backlinks on first run. All markdown; no real secrets anywhere.",
+  "company": "Northwind Clinic",
+  "docs": [
+    {
+      "path": "Assets/Core Firewall.md",
+      "title": "Core Firewall",
+      "folder": "Assets",
+      "tags": ["asset", "firewall", "network"],
+      "body": "---\ntype: firewall\nhostname: nw-fw-01\nclient: Northwind Clinic\nlocation: Server Room A\nmodel: Fortinet FortiGate 60F\nip: 10.0.10.1\nserial: FGT60F-XXXX\nwarranty_expires: 2027-03-01\ncriticality: high\nsource: manual\n---\n\n# Core Firewall\n\n## Overview\nPerimeter firewall and inter-VLAN router for the clinic. Single point of failure — if this is down, all sites lose internet and inter-VLAN routing.\n\n## Specs\n- **Model:** Fortinet FortiGate 60F\n- **IP / VLAN:** 10.0.10.1 (mgmt VLAN 10)\n- **Firmware:** FortiOS 7.4.x\n\n## Access\n> Credentials are NOT stored here. Admin login lives in the vault — see [[Firewall Admin Credential]].\n\n## Dependencies\n- Routes for: [[Network — Main Office]]\n- Used by: [[App Server]]\n\n## Runbooks\n- [[Restore Internet After Outage]]\n"
+    },
+    {
+      "path": "Assets/App Server.md",
+      "title": "App Server",
+      "folder": "Assets",
+      "tags": ["asset", "server"],
+      "body": "---\ntype: server\nhostname: nw-app-01\nclient: Northwind Clinic\nlocation: Server Room A\nrole: Practice management app + file shares\nos: Windows Server 2022\nip: 10.0.10.20\nserial: SVR-NW-01\nwarranty_expires: 2026-11-15\ncriticality: high\nsource: manual\n---\n\n# App Server\n\n## Overview\nHosts the practice-management application and departmental file shares. Backed up nightly.\n\n## Specs\n- **OS:** Windows Server 2022\n- **IP:** 10.0.10.20 (VLAN 10)\n- **Backup:** nightly image — see [[Backup & Recovery Runbook]]\n\n## Access\n> Credentials are NOT stored here. See [[Server Admin Credential]] (vault link).\n\n## Dependencies\n- Depends on: [[Core Firewall]]\n- Documented in network: [[Network — Main Office]]\n"
+    },
+    {
+      "path": "Network/Network — Main Office.md",
+      "title": "Network — Main Office",
+      "folder": "Network",
+      "tags": ["network", "config"],
+      "body": "---\ntype: network\nclient: Northwind Clinic\nsite: Main Office\n---\n\n# Network — Main Office\n\n## Topology\n```mermaid\ngraph TD\n  ISP --> Firewall --> CoreSwitch --> APs\n```\n\n## IP plan\n| Subnet | VLAN | Purpose | Gateway |\n|---|---|---|---|\n| 10.0.10.0/24 | 10 | Servers | 10.0.10.1 |\n| 10.0.20.0/24 | 20 | Staff | 10.0.20.1 |\n| 10.0.30.0/24 | 30 | Guest WiFi | 10.0.30.1 |\n\n## Devices\n- Firewall: [[Core Firewall]]\n- Core switch: nw-sw-01\n- Access points: 4x Ubiquiti U6-Lite\n\n## ISP / circuit\n- Provider: Comcast Business\n- Bandwidth: 300/300 Mbps\n- Support line: 1-800-XXX-XXXX\n"
+    },
+    {
+      "path": "Runbooks/Restore Internet After Outage.md",
+      "title": "Restore Internet After Outage",
+      "folder": "Runbooks",
+      "tags": ["runbook", "network"],
+      "body": "---\ntype: runbook\nclient: Northwind Clinic\nreviewed_on: 2026-04-02\nowner: IT\n---\n\n# Restore Internet After Outage\n\n## When to use this\nWhole-clinic internet is down; staff cannot reach the internet or the practice app from other sites.\n\n## Prerequisites\n- Physical or VPN access to [[Core Firewall]]\n- Admin login from the vault: [[Firewall Admin Credential]]\n\n## Procedure\n1. Check the ISP modem lights — if no sync, call Comcast (see [[Network — Main Office]]).\n2. Log into [[Core Firewall]] and check the WAN interface status.\n3. If WAN is down, reboot the modem, wait 3 minutes, re-check.\n4. If WAN is up but no routing, verify VLAN interfaces and default route.\n\n## Verification\nStaff VLAN can browse; practice app reachable from a remote site.\n\n## Rollback\nN/A — read/restart only.\n\n## Escalation\nIf WAN does not return in 30 min, escalate to the ISP with the circuit ID.\n"
+    },
+    {
+      "path": "Runbooks/Backup & Recovery Runbook.md",
+      "title": "Backup & Recovery Runbook",
+      "folder": "Runbooks",
+      "tags": ["runbook", "backup"],
+      "body": "---\ntype: runbook\nclient: Northwind Clinic\nreviewed_on: 2026-05-10\nowner: IT\n---\n\n# Backup & Recovery Runbook\n\n## When to use this\nA server is lost or files must be restored.\n\n## What is backed up\n- [[App Server]] — nightly full image, 30-day retention, offsite copy.\n\n## Restore a file\n1. Open the backup console (credential in vault).\n2. Browse to the latest recovery point for [[App Server]].\n3. Mount and copy the requested path; verify with the requester.\n\n## Restore a whole server\n1. Provision replacement / VM.\n2. Boot the recovery image; verify networking against [[Network — Main Office]].\n3. Confirm the practice app starts and the firewall ([[Core Firewall]]) routes it.\n\n## Verification\nQuarterly test restore; record the date in `reviewed_on`.\n"
+    },
+    {
+      "path": "Runbooks/Firewall Admin Credential.md",
+      "title": "Firewall Admin Credential",
+      "folder": "Runbooks",
+      "tags": ["credential", "security"],
+      "body": "---\ntype: credential-ref\nclient: Northwind Clinic\nvault_provider: bitwarden\nvault_item_url: vault://bitwarden/nw-fw-01-admin\n---\n\n# Firewall Admin Credential\n\n> **Ledger stores ZERO secret material.** This page only points to the credential in your password manager.\n\n- **Vault:** Bitwarden\n- **Item:** `vault://bitwarden/nw-fw-01-admin`\n- **Who can access:** Senior techs only\n- **Rotation cadence:** every 90 days\n- **Last rotated:** 2026-04-30\n\n## What it unlocks\n- [[Core Firewall]] admin console\n\n## NEVER paste the password here.\n"
+    },
+    {
+      "path": "Runbooks/Server Admin Credential.md",
+      "title": "Server Admin Credential",
+      "folder": "Runbooks",
+      "tags": ["credential", "security"],
+      "body": "---\ntype: credential-ref\nclient: Northwind Clinic\nvault_provider: bitwarden\nvault_item_url: vault://bitwarden/nw-app-01-admin\n---\n\n# Server Admin Credential\n\n> **Ledger stores ZERO secret material.** Link only — no passwords on this page.\n\n- **Vault:** Bitwarden\n- **Item:** `vault://bitwarden/nw-app-01-admin`\n- **Who can access:** Senior techs only\n- **Rotation cadence:** every 90 days\n\n## What it unlocks\n- [[App Server]] administrator login\n"
+    },
+    {
+      "path": "Policies/Access Control Policy.md",
+      "title": "Access Control Policy",
+      "folder": "Policies",
+      "tags": ["policy", "governance"],
+      "body": "---\ntype: policy\nclient: Northwind Clinic\nowner: Security Lead\nreviewed_on: 2026-05-20\napprover: vCISO\n---\n\n# Access Control Policy\n\n> A governed space. This page has an **owner** and a **last-reviewed** date — the governance Obsidian has no concept of. Try the role picker (Admin / Reviewer / Viewer / Portal) to see who can edit, approve, or publish.\n\n## Scope\nGoverns who may access [[App Server]] and [[Core Firewall]] and how credentials are issued.\n\n## Rules\n- Admin access to [[Core Firewall]] is senior-tech only; credential lives in the vault ([[Firewall Admin Credential]]).\n- Reviews are required quarterly; an edit re-opens approval.\n\n## Related\n- Onboarding/offboarding: [[Staff Offboarding Policy]]\n"
+    },
+    {
+      "path": "Policies/Staff Offboarding Policy.md",
+      "title": "Staff Offboarding Policy",
+      "folder": "Policies",
+      "tags": ["policy", "governance"],
+      "body": "---\ntype: policy\nclient: Northwind Clinic\nowner: IT Manager\nreviewed_on: 2025-09-01\n---\n\n# Staff Offboarding Policy\n\n> This page's `reviewed_on` is over 90 days old, so Ledger flags it **needs review** — the kind of stale-doc governance auditors look for. Switch to the Reviewer role and approve it, or Admin and 'Mark reviewed today'.\n\n## Steps\n1. Disable accounts and revoke access per [[Access Control Policy]].\n2. Rotate any shared credential the person held (see vault references in Runbooks).\n3. Reclaim assets and update [[App Server]] access lists.\n"
+    }
+  ]
+}

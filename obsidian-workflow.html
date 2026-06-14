@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Obsidian for your whole company — the Ledger workflow</title>
+<meta name="description" content="Obsidian for one person → Ledger for your whole company. Import an Obsidian vault, keep editing in Obsidian, and add the enterprise layer it lacks: a shared org vault, roles & permissions, review/approval governance, org-wide search, read-only published portals, audit trail, and SSO. Portable Markdown — never locked in.">
+<link rel="canonical" href="https://dosanjhlabs.com/ledger/obsidian-workflow.html">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2" fill="#F4EEE2" stroke="#13233A" stroke-width="1.7"/><rect x="6" y="4" width="4" height="24" rx="1" fill="#C9A227"/><path d="M14 11h8M14 15h8M14 19h6" stroke="#13233A" stroke-width="1.5" stroke-linecap="round"/></svg>Ledger</a>
+    <a href="obsidian-workflow.html" aria-current="page">Obsidian</a>
+    <a href="vs-it-glue.html">vs IT Glue</a>
+    <a href="vs-hudu.html">vs Hudu</a>
+    <a href="self-host.html">Self-host</a>
+    <a href="pricing.html">Pricing</a>
+    <a class="cta" href="app/index.html">Open the app</a>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="spine">
+    <p class="kicker">Obsidian, governed for your whole company</p>
+    <h1>Obsidian for one person → Ledger for your whole company.</h1>
+    <p class="lede">Obsidian is perfect for a single person. The moment a company relies on those notes, you need governance Obsidian was never built to give. Ledger keeps your vault Obsidian-native — portable Markdown with <code>[[wikilinks]]</code> and YAML frontmatter — and adds the enterprise layer on top. Import a vault, keep editing in Obsidian, never get locked in.</p>
+  </div>
+</header>
+
+<section class="wrap">
+  <h2>It stays Obsidian, by design</h2>
+  <div class="grid g3" style="margin-top:1.2rem">
+    <div class="feature"><h3>YAML frontmatter</h3><p>Structured fields (<code>type</code>, <code>owner</code>, <code>reviewed_on</code>, <code>hostname</code>…) are standard frontmatter Obsidian reads natively — and Ledger governs.</p></div>
+    <div class="feature"><h3>[[Wikilinks]] + backlinks</h3><p>Wikilinks resolve in both Ledger and Obsidian, so backlinks and the dependency graph work either way. Ledger adds a navigable links/graph view.</p></div>
+    <div class="feature"><h3>Import &amp; round-trip</h3><p>Point Ledger at a folder of <code>.md</code> — folders, tags, frontmatter and links carry over. Export back out and re-open in Obsidian. No cage.</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>What Ledger adds that Obsidian can't</h2>
+  <div class="grid g2" style="margin-top:1.2rem">
+    <div class="feature"><h3>A shared org vault + roles &amp; permissions</h3><p>One company vault, with per-space scopes: who can read, edit, approve, or publish. Admin, Editor, Reviewer, Viewer, and read-only Portal roles — a concept a personal vault simply doesn't have.</p></div>
+    <div class="feature"><h3>Review / approval + ownership governance</h3><p>Every page carries an owner and a last-reviewed date. Ledger flags stale docs, records who approved which version, and re-opens approval after an edit.</p></div>
+    <div class="feature"><h3>Read-only published portals</h3><p>Share a space with non-editors and auditors as a self-contained read-only HTML — they read, they can't change anything, they need no account.</p></div>
+    <div class="feature"><h3>Org-wide search, audit trail &amp; SSO</h3><p>Instant search across every space; an append-only audit trail; and single sign-on across the suite (cloud tier / Keystone).</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>The flow</h2>
+  <div class="card spine">
+    <pre><code># 1. import an existing Obsidian vault (paste a folder of .md, or self-host
+#    against your own git remote) — frontmatter + [[links]] + folders carry over
+
+# 2. keep editing in Obsidian — clone, edit offline, push
+git add . &amp;&amp; git commit -m "update access-control policy" &amp;&amp; git push
+
+# 3. govern in Ledger — assign owners, mark reviewed, approve versions,
+#    set who-can-edit-which-space, search across the whole org
+
+# 4. publish a space as a read-only portal for auditors / non-editors</code></pre>
+  </div>
+  <p class="muted small" style="margin-top:.8rem">A documentation governance aid. Two-way conflict-aware sync helper is on the roadmap; today the loop is plain git + the in-app vault importer.</p>
+  <p><a class="btn primary" href="app/index.html">Open the app — import a vault →</a> <a class="btn" href="self-host.html">Self-host guide</a></p>
+</section>
+
+<footer class="footer"><div class="wrap"><p>© 2026 DosanjhLabs · <a href="index.html">Ledger</a> · A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p></div><p class="legal-links" style="margin-top:.75rem;font-size:.8rem;opacity:.8"><a href="https://dosanjhlabs.com/legal/privacy">Privacy</a> · <a href="https://dosanjhlabs.com/legal/terms">Terms</a> · <a href="https://dosanjhlabs.com/legal/acceptable-use">Acceptable Use</a> · <a href="https://dosanjhlabs.com/legal/disclaimer">Disclaimer</a> · <a href="https://dosanjhlabs.com/legal/refunds">Refunds</a></p></footer>
+</body>
+</html>

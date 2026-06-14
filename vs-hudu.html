@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ledger vs Hudu (2026): markdown-in-git you own, vs a proprietary database</title>
+<meta name="description" content="Ledger vs Hudu compared. Hudu is the closest IT Glue replacement, but your data still lives in a proprietary Rails database. Ledger's source of truth is your own git repo of portable markdown — and we never store passwords.">
+<link rel="canonical" href="https://dosanjhlabs.com/ledger/vs-hudu.html">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2" fill="#F4EEE2" stroke="#13233A" stroke-width="1.7"/><rect x="6" y="4" width="4" height="24" rx="1" fill="#C9A227"/><path d="M14 11h8M14 15h8M14 19h6" stroke="#13233A" stroke-width="1.5" stroke-linecap="round"/></svg>Ledger</a>
+    <a href="obsidian-workflow.html">Obsidian</a>
+    <a href="vs-it-glue.html">vs IT Glue</a>
+    <a href="vs-hudu.html" aria-current="page">vs Hudu</a>
+    <a href="self-host.html">Self-host</a>
+    <a href="pricing.html">Pricing</a>
+    <a class="cta" href="app/index.html">Open the app</a>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="spine">
+    <p class="kicker">Comparison</p>
+    <h1>Ledger vs Hudu</h1>
+    <p class="lede">Hudu is the closest 1:1 IT Glue replacement and a genuinely good product. The one thing it can't offer: your data as portable markdown files in git that you fully own.</p>
+  </div>
+</header>
+
+<section class="wrap">
+  <table>
+    <thead><tr><th></th><th>Ledger</th><th>Hudu</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Source of truth</strong></td><td>Markdown in <strong>your git repo</strong></td><td>Proprietary Rails/Postgres database</td></tr>
+      <tr><td><strong>Price</strong></td><td>$25/editor/mo (annual)</td><td>$27/user/mo (annual), $30 monthly</td></tr>
+      <tr><td><strong>User minimum / setup fee</strong></td><td>None / none</td><td>None / none</td></tr>
+      <tr><td><strong>Portable export</strong></td><td><code>git clone</code> — it's already files</td><td>API export into another DB</td></tr>
+      <tr><td><strong>Bring your own editor</strong></td><td>Yes — Obsidian / any editor</td><td>Web UI</td></tr>
+      <tr><td><strong>Passwords</strong></td><td><strong>Not stored</strong> — vault references</td><td>Built-in password storage</td></tr>
+      <tr><td><strong>Self-host</strong></td><td>Free OSS, just a git remote</td><td>Self-host available (Rails + Postgres stack)</td></tr>
+      <tr><td><strong>AI</strong></td><td>BYO-key included in Pro</td><td>Varies by plan</td></tr>
+    </tbody>
+  </table>
+  <p class="muted small">Figures from Hudu's public pricing and support docs (2026). Verify current figures with the vendor.</p>
+</section>
+
+<section class="wrap">
+  <h2>Honest take</h2>
+  <div class="callout"><p>If you want one tool that <em>also</em> stores passwords, Hudu does that and Ledger deliberately doesn't — we treat "no credential honeypot" as a security feature, with first-class vault linking instead. If you want your knowledge base to be <strong>files you own in git</strong> — readable in any editor, reviewed in pull requests, yours when an engagement ends — that's the line Ledger draws and Hudu can't.</p></div>
+  <p><a class="btn primary" href="app/index.html">Open the app →</a> <a class="btn" href="obsidian-workflow.html">The Obsidian workflow</a></p>
+</section>
+
+<footer class="footer"><div class="wrap"><p>© 2026 DosanjhLabs · <a href="index.html">Ledger</a> · A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p></div><p class="legal-links" style="margin-top:.75rem;font-size:.8rem;opacity:.8"><a href="https://dosanjhlabs.com/legal/privacy">Privacy</a> · <a href="https://dosanjhlabs.com/legal/terms">Terms</a> · <a href="https://dosanjhlabs.com/legal/acceptable-use">Acceptable Use</a> · <a href="https://dosanjhlabs.com/legal/disclaimer">Disclaimer</a> · <a href="https://dosanjhlabs.com/legal/refunds">Refunds</a></p></footer>
+</body>
+</html>

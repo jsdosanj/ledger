@@ -1,0 +1,48 @@
+{
+  "version": "1.0",
+  "note": "Real starter IT-documentation templates. Plain markdown with Obsidian-compatible YAML frontmatter. NEVER includes a field for a password/secret value — credential pages link to an external vault by item URL only.",
+  "templates": [
+    {
+      "id": "tmpl-server-asset",
+      "name": "Server / VM asset page",
+      "folder": "Assets",
+      "tags": ["asset", "server"],
+      "body": "---\ntype: server\nhostname: \nclient: \nlocation: \nrole: \nos: \nip: \nserial: \nwarranty_expires: \ncriticality: medium\nsource: manual\n---\n\n# {{hostname}}\n\n## Overview\nWhat this server does and who depends on it.\n\n## Specs\n- **OS:** \n- **CPU / RAM / Disk:** \n- **IP / VLAN:** \n- **Backup:** see [[Backup & Recovery Runbook]]\n\n## Access\n> Credentials are NOT stored here. Open the vault item: `vault://<provider>/<item-id>` (see Credential reference pattern).\n\n## Dependencies\n- Depends on: [[Core Firewall]]\n- Used by: \n\n## Notes & change history\n- \n"
+    },
+    {
+      "id": "tmpl-network",
+      "name": "Network / config note",
+      "folder": "Network",
+      "tags": ["network", "config"],
+      "body": "---\ntype: network\nclient: \nsite: \n---\n\n# Network — {{site}}\n\n## Topology\n```mermaid\ngraph TD\n  ISP --> Firewall --> CoreSwitch --> APs\n```\n\n## IP plan\n| Subnet | VLAN | Purpose | Gateway |\n|---|---|---|---|\n| 10.0.10.0/24 | 10 | Servers | 10.0.10.1 |\n| 10.0.20.0/24 | 20 | Staff | 10.0.20.1 |\n| 10.0.30.0/24 | 30 | Guest | 10.0.30.1 |\n\n## Devices\n- Firewall: [[Core Firewall]]\n- Switches: \n- Access points: \n\n## ISP / circuit\n- Provider: \n- Account #: \n- Support line: \n"
+    },
+    {
+      "id": "tmpl-runbook",
+      "name": "Runbook / SOP",
+      "folder": "Runbooks",
+      "tags": ["runbook", "sop"],
+      "body": "---\ntype: runbook\nclient: \nreviewed_on: \nowner: \n---\n\n# Runbook — {{title}}\n\n## When to use this\nThe trigger / symptom that brings someone here.\n\n## Prerequisites\n- Access required (link the vault item, don't paste secrets)\n- Tools needed\n\n## Procedure\n1. \n2. \n3. \n\n## Verification\nHow you know it worked.\n\n## Rollback\nHow to undo if it goes wrong.\n\n## Escalation\nWho to call and when.\n"
+    },
+    {
+      "id": "tmpl-credential-ref",
+      "name": "Credential reference (NO secrets)",
+      "folder": "Runbooks",
+      "tags": ["credential", "security"],
+      "body": "---\ntype: credential-ref\nclient: \nvault_provider: bitwarden\nvault_item_url: \n---\n\n# Credential reference — {{title}}\n\n> **Ledger stores ZERO secret material.** This page only *points to* the credential in your password manager. Use a password manager (Bitwarden / 1Password / Keeper / Vaultwarden) and link the item below.\n\n- **Vault:** Bitwarden / 1Password / Keeper / Vaultwarden\n- **Item:** `vault://<provider>/<item-id>`  ·  open in the vault app\n- **Who can access:** (role / group)\n- **Rotation cadence:** \n- **Last rotated:** \n\n## What it unlocks\n- [[Server name]] admin console\n\n## NEVER paste the password, key, or seed here.\nIf you find a secret pasted into any Ledger page, remove it and move it to the vault.\n"
+    },
+    {
+      "id": "tmpl-saas-app",
+      "name": "SaaS / application page",
+      "folder": "Assets",
+      "tags": ["asset", "saas"],
+      "body": "---\ntype: saas\nclient: \nvendor: \nplan: \nseats: \nrenews_on: \nadmin_console: \n---\n\n# {{vendor}} — {{title}}\n\n## What it's for\n\n## Admin\n- Console URL: \n- Admin credential: see credential reference page (vault link, never a password)\n- SSO: \n\n## Licensing\n- Plan / seats: \n- Renewal date: \n- Cost: \n\n## Data & offboarding\n- Where data lives / export path: \n"
+    },
+    {
+      "id": "tmpl-procedure-onboard",
+      "name": "Onboarding / offboarding procedure",
+      "folder": "Runbooks",
+      "tags": ["procedure", "lifecycle"],
+      "body": "---\ntype: procedure\nclient: \nkind: onboarding\n---\n\n# {{kind}} procedure — {{client}}\n\n## Identity\n- [ ] Create / disable account in M365 / Google / Okta\n- [ ] Group membership\n- [ ] MFA enrolled / revoked\n\n## Access\n- [ ] Shared drives / apps\n- [ ] VPN\n- [ ] Credentials shared via vault (never email a password)\n\n## Hardware\n- [ ] Laptop assigned / collected\n- [ ] MDM enrolled / wiped\n\n## Final\n- [ ] Mailbox delegated / converted\n- [ ] Ticket closed\n"
+    }
+  ]
+}
