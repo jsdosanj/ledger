@@ -39,6 +39,15 @@ const DEFAULTS = {
 const SYNC_KEY = "kb-state"; // same store key the Ledger web app uses
 
 function todayISO() { return new Date().toISOString().slice(0, 10); }
+// Reject path traversal in a pulled doc key before it reaches vault.create /
+// createFolder. The org cloud kb-state is shared/team-writable; a "../" segment,
+// an absolute path, or a backslash could write a file OUTSIDE the vault (e.g.
+// into .obsidian/plugins). Only plain in-vault relative paths are written.
+function safeVaultPath(p) {
+  p = String(p == null ? "" : p);
+  if (!p || p.charAt(0) === "/" || /\\/.test(p)) return false;
+  return p.split("/").every((s) => s !== "" && s !== "." && s !== "..");
+}
 function debounce(fn, ms) { let t = null; return function () { const a = arguments, c = this; clearTimeout(t); t = setTimeout(() => fn.apply(c, a), ms); }; }
 function normalizeTags(fm) {
   if (!fm || fm.tags == null) return [];
@@ -158,8 +167,9 @@ module.exports = class LedgerPlugin extends Plugin {
     try {
       const kb = await this.cloud.storeGet(SYNC_KEY);
       if (!kb || !kb.docs) { new Notice("Ledger: nothing in the org cloud yet — push first."); return; }
-      let written = 0, unchanged = 0;
+      let written = 0, unchanged = 0, skipped = 0;
       for (const path of Object.keys(kb.docs)) {
+        if (!safeVaultPath(path)) { skipped++; continue; } // refuse traversal paths
         const body = kb.docs[path].body || "";
         const existing = this.app.vault.getAbstractFileByPath(path);
         if (existing instanceof TFile) {
@@ -170,7 +180,7 @@ module.exports = class LedgerPlugin extends Plugin {
           await this.app.vault.create(path, body); written++;
         }
       }
-      new Notice("Ledger: pulled " + written + " note(s) (" + unchanged + " already current). Nothing deleted.");
+      new Notice("Ledger: pulled " + written + " note(s) (" + unchanged + " already current" + (skipped ? ", " + skipped + " unsafe path(s) skipped" : "") + "). Nothing deleted.");
     } catch (e) { new Notice("Ledger pull failed: " + (e && e.message || e)); }
   }
 

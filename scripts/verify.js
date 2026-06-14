@@ -148,6 +148,24 @@ setTimeout(function () {
   ok(B.outlinks("Policies/Access Control.md").indexOf("Policies/Onboarding.md") >= 0, "[[wikilink]] resolves to an imported page (link out)");
   ok(B.backlinks("Policies/Access Control.md").indexOf("Policies/Onboarding.md") >= 0, "backlinks panel finds the referencing page");
 
+  // SECURITY (regression): a crafted import bundle with path-traversal FILE:
+  // markers must NOT create a doc keyed outside the vault. Those keys feed the
+  // native vault-sync FS bridge (write/remove) and could escape the vault folder.
+  var evilBundle =
+    "<!-- ===== FILE: ../../escape.md ===== -->\n# Escape\n\nx\n" +
+    "<!-- ===== FILE: /abs/outside.md ===== -->\n# Abs\n\ny\n" +
+    "<!-- ===== FILE: a/../../b.md ===== -->\n# Mixed\n\nz\n";
+  B.importVault(evilBundle);
+  var keys = Object.keys(B.kbState().docs);
+  ok(!keys.some(function (k) { return k.split("/").indexOf("..") >= 0 || k.charAt(0) === "/"; }),
+    "import sanitizes path-traversal FILE: markers (no '../' or absolute doc keys)");
+  ok(!!B.kbState().docs["escape.md"] && !!B.kbState().docs["abs/outside.md"] && !!B.kbState().docs["a/b.md"],
+    "traversal-stripped paths still import to a safe in-vault location");
+  // upsertDoc (the vault-sync write surface) must also refuse a traversal path
+  B.upsertDoc("../../pwned.md", "# Pwned\n");
+  ok(!Object.keys(B.kbState().docs).some(function (k) { return k.indexOf("..") >= 0; }),
+    "upsertDoc rejects a traversal path (vault-sync write surface)");
+
   // GOVERNANCE: ownership + last-reviewed status; mark-reviewed stamps frontmatter.
   var g1 = B.governance("Policies/Access Control.md");
   ok(g1.owner === "Security" && (g1.status === "fresh" || g1.status === "stale"), "governance reads owner + review status from frontmatter");
@@ -249,6 +267,13 @@ function runVault(B) {
       B.removeDoc(p0);
       var st7 = await V.sync(B);
       ok(st7.deletedVault === 1 && !(p0 in vfs), "deleting a Ledger doc (unchanged in vault) REMOVES the vault file");
+
+      // 8) SECURITY (regression): a malicious vault listing a traversal path must
+      // be SKIPPED — never read into Ledger nor written back through the FS bridge.
+      vfs["../../../etc/evil.md"] = "# Evil\n\npwn\n";
+      var st8 = await V.sync(B);
+      ok(!B.docBody("../../../etc/evil.md") && st8.pulled === 0,
+        "vault sync SKIPS a path-traversal vault file (not pulled into Ledger)");
     } catch (e) {
       ok(false, "vault sync flow threw: " + (e && e.message || e));
     }
