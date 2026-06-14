@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI (bring your own key) — Ledger Help</title>
+<meta name="description" content="Ledger's BYO-key AI: supported providers, where your key lives, the three flows (draft / summarize / ask your docs), and the secret scrubber that runs before anything leaves your browser.">
+<link rel="canonical" href="https://dosanjhlabs.com/ledger/docs/support/ai.html">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2" fill="#F4EEE2" stroke="#13233A" stroke-width="1.7"/><rect x="6" y="4" width="4" height="24" rx="1" fill="#C9A227"/><path d="M14 11h8M14 15h8M14 19h6" stroke="#13233A" stroke-width="1.5" stroke-linecap="round"/></svg>Ledger</a>
+    <a href="index.html">Help Center</a>
+    <a href="features.html">Features</a>
+    <a href="security-privacy.html">Security</a>
+    <a class="cta" href="../../app/index.html">Open the app</a>
+  </div>
+</nav>
+
+<header class="hero wrap"><div class="spine"><p class="kicker"><a href="index.html">Help Center</a> · AI</p><h1>AI (bring your own key)</h1><p class="lede">Ledger's AI is "bring your own key": you paste your own provider key, and your browser calls the provider directly. DosanjhLabs never sees your key and never pays for or proxies inference. Three focused flows help you draft, summarize, and ask questions over your docs — with a secret scrubber guarding every request.</p></div></header>
+
+<section class="wrap" style="max-width:820px">
+
+  <h2 id="how">How the model works</h2>
+  <p>There's no Ledger-hosted AI service. Instead:</p>
+  <ul>
+    <li>You supply <strong>your own API key</strong> from a provider you already have.</li>
+    <li>The key is stored <strong>only in your browser's local storage</strong>.</li>
+    <li>When you run an AI action, <strong>your browser calls the provider's API directly</strong> — the request never goes through any DosanjhLabs server.</li>
+  </ul>
+  <p>So you control the model, you control the cost, and your key stays with you. The free local tier works fine with no AI at all — AI is opt-in.</p>
+
+  <h2 id="providers">Supported providers</h2>
+  <table>
+    <thead><tr><th>Provider</th><th>Key format</th><th>Default model</th></tr></thead>
+    <tbody>
+      <tr><td><strong>OpenRouter</strong> (recommended)</td><td><code>sk-or-…</code> · get one at openrouter.ai/keys</td><td><code>anthropic/claude-3.5-sonnet</code></td></tr>
+      <tr><td><strong>OpenAI</strong></td><td><code>sk-…</code> · platform.openai.com/api-keys</td><td><code>gpt-4o-mini</code></td></tr>
+      <tr><td><strong>Anthropic (Claude)</strong></td><td><code>sk-ant-…</code> · console.anthropic.com</td><td><code>claude-opus-4-8</code></td></tr>
+    </tbody>
+  </table>
+  <p>You can override the model with any model string the provider supports (e.g. a different Claude or GPT model) in the <strong>Model override</strong> field. Leave it blank to use the default for that provider.</p>
+
+  <h2 id="setup">Setting up your key</h2>
+  <ol>
+    <li>Click <strong>AI</strong> in the top bar.</li>
+    <li>Choose your <strong>Provider</strong>.</li>
+    <li>Paste your <strong>API key</strong> (the field is masked). Optionally set a <strong>Model override</strong>.</li>
+    <li>Click <strong>Save key</strong>. The status line confirms: <em>"✓ Configured — calls go directly to &lt;provider&gt;, never to DosanjhLabs."</em></li>
+    <li>To remove it later, click <strong>Forget key</strong> — it's wiped from local storage.</li>
+  </ol>
+  <div class="callout">
+    <p style="margin:0"><strong>Where the key lives:</strong> only in this browser, in <code>localStorage</code>, on this device. It is never synced to the cloud, never sent to DosanjhLabs, and not shared with the rest of the app's data. Clearing your browser storage removes it.</p>
+  </div>
+
+  <h2 id="flows">The three flows</h2>
+
+  <h3 id="draft">1. Draft a doc from notes</h3>
+  <ol>
+    <li>Open the AI panel and choose a document <strong>Type</strong> (runbook, server asset page, network note, SOP/procedure, or onboarding checklist).</li>
+    <li>Paste bullet <strong>Notes</strong> — no passwords; link a vault item instead.</li>
+    <li>Click <strong>Draft it</strong>.</li>
+    <li>Ledger creates a <strong>new page</strong> from the AI's Markdown (tagged <code>ai-drafted</code>, placed in Runbooks) and opens it in the editor. <strong>Review it before keeping it</strong> — AI output is advisory.</li>
+  </ol>
+
+  <h3 id="summarize">2. Summarize the open page</h3>
+  <ol>
+    <li>Open a document.</li>
+    <li>In the AI panel, click <strong>Summarize "&lt;title&gt;"</strong>.</li>
+    <li>A 2–3 sentence TL;DR appears in the panel (marked AI-drafted). It doesn't modify your page.</li>
+  </ol>
+
+  <h3 id="ask">3. Ask your docs</h3>
+  <ol>
+    <li>In the AI panel, type a question (e.g. "how do I restore internet after an outage?").</li>
+    <li>Click <strong>Ask</strong>.</li>
+    <li>Ledger retrieves the most relevant pages from your KB, sends only those excerpts, and the answer comes back <strong>with the page paths it used cited</strong>. If your docs don't contain the answer, it says so rather than inventing one.</li>
+  </ol>
+
+  <h2 id="scrubber">The secret scrubber</h2>
+  <p>Even though Ledger stores no secrets, you could still paste one into a prompt. Before any request leaves your browser, a <strong>scrubber</strong> checks the text for secret/PII patterns: <code>password:</code>, <code>secret:</code>, <code>api_key:</code>, provider keys (<code>sk-…</code>), PEM private keys, US Social Security numbers, and email addresses.</p>
+  <ul>
+    <li>For the <strong>draft</strong> flow (your free-text notes), if the scrubber detects a likely secret it <strong>blocks the request</strong> and tells you what it found, so you can remove it (and link a vault item) before retrying.</li>
+    <li>Detected patterns are <strong>redacted</strong> (replaced with <code>[redacted]</code>) so they never reach the provider.</li>
+  </ul>
+  <p>This reinforces the no-secrets posture: the AI helps you write documentation without ever transmitting a credential.</p>
+
+  <h2 id="cost-privacy">Cost &amp; privacy notes</h2>
+  <ul>
+    <li><strong>You pay the provider directly</strong> for usage at their rates — DosanjhLabs is not in the loop and bills you nothing for AI.</li>
+    <li>The content you send (notes, the open page, or retrieved excerpts) goes to <strong>your chosen provider</strong> under <em>their</em> privacy terms. Don't send anything you wouldn't send that provider.</li>
+    <li>AI output is <strong>advisory</strong> — always review drafts and answers before adopting them. Drafts are tagged <code>ai-drafted</code> so they're easy to find and vet.</li>
+  </ul>
+
+  <h2 id="next">Related topics</h2>
+  <ul>
+    <li><a href="features.html#nosecrets">The no-secrets posture</a></li>
+    <li><a href="security-privacy.html">Security &amp; privacy</a></li>
+    <li><a href="troubleshooting.html#ai">Troubleshooting: AI errors</a></li>
+  </ul>
+
+</section>
+
+<footer class="footer"><div class="wrap"><p>© 2026 DosanjhLabs · <a href="index.html">Help Center</a> · <a href="../../index.html">Ledger</a> · A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p></div></footer>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Obsidian plugin — Ledger Help</title>
+<meta name="description" content="Install the Ledger Obsidian plugin, paste an access token, Verify, Push/Pull the org vault, Mark reviewed, run a governance report, publish evidence, configure settings, and keep your token secure.">
+<link rel="canonical" href="https://dosanjhlabs.com/ledger/docs/support/obsidian-plugin.html">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2" fill="#F4EEE2" stroke="#13233A" stroke-width="1.7"/><rect x="6" y="4" width="4" height="24" rx="1" fill="#C9A227"/><path d="M14 11h8M14 15h8M14 19h6" stroke="#13233A" stroke-width="1.5" stroke-linecap="round"/></svg>Ledger</a>
+    <a href="index.html">Help Center</a>
+    <a href="vault-sync.html">Browser sync</a>
+    <a href="account-and-cloud.html">Cloud tier</a>
+    <a class="cta" href="../../app/index.html">Open the app</a>
+  </div>
+</nav>
+
+<header class="hero wrap"><div class="spine"><p class="kicker"><a href="index.html">Help Center</a> · Obsidian plugin</p><h1>The Ledger Obsidian plugin</h1><p class="lede">Get Ledger's enterprise layer <em>inside</em> Obsidian — on Mac, Windows, Linux, or mobile, since Obsidian is already the cross-platform host. Sign in with an access token and you can push/pull your team's org vault, stamp reviews, see a governance report, and publish compliance evidence, all without leaving Obsidian.</p></div></header>
+
+<section class="wrap" style="max-width:820px">
+
+  <div class="callout">
+    <p style="margin:0"><strong>Plugin vs browser folder sync:</strong> the plugin runs inside Obsidian (any OS, including mobile) and syncs to your <em>team's org cloud vault</em>. The <a href="vault-sync.html">browser folder sync</a> runs in a Chromium browser and syncs Ledger to a folder on disk. Use whichever matches how you work; they interoperate via the same org vault.</p>
+  </div>
+
+  <h2 id="what">What you get</h2>
+  <ul>
+    <li><strong>Sign in</strong> with a DosanjhLabs access token, verified against the platform.</li>
+    <li><strong>Shared org vault sync</strong> — push your vault to / pull it from your team's cloud vault. It uses the same store as the Ledger web app, so they interoperate.</li>
+    <li><strong>Doc-review governance</strong> — stamp <code>reviewed_on</code> on the current note, and open a report of never-reviewed / stale notes.</li>
+    <li><strong>Compliance evidence</strong> — publish structural signals (never note bodies) into the shared evidence graph for Sightline.</li>
+  </ul>
+
+  <h2 id="install">Install</h2>
+  <p>Until it's listed in Obsidian's Community Plugins directory, install it manually:</p>
+  <ol>
+    <li>Get the plugin folder (the <code>obsidian-plugin/</code> directory from Ledger — it must contain <code>manifest.json</code> and <code>main.js</code>).</li>
+    <li>Copy it into your vault at <code>&lt;your-vault&gt;/.obsidian/plugins/ledger-enterprise/</code>.</li>
+    <li>In Obsidian, go to <strong>Settings → Community plugins</strong>, and if needed turn off Restricted/Safe mode.</li>
+    <li>Find <strong>Ledger — enterprise governance</strong> in the installed list and enable it.</li>
+    <li>Open its settings (<strong>Settings → Ledger</strong>), paste your access token, and click <strong>Verify</strong>.</li>
+  </ol>
+  <p>There's no build step — Obsidian loads <code>main.js</code> directly. It works on desktop and mobile (the manifest is not desktop-only).</p>
+
+  <h2 id="token">The access token</h2>
+  <p>Because Obsidian can't run the web app's redirect-based sign-in cleanly, the plugin authenticates with a <strong>pasted access token</strong> (the standard Obsidian-plugin pattern). The token is a long-lived bearer credential for your DosanjhLabs account.</p>
+  <ol>
+    <li>Get a token from your DosanjhLabs account (the settings screen links to <code>dosanjhlabs.com/ledger/account</code>).</li>
+    <li>In <strong>Settings → Ledger → Access token</strong>, paste it (the field is masked).</li>
+    <li>Click <strong>Verify</strong> to confirm it works.</li>
+  </ol>
+
+  <h2 id="verify">Verify (sign in)</h2>
+  <p><strong>Verify</strong> checks your token and shows who you are.</p>
+  <ul>
+    <li>Run it from <strong>Settings → Ledger → Verify</strong>, or from the Command Palette (<kbd>Ctrl/Cmd</kbd>+<kbd>P</kbd> → "Ledger: Sign in (verify access token)").</li>
+    <li>On success, the status bar shows <em>Ledger ✓ &lt;your org&gt;</em> and a notice confirms your email and org.</li>
+    <li>On failure, the status bar shows <em>Ledger: sign-in failed</em> with the error. See <a href="troubleshooting.html#signin">Sign-in failed</a>.</li>
+  </ul>
+  <p>The plugin re-verifies quietly on load if a token is present, so your status bar reflects sign-in state automatically.</p>
+
+  <h2 id="commands">The commands</h2>
+  <p>All commands live in the Command Palette (<kbd>Ctrl/Cmd</kbd>+<kbd>P</kbd>, type "Ledger"). There's also a ribbon icon (book) for one-click push.</p>
+  <table>
+    <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Sign in (verify access token)</strong></td><td>Checks your token, shows account + org.</td></tr>
+      <tr><td><strong>Push vault to org cloud</strong></td><td>Uploads every Markdown note in the vault to the shared org vault. The status bar reports how many notes were pushed. (Also the ribbon icon.)</td></tr>
+      <tr><td><strong>Pull vault from org cloud</strong></td><td>Downloads the org vault. Existing notes are updated only if their content differs; missing notes (and their folders) are created. <strong>Pull never deletes</strong> a local note.</td></tr>
+      <tr><td><strong>Mark current note reviewed (stamp reviewed_on)</strong></td><td>Writes today's date into the active note's <code>reviewed_on</code> frontmatter field.</td></tr>
+      <tr><td><strong>Show governance report (stale / unreviewed notes)</strong></td><td>Opens a modal listing notes ranked by review status: never reviewed first, then stale, then fresh — with owner and age. Click a row to open that note.</td></tr>
+      <tr><td><strong>Publish documentation evidence</strong></td><td>Sends structural signals (paths, titles, type, <code>reviewed_on</code>, counts — never note bodies) to the evidence graph.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="sync">Push / Pull org vault — the model</h2>
+  <p>The plugin's sync is a <strong>whole-vault push</strong> and a <strong>non-destructive pull</strong>:</p>
+  <ul>
+    <li><strong>Push</strong> builds a KB object from your vault — for each note, its title (from frontmatter or filename), folder, tags, and body — and stores it under the same <code>kb-state</code> key the web app uses. That's why the web app and plugin share one org vault.</li>
+    <li><strong>Pull</strong> reads that org vault and writes notes back into your Obsidian vault: it updates a note only if the content differs, creates a note (and any needed folders) if it's missing, and <strong>never deletes</strong> a note that isn't in the cloud. You'll get a notice like <em>"pulled 4 note(s) (2 already current). Nothing deleted."</em></li>
+  </ul>
+  <p>Compared with the <a href="vault-sync.html#model">browser folder sync</a>, the plugin's pull is intentionally simpler and safer (no deletes), and it talks to the <em>cloud</em> org vault rather than to a local folder.</p>
+
+  <h2 id="governance">Governance inside Obsidian</h2>
+  <ul>
+    <li><strong>Mark reviewed</strong> stamps <code>reviewed_on: &lt;today&gt;</code> into the current note's frontmatter — the same field the web app reads.</li>
+    <li><strong>Governance report</strong> reads <code>owner</code> and <code>reviewed_on</code> from every note's frontmatter and classifies each as <em>fresh</em>, <em>stale</em> (older than your stale threshold), or <em>never reviewed</em>, with counts at the top. It shows up to 200 notes; click any to open it.</li>
+  </ul>
+
+  <h2 id="evidence">Publish evidence</h2>
+  <p>The same compliance evidence the web app emits, from inside Obsidian. It sends <strong>structural signals only</strong> — for each note, path, title, type, tags, <code>reviewed_on</code>, host; plus page counts and your org name; with <code>secrets: none-stored</code>. <strong>Note bodies are never sent.</strong></p>
+
+  <h2 id="settings">Settings reference</h2>
+  <table>
+    <thead><tr><th>Setting</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Access token</strong></td><td>Your DosanjhLabs bearer token (masked). Stored only in this vault's plugin data.</td></tr>
+      <tr><td><strong>Verify sign-in</strong></td><td>Button to check the token and show your account + org.</td></tr>
+      <tr><td><strong>API base</strong></td><td>The Keystone API origin (default <code>https://api.dosanjhlabs.com</code>). Change only for self-hosted/staging setups.</td></tr>
+      <tr><td><strong>Organization name</strong></td><td>Shown on the org vault and evidence. Defaults to your vault's name.</td></tr>
+      <tr><td><strong>Review-stale threshold (days)</strong></td><td>Notes not reviewed within this many days count as stale in the report (default 90).</td></tr>
+      <tr><td><strong>Auto-sync on edit</strong></td><td>Off by default. When on, pushes the whole vault to the org cloud a few seconds after you stop editing.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="security">Security &amp; privacy of the token</h2>
+  <ul>
+    <li>Your token is stored <strong>only in this vault's local plugin data</strong> (<code>.obsidian/plugins/ledger-enterprise/data.json</code>) — never inside a note, never logged. Treat that vault folder as sensitive.</li>
+    <li><strong>Never paste the token into a note</strong>, and never put secrets in notes — credential notes should link a password manager item.</li>
+    <li>Network goes through Obsidian's <code>requestUrl</code> (so no browser CORS issues) to <code>api.dosanjhlabs.com</code> with the token as a bearer. The <strong>tenant is always derived server-side</strong> from your verified token — the client can't act as another organization.</li>
+    <li>If a token is lost or compromised, revoke it in your DosanjhLabs account and paste a new one.</li>
+  </ul>
+
+  <div class="callout warn">
+    <p style="margin:0"><strong>One platform dependency:</strong> the plugin needs Keystone to accept pasted personal access tokens as a bearer on the existing <code>/whoami</code>, <code>/store</code>, <code>/evidence</code>, and <code>/billing/entitled</code> endpoints. If Verify reports a 401 even with a fresh token, that capability may not be enabled yet in your environment — see <a href="troubleshooting.html#signin">Troubleshooting</a>.</p>
+  </div>
+
+  <h2 id="next">Related topics</h2>
+  <ul>
+    <li><a href="vault-sync.html">Browser folder sync</a></li>
+    <li><a href="account-and-cloud.html">The shared org vault &amp; cloud tier</a></li>
+    <li><a href="security-privacy.html">Security &amp; privacy</a></li>
+  </ul>
+
+</section>
+
+<footer class="footer"><div class="wrap"><p>© 2026 DosanjhLabs · <a href="index.html">Help Center</a> · <a href="../../index.html">Ledger</a> · A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p></div></footer>
+</body>
+</html>

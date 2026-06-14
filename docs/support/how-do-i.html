@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>"How do I…?" recipe index — Ledger Help</title>
+<meta name="description" content="Short, task-focused Ledger recipes: create a page, import a vault, sync to Obsidian, mark a doc reviewed, approve a version, publish a portal, sign in, set up AI, export everything, and more.">
+<link rel="canonical" href="https://dosanjhlabs.com/ledger/docs/support/how-do-i.html">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../../index.html"><svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2" fill="#F4EEE2" stroke="#13233A" stroke-width="1.7"/><rect x="6" y="4" width="4" height="24" rx="1" fill="#C9A227"/><path d="M14 11h8M14 15h8M14 19h6" stroke="#13233A" stroke-width="1.5" stroke-linecap="round"/></svg>Ledger</a>
+    <a href="index.html">Help Center</a>
+    <a href="features.html">Features</a>
+    <a href="troubleshooting.html">Troubleshooting</a>
+    <a class="cta" href="../../app/index.html">Open the app</a>
+  </div>
+</nav>
+
+<header class="hero wrap"><div class="spine"><p class="kicker"><a href="index.html">Help Center</a> · How do I…?</p><h1>"How do I…?" recipe index</h1><p class="lede">Short answers to common tasks, each linking to the full steps. Skim for what you need.</p></div></header>
+
+<section class="wrap" style="max-width:840px">
+
+  <h2 id="basics">Pages &amp; content</h2>
+  <ul>
+    <li><strong>…create a new page?</strong> Click <strong>+ New doc</strong>, enter a title and a folder. → <a href="features.html#tree">Doc tree</a></li>
+    <li><strong>…start from a template?</strong> Click <strong>Templates</strong>, pick a number, name it. → <a href="features.html#templates">Templates</a></li>
+    <li><strong>…make a new space (folder)?</strong> Give a page a new folder name — the space is created automatically. → <a href="features.html#tree">Spaces</a></li>
+    <li><strong>…edit a page with live preview?</strong> Open it → <strong>Edit</strong> tab → type → <kbd>Ctrl/Cmd</kbd>+<kbd>S</kbd>. → <a href="features.html#editor">Editor</a></li>
+    <li><strong>…rename a page?</strong> Click the title at the top and type a new one. → <a href="features.html#editor">Editor</a></li>
+    <li><strong>…delete a page?</strong> Open it (as Admin/Editor) → <strong>Delete</strong>. → <a href="features.html#roles">Roles</a></li>
+    <li><strong>…add tags?</strong> Use the tags box in the editor (comma-separated) or frontmatter. → <a href="features.html#tags">Tags</a></li>
+    <li><strong>…link two pages?</strong> Type <code>[[Page Title]]</code> in the body. → <a href="features.html#wikilinks">Wiki-links</a></li>
+    <li><strong>…see what links to a page?</strong> Check the backlinks in the meta bar, or the <strong>Links</strong> tab. → <a href="features.html#links">Links view</a></li>
+  </ul>
+
+  <h2 id="find">Finding &amp; reviewing</h2>
+  <ul>
+    <li><strong>…search everything?</strong> Type in the top-bar search box (title, path, tags, frontmatter, body). → <a href="features.html#search">Search</a></li>
+    <li><strong>…see a page's version history?</strong> Open it → <strong>History</strong> tab. → <a href="features.html#history">History</a></li>
+    <li><strong>…compare or restore an old version?</strong> History tab → <strong>View diff</strong> / <strong>Restore</strong>. → <a href="features.html#history">History</a></li>
+  </ul>
+
+  <h2 id="governance">Governance &amp; roles</h2>
+  <ul>
+    <li><strong>…mark a doc reviewed?</strong> Open it → governance bar → <strong>Mark reviewed today</strong> (stamps <code>reviewed_on</code>). → <a href="features.html#governance">Governance</a></li>
+    <li><strong>…assign an owner?</strong> Add <code>owner: Name</code> to the page's frontmatter. → <a href="features.html#governance">Governance</a></li>
+    <li><strong>…find stale docs?</strong> The governance bar flags "needs review" (older than 90 days); the Obsidian plugin has a full <a href="obsidian-plugin.html#governance">governance report</a>. → <a href="features.html#governance">Governance</a></li>
+    <li><strong>…approve a version?</strong> As Admin/Reviewer, open the page → <strong>Approve this version</strong>. → <a href="features.html#governance">Governance</a></li>
+    <li><strong>…see what each role can do?</strong> Use the 🔑 role picker to switch roles. → <a href="features.html#roles">Roles</a></li>
+  </ul>
+
+  <h2 id="share">Sharing &amp; portals</h2>
+  <ul>
+    <li><strong>…share a space read-only with an auditor?</strong> As Admin, click <strong>Publish ↗</strong> on the space header; send the downloaded HTML. → <a href="features.html#portals">Portals</a></li>
+  </ul>
+
+  <h2 id="obsidian">Obsidian &amp; sync</h2>
+  <ul>
+    <li><strong>…import my Obsidian vault?</strong> Click <strong>Import vault</strong>, paste a note or bundle. → <a href="features.html#import">Import</a></li>
+    <li><strong>…keep a folder of <code>.md</code> in sync two-way?</strong> Click <strong>⇄ Vault sync</strong> → connect the folder (Chromium browsers). → <a href="vault-sync.html">Vault sync</a></li>
+    <li><strong>…sync automatically?</strong> In the vault sync panel, tick <strong>Auto-sync</strong>. → <a href="vault-sync.html#auto-sync">Auto-sync</a></li>
+    <li><strong>…work entirely inside Obsidian?</strong> Install the <a href="obsidian-plugin.html#install">Obsidian plugin</a> and push/pull the org vault. → <a href="obsidian-plugin.html">Plugin</a></li>
+    <li><strong>…sync on Firefox/Safari?</strong> Use Import/Export round-trip or a Chromium browser. → <a href="vault-sync.html#fallback">Fallback</a></li>
+  </ul>
+
+  <h2 id="cloud">Account, cloud &amp; AI</h2>
+  <ul>
+    <li><strong>…sign in?</strong> Click <strong>Sign in</strong> → <strong>Sign in with Clerk</strong>. → <a href="account-and-cloud.html#sign-in">Sign in</a></li>
+    <li><strong>…sync my KB across devices?</strong> Sign in, <strong>Sync KB up</strong> on one device, <strong>Pull from cloud</strong> on another. → <a href="account-and-cloud.html#org-vault">Org vault</a></li>
+    <li><strong>…publish compliance evidence?</strong> Signed in, click <strong>Publish documentation evidence</strong>. → <a href="account-and-cloud.html#evidence">Evidence</a></li>
+    <li><strong>…set up AI?</strong> Click <strong>AI</strong>, choose provider, paste your key, <strong>Save key</strong>. → <a href="ai.html#setup">AI setup</a></li>
+    <li><strong>…draft / summarize / ask my docs with AI?</strong> Use the three flows in the AI panel. → <a href="ai.html#flows">AI flows</a></li>
+  </ul>
+
+  <h2 id="data">Data, backup &amp; leaving</h2>
+  <ul>
+    <li><strong>…export one page?</strong> Open it → <strong>Export .md</strong>. → <a href="features.html#export">Export</a></li>
+    <li><strong>…export everything / back up?</strong> Click <strong>Export all</strong> for a portable bundle. → <a href="features.html#export">Export</a></li>
+    <li><strong>…handle a flagged secret?</strong> Remove it and link a vault item (or confirm if it's a false positive). → <a href="troubleshooting.html#flagged">Flagged secret</a></li>
+    <li><strong>…store a credential safely?</strong> Use the credential reference template and link your password manager — never paste the secret. → <a href="features.html#nosecrets">No-secrets</a></li>
+    <li><strong>…start fresh / reset?</strong> Export first, then clear the site's storage and reload. → <a href="troubleshooting.html#reset">Reset</a></li>
+    <li><strong>…leave with no lock-in?</strong> Export to Markdown, open in Obsidian or commit to git. → <a href="troubleshooting.html#leaving">Leaving</a></li>
+  </ul>
+
+  <h2 id="run">Running &amp; hosting</h2>
+  <ul>
+    <li><strong>…run it locally?</strong> Serve over HTTP: <code>python3 -m http.server 8000</code>. → <a href="self-host.html#quickstart">Self-host</a></li>
+    <li><strong>…deploy on my own infra / a subpath?</strong> Any static host; relative paths support subpaths. → <a href="self-host.html#subpath">Self-host</a></li>
+    <li><strong>…fix "stuck on Loading"?</strong> You opened <code>file://</code> — serve over HTTP instead. → <a href="troubleshooting.html#loading">Troubleshooting</a></li>
+  </ul>
+
+</section>
+
+<footer class="footer"><div class="wrap"><p>© 2026 DosanjhLabs · <a href="index.html">Help Center</a> · <a href="../../index.html">Ledger</a> · A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p></div></footer>
+</body>
+</html>
