@@ -3,95 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sign-in &amp; the cloud / Pro tier — Ledger Help</title>
-<meta name="description" content="What signing in adds, entitlements, the shared org vault, and evidence emission to Sightline.">
-<link rel="canonical" href="https://ledger.dosanjhlabs.com/docs/support/account-and-cloud.html">
+<title>Page retired — Ledger Governance</title>
+<meta name="description" content="Ledger Governance is a free, 100%-local Obsidian plugin — no account, no cloud. This page has been retired.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://ledger.dosanjhlabs.com/">
+<meta http-equiv="refresh" content="3; url=../../index.html">
 <link rel="stylesheet" href="../../assets/style.css">
 </head>
 <body>
 <nav class="nav">
   <div class="nav-inner">
     <a class="brand" href="../../index.html"><svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2" fill="#F4EEE2" stroke="#13233A" stroke-width="1.7"/><rect x="6" y="4" width="4" height="24" rx="1" fill="#C9A227"/><path d="M14 11h8M14 15h8M14 19h6" stroke="#13233A" stroke-width="1.5" stroke-linecap="round"/></svg>Ledger</a>
-    <a href="index.html">Help Center</a>
-    <a href="vault-sync.html">Vault sync</a>
-    <a href="pricing-billing.html">Pricing</a>
-    <a class="cta" href="../../app/index.html">Open the app</a>
+    <a href="../../obsidian-workflow.html">How it works</a>
+    <a href="index.html">Docs</a>
+    <a href="https://github.com/jsdosanj/ledger">GitHub</a>
+    <a class="cta" href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian</a>
   </div>
 </nav>
-
-<header class="hero wrap"><div class="spine"><p class="kicker"><a href="index.html">Help Center</a> · Account &amp; cloud</p><h1>Sign-in &amp; the cloud / Pro tier</h1><p class="lede">Signing in is optional and purely additive. It adds the enterprise layer on top of local-first Ledger: a shared org vault across your team, SSO, and evidence emission. While signed out, Ledger makes zero network calls.</p></div></header>
-
-<section class="wrap" style="max-width:820px">
-
-  <h2 id="what-it-adds">What signing in adds</h2>
-  <p>The free local tier already gives you the editor, search, governance, the roles demo, portals, import/export, and local history. Signing in adds the parts that only make sense across a team and across devices:</p>
-  <ul>
-    <li><strong>Shared org vault</strong> — one company vault, synced across the team. It's still plain Markdown with no secrets stored.</li>
-    <li><strong>Roles, approval &amp; audit</strong> — per-space roles &amp; permissions, review/approval governance, and an append-only audit trail, with SSO from your DosanjhLabs account.</li>
-    <li><strong>Published portals &amp; multi-client</strong> — read-only portals for auditors/non-editors, and hard per-client isolation for MSPs.</li>
-    <li><strong>Evidence emission</strong> — publish "doc reviewed / exists" signals to Sightline (see <a href="#evidence">below</a>).</li>
-  </ul>
-  <p>The top bar leads with a <strong>Sign in</strong> button (it shows your account email once you're in) and a <strong>⇄ Vault sync</strong> button, so both are first-class rather than buried.</p>
-
-  <h2 id="sign-in">How to sign in</h2>
-  <ol>
-    <li>Click <strong>Sign in</strong> in the top bar. A panel opens explaining what the cloud tier adds.</li>
-    <li>Click <strong>Sign in with Clerk</strong>. This loads the sign-in flow on demand (your DosanjhLabs account — the same single login across the whole suite) and redirects you to the hosted sign-in page.</li>
-    <li>After you authenticate, you're returned to the app. The button now shows your account email, and the cloud panel shows your account and your <strong>tenant</strong> (your organization).</li>
-    <li>To sign out, open the panel again and click <strong>Sign out</strong>.</li>
-  </ol>
-  <div class="callout">
-    <p style="margin:0"><strong>Privacy detail:</strong> the sign-in machinery (Clerk) is only loaded the moment you click "Sign in with Clerk." Until then, no third-party script loads and no network request is made — the signed-out app is genuinely zero-network. See <a href="security-privacy.html">Security &amp; privacy</a>.</p>
+<header class="hero wrap"><div class="spine">
+  <p class="kicker">Page retired</p>
+  <h1>There's no account and no cloud.</h1>
+  <p class="lede">Ledger Governance is a free, 100%-local Obsidian plugin. There's no account to create — it runs entirely inside your vault, with no network calls. You're being sent to the home page.</p>
+  <div class="row" style="margin-top:1.4rem;gap:.7rem;flex-wrap:wrap">
+    <a class="btn primary" href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian →</a>
+    <a class="btn" href="index.html">Help Center</a>
+    <a class="btn" href="https://github.com/jsdosanj/ledger">View on GitHub</a>
   </div>
-
-  <h2 id="entitlements">Entitlements (what your plan unlocks)</h2>
-  <p>Once signed in, the cloud panel shows each Pro feature with a live badge: <strong>Pro · unlocked</strong> or <strong>Locked</strong>. The badge reflects your organization's <strong>entitlements</strong> — what your plan includes. If a feature shows Locked, there's an <strong>Upgrade to unlock</strong> link to the <a href="pricing-billing.html">pricing page</a>.</p>
-  <p>The three entitlement-gated feature groups are:</p>
-  <ul>
-    <li><code>cloud_sync</code> — Shared org vault (the sync buttons appear when unlocked).</li>
-    <li><code>pr_review</code> — Roles, approval &amp; audit.</li>
-    <li><code>msp</code> — Published portals &amp; multi-client isolation.</li>
-  </ul>
-
-  <h2 id="org-vault">The shared org vault</h2>
-  <p>The shared org vault is one company-wide knowledge base in the cloud, keyed to your organization. It's the team counterpart to the local-first browser store and the on-disk Obsidian vault.</p>
-  <p>With <code>cloud_sync</code> unlocked, the cloud panel shows two buttons:</p>
-  <ul>
-    <li><strong>⬆ Sync KB up</strong> — push your current Markdown KB to the org vault.</li>
-    <li><strong>⬇ Pull from cloud</strong> — pull the org vault and merge it into your local KB. (If there's nothing in the cloud yet, it tells you to sync up first.)</li>
-  </ul>
-  <p>Because the org vault stores the same Markdown and the same store key (<code>kb-state</code>) the <a href="obsidian-plugin.html">Obsidian plugin</a> uses, the web app and the plugin interoperate against the same org vault. If you're also using <a href="vault-sync.html">on-disk vault sync</a>, the vault-sync panel offers a <strong>☁ Push to org cloud</strong> button so a folder sync and a cloud push are one quick sequence.</p>
-  <div class="callout warn">
-    <p style="margin:0"><strong>What never syncs:</strong> there are no passwords or secrets in the KB to begin with (credential pages are vault links), so the org vault carries no secret material by construction. Only Markdown content moves.</p>
-  </div>
-
-  <h2 id="evidence">Evidence emission (to Sightline)</h2>
-  <p>If your organization uses Sightline (the DosanjhLabs compliance product), Ledger can publish <strong>evidence</strong> that documentation exists and is being reviewed — useful for controls like "a documented asset inventory exists and is reviewed at least every 90 days."</p>
-  <ol>
-    <li>In the cloud panel (signed in), click <strong>Publish documentation evidence</strong>.</li>
-    <li>Ledger sends a canonical <code>it_documentation</code> evidence object and confirms with an id.</li>
-  </ol>
-  <p><strong>What's in the evidence — and what isn't.</strong> The payload contains <em>structural signals only</em>: for each page, its path, title, type, tags, <code>reviewed_on</code> date, and host metadata; plus counts and your company name; and the marker <code>secrets: none-stored</code>. <strong>Page bodies are never sent.</strong> Sightline gets enough to map your documentation coverage to controls, and nothing more.</p>
-
-  <h2 id="multi-device">Cross-device &amp; multi-client</h2>
-  <ul>
-    <li><strong>Cross-device:</strong> sync up on one machine, sign in and pull on another, to carry your KB across devices.</li>
-    <li><strong>Multi-client (MSP):</strong> the <code>msp</code> entitlement adds hard per-client isolation so each client's documentation stays separate. The tenant is always derived server-side from your verified session — a client can't be addressed by setting a header.</li>
-  </ul>
-
-  <h2 id="resilience">If the cloud tier is unavailable</h2>
-  <p>The cloud module loads separately and best-effort. If it can't load — you're offline, a network policy blocks it, or it isn't deployed in your environment — the app simply stays fully local-first. You'll see a message that the cloud tier is unavailable, and everything local keeps working. The core app never depends on the cloud module.</p>
-
-  <h2 id="next">Related topics</h2>
-  <ul>
-    <li><a href="vault-sync.html">Obsidian vault sync (browser)</a></li>
-    <li><a href="obsidian-plugin.html">The Obsidian plugin</a></li>
-    <li><a href="pricing-billing.html">Pricing, billing &amp; plans</a></li>
-    <li><a href="troubleshooting.html#signin">Troubleshooting: sign-in failed</a></li>
-  </ul>
-
-</section>
-
-<footer class="footer"><div class="wrap"><p>© 2026 DosanjhLabs · <a href="index.html">Help Center</a> · <a href="../../index.html">Ledger</a> · A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p></div></footer>
+</div></header>
+<footer class="footer"><div class="wrap"><p>© 2026 DosanjhLabs · <a href="../../index.html">Ledger Governance</a> · A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product. Free, open source, 100% local.</p></div></footer>
 </body>
 </html>

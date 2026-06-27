@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Every feature, step by step — Ledger Help</title>
-<meta name="description" content="A complete, step-by-step guide to every Ledger feature: doc tree & spaces, search, the Markdown editor & live preview, wiki-links & backlinks, the Links/graph view, version history + diff + restore, templates, tags, governance, roles & permissions, published portals, import, export, and the no-secrets posture.">
+<title>Features — Ledger Governance</title>
+<meta name="description" content="Every feature of the Ledger Governance Obsidian plugin, step by step: the governed-document template and frontmatter fields, the draft→in-review→approved→published lifecycle, ownership, review tracking and stale detection, the dashboard, ribbon and live status bar, the in-vault audit log, and the 100% local guarantee.">
 <link rel="canonical" href="https://ledger.dosanjhlabs.com/docs/support/features.html">
 <link rel="stylesheet" href="../../assets/style.css">
 </head>
@@ -12,232 +12,140 @@
 <nav class="nav">
   <div class="nav-inner">
     <a class="brand" href="../../index.html"><svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2" fill="#F4EEE2" stroke="#13233A" stroke-width="1.7"/><rect x="6" y="4" width="4" height="24" rx="1" fill="#C9A227"/><path d="M14 11h8M14 15h8M14 19h6" stroke="#13233A" stroke-width="1.5" stroke-linecap="round"/></svg>Ledger</a>
-    <a href="index.html">Help Center</a>
-    <a href="getting-started.html">Getting started</a>
-    <a href="troubleshooting.html">Troubleshooting</a>
-    <a class="cta" href="../../app/index.html">Open the app</a>
+    <a href="../../obsidian-workflow.html">How it works</a>
+    <a href="index.html" aria-current="page">Docs</a>
+    <a href="https://github.com/jsdosanj/ledger">GitHub</a>
+    <a class="cta" href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian</a>
   </div>
 </nav>
 
-<header class="hero wrap"><div class="spine"><p class="kicker"><a href="index.html">Help Center</a> · Features</p><h1>Every feature, step by step</h1><p class="lede">A complete tour of everything Ledger does, in plain English with numbered steps. Use the jump list below, or read straight through. Everything here works in the free local tier with no account.</p></div></header>
+<header class="hero wrap"><div class="spine"><p class="kicker"><a href="index.html">Help Center</a> · Features</p><h1>Every feature, step by step</h1><p class="lede">A complete tour of everything Ledger Governance does inside Obsidian, in plain English with numbered steps. Use the jump list below, or read straight through. Everything here runs 100% locally — no account, no token, no network.</p></div></header>
 
 <section class="wrap" style="max-width:840px">
 
   <div class="callout">
     <p style="margin:0"><strong>On this page:</strong>
-      <a href="#tree">Doc tree &amp; spaces</a> ·
-      <a href="#search">Search</a> ·
-      <a href="#reading">Reading a page</a> ·
-      <a href="#editor">Editor &amp; live preview</a> ·
-      <a href="#wikilinks">Wiki-links &amp; backlinks</a> ·
-      <a href="#links">Links / graph view</a> ·
-      <a href="#history">Version history, diff &amp; restore</a> ·
-      <a href="#templates">Templates</a> ·
-      <a href="#tags">Tags</a> ·
-      <a href="#governance">Governance</a> ·
-      <a href="#roles">Roles &amp; permissions</a> ·
-      <a href="#portals">Published portals</a> ·
-      <a href="#import">Import vault</a> ·
-      <a href="#export">Export</a> ·
-      <a href="#nosecrets">No-secrets posture &amp; the scanner</a>
+      <a href="#template">Governed-document template &amp; frontmatter</a> ·
+      <a href="#lifecycle">Status lifecycle</a> ·
+      <a href="#ownership">Ownership</a> ·
+      <a href="#review">Review tracking &amp; stale detection</a> ·
+      <a href="#dashboard">Dashboard, ribbon &amp; status bar</a> ·
+      <a href="#audit">The audit log</a> ·
+      <a href="#local">The 100% local guarantee</a>
     </p>
   </div>
 
-  <h2 id="tree">Doc tree &amp; spaces</h2>
-  <p>The left rail — the "spine" — is your document tree. Pages are grouped into <strong>spaces</strong>, which are simply their folders. A page's folder comes from its path: a page at <code>Runbooks/Restore Internet.md</code> lives in the <strong>Runbooks</strong> space. Pages with no folder appear under <code>(root)</code>.</p>
-  <ul>
-    <li>Each space shows a 📒 folder header with its pages listed beneath. The page's first tag (if any) shows as a small chip on the right.</li>
-    <li>Click any page to open it in the main pane. The currently open page is highlighted.</li>
-    <li>Below the tree is a <strong>tag cloud</strong> (see <a href="#tags">Tags</a>).</li>
-    <li>Admins see a small <strong>Publish ↗</strong> button on each space header — see <a href="#portals">Published portals</a>.</li>
-  </ul>
-  <p><strong>To create a space:</strong> there's no separate "new folder" action — just give a new page a folder name. Click <strong>+ New doc</strong>, type a title, then type the folder name (e.g. <code>Network</code>); the space is created automatically. Use the same folder name on other pages to add them to the same space.</p>
-
-  <h2 id="search">Search</h2>
-  <p>The search box in the top bar searches <strong>as you type</strong> across every page. It matches against:</p>
-  <ul>
-    <li>The page <strong>title</strong></li>
-    <li>The page <strong>path</strong> (folder + filename)</li>
-    <li><strong>Tags</strong></li>
-    <li><strong>Frontmatter values</strong> and the page <strong>body</strong></li>
-  </ul>
+  <h2 id="template">The governed-document template &amp; frontmatter</h2>
+  <p>Governance lives in standard YAML frontmatter, so your notes stay portable plain Markdown — readable in any editor, with or without the plugin. The <strong>New governed document</strong> command scaffolds a note with that frontmatter already in place.</p>
   <ol>
-    <li>Click the search box (or just start typing) and enter one or more words. All words must match (it's an AND search).</li>
-    <li>Results replace the tree in the left rail, showing the title, the path, and a snippet of body text with your terms <mark>highlighted</mark>.</li>
-    <li>Click a result to open that page.</li>
-    <li>Clear the box to return to the normal doc tree.</li>
+    <li>Open the Command Palette (<kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>P</kbd>) and run <strong>Ledger: New governed document</strong>.</li>
+    <li>Give it a title; the plugin creates the note with governance fields pre-filled.</li>
+    <li>Edit the body as a normal note — the frontmatter is just data at the top.</li>
   </ol>
-  <p>Tip: clicking a tag in the tag cloud runs a search for that tag.</p>
-
-  <h2 id="reading">Reading a page</h2>
-  <p>Open a page and you're on the <strong>Preview</strong> tab by default. You'll see:</p>
-  <ul>
-    <li>The <strong>title</strong> at the top (editable inline if your role allows).</li>
-    <li>A <strong>governance bar</strong> with owner, review status, and approval state (see <a href="#governance">Governance</a>).</li>
-    <li>If the page has YAML frontmatter, it renders as a tidy <strong>key/value table</strong>.</li>
-    <li>The Markdown <strong>body</strong>, rendered by Ledger's built-in, dependency-free renderer.</li>
-    <li>A <strong>meta bar</strong> at the bottom listing the page's tags and its <strong>backlinks</strong>.</li>
-  </ul>
-  <p>The renderer supports: headings (<code>#</code> through <code>####</code>), <strong>bold</strong> and <em>italic</em>, inline <code>code</code> and fenced code blocks, tables, ordered and unordered lists, <strong>task lists</strong> (<code>- [ ]</code> / <code>- [x]</code> render as ☐ / ☑), blockquotes, horizontal rules, ordinary links (open in a new tab), and <code>[[wiki-links]]</code>. Fenced <code>```mermaid</code> blocks are shown as a code block (they are <em>not</em> executed into a diagram). The renderer escapes HTML, so pasted Markdown can't inject scripts.</p>
-
-  <h2 id="editor">Markdown editor &amp; live preview</h2>
-  <p>The <strong>Edit</strong> tab is a split-pane editor: raw Markdown on the left, live rendered preview on the right that updates as you type. (The Edit tab only appears for roles that can edit — Admin and Editor. See <a href="#roles">Roles</a>.)</p>
-  <ol>
-    <li>Open a page and click the <strong>Edit</strong> tab.</li>
-    <li>Type Markdown in the left pane; watch the right pane update live.</li>
-    <li>Set the page's tags in the <strong>tags</strong> box at the bottom (comma-separated).</li>
-    <li>Save with the <strong>Save</strong> button or press <kbd>Ctrl</kbd>+<kbd>S</kbd> (<kbd>Cmd</kbd>+<kbd>S</kbd> on Mac).</li>
-  </ol>
-  <p><strong>What saving does:</strong> it snapshots the previous version into <a href="#history">history</a>, writes your new content, and (because the content changed) re-opens approval — an edited page is no longer "approved" until a Reviewer signs off again. The editor footer reminds you that pages are plain Markdown with <code>[[wiki-links]]</code> and Obsidian-compatible YAML frontmatter.</p>
-  <p><strong>The secret scanner runs on save.</strong> If your page looks like it contains a pasted password, key, or seed phrase, Ledger pops a warning and asks you to confirm before saving — see <a href="#nosecrets">the no-secrets posture</a>.</p>
-  <p>You can also rename a page: click the title at the top of the page and type a new one (it saves when you click away).</p>
-
-  <h2 id="wikilinks">Wiki-links &amp; backlinks</h2>
-  <p>Type <code>[[Page Title]]</code> anywhere in a page body to link to another page. Use <code>[[Page Title|custom text]]</code> to show different link text. Ledger resolves the target against your pages' titles (and against bare filenames, so <code>[[Core Firewall]]</code> matches <code>Assets/Core Firewall.md</code>).</p>
-  <ul>
-    <li>A resolved wiki-link is clickable in Preview and jumps straight to the target page.</li>
-    <li>If no page matches, the link renders as a <strong>missing</strong> link (styled differently) — a cue to create that page or fix the title.</li>
-    <li><strong>Backlinks</strong> are the reverse: every page automatically shows, in its meta bar, which other pages link <em>to</em> it. You don't maintain backlinks manually — they're computed from the wiki-links across your KB.</li>
-  </ul>
-  <p>This is fully Obsidian-compatible: the same <code>[[wiki-links]]</code> work in Obsidian, so links and backlinks survive a round-trip in either direction.</p>
-
-  <h2 id="links">Links / graph view</h2>
-  <p>The <strong>Links</strong> tab on any page is the navigable version of Obsidian's graph — "what does this page reference, and what depends on it?"</p>
-  <ol>
-    <li>Open a page and click the <strong>Links</strong> tab.</li>
-    <li><strong>→ Links out</strong> lists the pages this page references (its resolved wiki-links).</li>
-    <li><strong>← Backlinks</strong> lists the pages that reference this one.</li>
-    <li>Each entry is a clickable chip — click to jump to that page.</li>
-    <li>At the bottom is a small <strong>vault connectivity summary</strong>: the total number of pages and resolved links across your whole KB.</li>
-  </ol>
-  <p>This is the practical answer to "if I change this firewall page, what else might be affected?" — the backlinks tell you what depends on it.</p>
-
-  <h2 id="history">Version history, diff &amp; restore</h2>
-  <p>Every time you save a change, Ledger snapshots the <em>prior</em> version. The <strong>History</strong> tab lists those snapshots (up to the last 30 per page), newest first.</p>
-  <ol>
-    <li>Open a page and click the <strong>History</strong> tab.</li>
-    <li>Each entry shows when that version was saved.</li>
-    <li>Click <strong>View diff</strong> to see a line-level comparison between that old version and the current one — added lines are marked <code>+</code>, removed lines <code>-</code>, unchanged lines are shown for context. Click <strong>Back to history</strong> to return.</li>
-    <li>Click <strong>Restore</strong> to roll the page back to that version. The current version is <em>also</em> snapshotted into history first, so a restore is never destructive — you can always undo it by restoring again.</li>
-  </ol>
-  <p>This local history is per-device and lives in your browser. The hosted/cloud tier adds full git history and pull-request review on top; the in-browser history is the always-available baseline.</p>
-
-  <h2 id="templates">Templates</h2>
-  <p>Click <strong>Templates</strong> in the top bar to start a new page from a real IT-doc starter. The six built-in templates are:</p>
+  <p>The fields it uses:</p>
   <table>
-    <thead><tr><th>Template</th><th>Default space</th></tr></thead>
+    <thead><tr><th scope="col">Field</th><th scope="col">Meaning</th></tr></thead>
     <tbody>
-      <tr><td>Server / VM asset page</td><td>Assets</td></tr>
-      <tr><td>Network / config note</td><td>Network</td></tr>
-      <tr><td>Runbook / SOP</td><td>Runbooks</td></tr>
-      <tr><td>Credential reference (NO secrets)</td><td>Runbooks</td></tr>
-      <tr><td>SaaS / application page</td><td>Assets</td></tr>
-      <tr><td>Onboarding / offboarding procedure</td><td>Runbooks</td></tr>
+      <tr><td><code>title</code></td><td>The document's title.</td></tr>
+      <tr><td><code>owner</code></td><td>Who is responsible for the note — a name or email. See <a href="#ownership">Ownership</a>.</td></tr>
+      <tr><td><code>status</code></td><td>Where the note sits in its lifecycle: draft, in-review, approved, or published. See <a href="#lifecycle">Status lifecycle</a>.</td></tr>
+      <tr><td><code>type</code></td><td>The kind of document (for example a policy, runbook, or reference).</td></tr>
+      <tr><td><code>reviewed_on</code></td><td>The date the note was last reviewed. See <a href="#review">Review tracking</a>.</td></tr>
+      <tr><td><code>reviewer</code></td><td>Who performed the review.</td></tr>
+      <tr><td><code>review_cadence_days</code></td><td>Optional per-note review interval; overrides the default stale threshold for just this note.</td></tr>
     </tbody>
   </table>
+  <p>Because these are ordinary frontmatter keys, you can also add them by hand to existing notes — the plugin will pick them up.</p>
+
+  <h2 id="lifecycle">The status lifecycle</h2>
+  <p>Each governed note moves through four lifecycle stages, recorded in its <code>status</code> field:</p>
+  <p class="mono">draft → in-review → approved → published</p>
   <ol>
-    <li>Click <strong>Templates</strong>. A prompt lists the templates with numbers.</li>
-    <li>Enter the number of the template you want.</li>
-    <li>Enter a title for the new page.</li>
-    <li>Ledger creates the page (pre-filled with the template's structure and tags) and drops you into the Edit tab to fill it in.</li>
+    <li>A new governed document starts as <strong>draft</strong>.</li>
+    <li>When it's ready for eyes, set it to <strong>in-review</strong>.</li>
+    <li>Once it's been reviewed and accepted, set it to <strong>approved</strong>.</li>
+    <li>When it's the live, authoritative version, set it to <strong>published</strong>.</li>
   </ol>
-  <p>The <strong>Credential reference</strong> template deliberately contains <em>no</em> password field — it's structured to link a vault item instead, modelling the no-secrets pattern.</p>
+  <p><strong>To change status:</strong> open the note, run <strong>Ledger: Set document status</strong>, and pick the stage. The change is written to frontmatter and recorded in the <a href="#audit">audit log</a>. The dashboard's <em>lifecycle mix</em> shows how many notes sit in each stage (including any with no status set).</p>
 
-  <h2 id="tags">Tags</h2>
-  <p>Tags are short labels for organizing and finding pages across spaces. They live either in the page's frontmatter (<code>tags: asset, firewall</code>) or are set inline in the editor.</p>
-  <ul>
-    <li><strong>Set tags</strong> in the editor's tags box (comma-separated), or in frontmatter.</li>
-    <li>The <strong>tag cloud</strong> under the doc tree lists every tag with a count. Click a tag to search for it.</li>
-    <li>A page's tags appear as <code>#chips</code> in its meta bar, and the first tag shows next to the page in the tree.</li>
-  </ul>
+  <h2 id="ownership">Ownership</h2>
+  <p>Every governed note should have an <strong>owner</strong> — the person accountable for keeping it correct. Ownership answers an auditor's first question: <em>who is responsible for this document?</em></p>
+  <ol>
+    <li>Open the note and run <strong>Ledger: Set document owner</strong>.</li>
+    <li>Enter a name or an email address.</li>
+    <li>The plugin writes it to the <code>owner</code> frontmatter field and records the change in the audit log.</li>
+  </ol>
+  <p>If you turn on <strong>Require an owner</strong> in settings, any note without an owner is counted as <em>ungoverned</em> in the dashboard and status bar — a simple way to find the gaps.</p>
 
-  <h2 id="governance">Governance: ownership, review status &amp; approval</h2>
-  <p>This is the heart of what Ledger adds over a personal Obsidian vault: it tells you whether a document can be <em>trusted</em>. Each page has a <strong>governance bar</strong> just under the title.</p>
-  <p>Governance reads two standard frontmatter fields:</p>
-  <ul>
-    <li><code>owner:</code> — who is responsible for the page (e.g. <code>owner: Security Lead</code>).</li>
-    <li><code>reviewed_on:</code> — the date the page was last reviewed (e.g. <code>reviewed_on: 2026-05-01</code>).</li>
-  </ul>
-  <p>From <code>reviewed_on</code>, Ledger computes a <strong>review status</strong>:</p>
+  <h2 id="review">Review tracking &amp; stale detection</h2>
+  <p>Documents drift out of date. Ledger Governance tracks when each note was last reviewed and flags the ones that have gone stale.</p>
+  <ol>
+    <li>Open a note and run <strong>Ledger: Mark current note reviewed</strong>.</li>
+    <li>The plugin stamps today's date into <code>reviewed_on</code> (creating the frontmatter block if needed) and records it in the audit log.</li>
+    <li>The note's review clock resets — it counts as fresh again.</li>
+  </ol>
+  <p>From <code>reviewed_on</code>, the plugin classifies each note's review freshness:</p>
   <table>
-    <thead><tr><th>Status</th><th>Meaning</th></tr></thead>
+    <thead><tr><th scope="col">Freshness</th><th scope="col">Meaning</th></tr></thead>
     <tbody>
-      <tr><td><strong>reviewed</strong> (fresh)</td><td>Reviewed within the last 90 days.</td></tr>
-      <tr><td><strong>needs review</strong> (stale)</td><td>It has a <code>reviewed_on</code> date, but it's more than 90 days old.</td></tr>
-      <tr><td><strong>never reviewed</strong></td><td>No valid <code>reviewed_on</code> date is set.</td></tr>
+      <tr><td><strong>fresh</strong></td><td>Reviewed within the threshold.</td></tr>
+      <tr><td><strong>stale</strong></td><td>Has a <code>reviewed_on</code> date, but it's older than the threshold.</td></tr>
+      <tr><td><strong>never</strong></td><td>No valid <code>reviewed_on</code> date is set.</td></tr>
     </tbody>
   </table>
-  <p>The governance bar also shows the <strong>approval state</strong> (approved / unapproved) and offers two role-gated actions:</p>
+  <p>The threshold defaults to <strong>90 days</strong> and is set in <strong>Settings → Community plugins → Ledger Governance → Review-stale threshold</strong>. A single note can override the default by setting its own <code>review_cadence_days</code> — for example a fast-moving runbook might use <code>review_cadence_days: 30</code> while everything else stays at 90.</p>
+
+  <h2 id="dashboard">The governance dashboard, ribbon &amp; live status bar</h2>
+  <p>The <strong>Governance dashboard</strong> gives you the whole vault's health at a glance. Open it from the Command Palette (<strong>Ledger: Governance dashboard</strong>) or by clicking the <strong>ribbon icon</strong> (the book in the left ribbon).</p>
   <ul>
-    <li><strong>Mark reviewed today</strong> (Admin/Editor) — stamps today's date into the page's <code>reviewed_on</code> frontmatter (creating the frontmatter block if it doesn't exist). The status flips to fresh.</li>
-    <li><strong>Approve this version</strong> (Admin/Reviewer) — records a sign-off ("this version is approved, by &lt;role&gt;"). <strong>Editing a page automatically un-approves it</strong>, so approval always refers to a specific, unchanged version.</li>
+    <li><strong>Totals</strong> — how many notes the plugin sees.</li>
+    <li><strong>Ungoverned</strong> — notes missing a required owner or status.</li>
+    <li><strong>Review freshness</strong> — counts of never / stale / fresh notes.</li>
+    <li><strong>Lifecycle mix</strong> — counts by status across draft, in-review, approved, published, and unset.</li>
   </ul>
-  <p>Together these answer an auditor's real questions: <em>who owns this, when was it last reviewed, and has anyone signed off on the current version?</em></p>
+  <p>Click any row in the dashboard to open that note and act on it.</p>
+  <p>The <strong>status bar</strong> at the bottom of the Obsidian window keeps a live one-line summary as you work — for example <code class="mono">Ledger: N docs · X stale · Y ungoverned</code> — so you always see where things stand without opening the dashboard.</p>
 
-  <h2 id="roles">Roles &amp; permissions</h2>
-  <p>Ledger has five roles. In the free local tier, the <strong>role picker</strong> in the top bar (🔑 role:) lets you switch which role you're "viewing as" so you can <em>see</em> exactly what each role can and can't do. In the cloud tier, roles are assigned to real people per space and enforced server-side; the local picker demonstrates the same model on one device.</p>
-  <table>
-    <thead><tr><th>Role</th><th>Edit / Delete</th><th>Mark reviewed</th><th>Approve</th><th>Publish portal</th><th>Read</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Admin</strong></td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
-      <tr><td><strong>Editor</strong></td><td>Yes</td><td>Yes</td><td>No</td><td>No</td><td>Yes</td></tr>
-      <tr><td><strong>Reviewer</strong></td><td>No</td><td>No</td><td>Yes</td><td>No</td><td>Yes</td></tr>
-      <tr><td><strong>Viewer</strong></td><td>No</td><td>No</td><td>No</td><td>No</td><td>Yes</td></tr>
-      <tr><td><strong>Portal</strong> (read-only)</td><td>No</td><td>No</td><td>No</td><td>No</td><td>Yes</td></tr>
-    </tbody>
-  </table>
-  <p>When you switch to a read-only role (Viewer or Portal), the Edit tab, Delete, Mark-reviewed, Approve, and Publish actions disappear — you can read but not change anything. Switch back to Admin to regain full control.</p>
-  <p><strong>Note:</strong> in the local tier this is a demonstration of the permission model on a single device — switching roles is not a security boundary by itself (anyone at the keyboard can switch back). Real, enforced, per-person, per-space permissions with SSO and an audit trail are the <a href="account-and-cloud.html">cloud tier</a>.</p>
-
-  <h2 id="portals">Read-only published portals</h2>
-  <p>A <strong>published portal</strong> is a single, self-contained HTML file containing a whole space, rendered read-only. You hand it to an auditor or a non-editor and they open it in any browser — no app, no account, no editing, and no way to change anything.</p>
+  <h2 id="audit">The in-vault audit log</h2>
+  <p>Every governance action — creating a governed document, setting a status or owner, marking a note reviewed — appends a row to <code>_ledger/audit.md</code> in your vault. It's an ordinary Markdown table with columns <strong>date · action · document · detail</strong>.</p>
   <ol>
-    <li>Make sure your role is <strong>Admin</strong> (only Admin can publish).</li>
-    <li>In the left rail, hover the space (folder) header and click <strong>Publish ↗</strong>.</li>
-    <li>Ledger generates and downloads an HTML file named like <code>&lt;company&gt;-&lt;space&gt;-portal.html</code>.</li>
-    <li>Open it to verify, then share the file (email, file share, etc.).</li>
+    <li>Run <strong>Ledger: Open governance audit log</strong> to read it.</li>
+    <li>Each row is one action, newest appended at the end.</li>
+    <li>Because it's plain Markdown in your vault, you can search, version, or archive it like any note.</li>
   </ol>
-  <p>The portal includes: a banner marking it READ-ONLY, a per-page navigation list, each page's rendered Markdown, and review stamps ("Last reviewed … · owner …") where present. It carries <strong>no secret material</strong> (because Ledger stores none) and has no editing controls. It's a point-in-time snapshot — re-publish to share an updated version.</p>
+  <p>The audit log never leaves your vault — it's yours. See the <a href="obsidian-plugin.html#audit">plugin guide</a> for an example table.</p>
 
-  <h2 id="import">Import an Obsidian vault</h2>
-  <p>Click <strong>Import vault</strong> to bring existing Markdown into Ledger. It accepts either:</p>
-  <ul>
-    <li>A <strong>Ledger export bundle</strong> — the path-headed format Ledger's <a href="#export">Export all</a> produces (with <code>FILE:</code> markers between pages); or</li>
-    <li>A <strong>single <code>.md</code> note</strong> pasted in.</li>
-  </ul>
-  <ol>
-    <li>Click <strong>Import vault</strong>.</li>
-    <li>Paste your Markdown into the box.</li>
-    <li>Click <strong>Import</strong>. Ledger reports how many pages were added.</li>
-  </ol>
-  <p>Frontmatter, folder paths (which become spaces), tags, and <code>[[wiki-links]]</code> all carry over. Import <em>adds</em> pages — it doesn't wipe what's already there. For a continuous, two-way connection to a folder of files on disk (rather than a one-time paste), use <a href="vault-sync.html">Obsidian vault sync</a> instead.</p>
-
-  <h2 id="export">Export</h2>
-  <p>Your data is always portable — it's just Markdown. Two export options:</p>
-  <ul>
-    <li><strong>Export a single page:</strong> open the page and click <strong>Export .md</strong>. You get that one page as a <code>.md</code> file.</li>
-    <li><strong>Export the whole KB:</strong> click <strong>Export all</strong> in the top bar. You get one portable Markdown bundle containing every page, separated by <code>FILE:</code> path headers, plus a short manifest header. This bundle is git-ready and Obsidian-ready, and it's exactly what <a href="#import">Import vault</a> accepts — so it round-trips.</li>
-  </ul>
-  <p>There's nothing proprietary to "get out of" — Ledger's source of truth is plain Markdown. Export is also your backup and your exit. See <a href="troubleshooting.html#leaving">Exporting and leaving</a>.</p>
-
-  <h2 id="nosecrets">The no-secrets posture &amp; the save-time scanner</h2>
-  <p>Ledger stores <strong>zero passwords or secrets</strong> by design. This is a deliberate security stance: a system that holds no credentials can't leak any if it's breached.</p>
-  <p><strong>The pattern:</strong> for each credential, make a <em>credential reference</em> page (there's a template) that links the item in your password manager by URL or ID — for example <code>vault://provider/item-id</code> or a Bitwarden/1Password item link. Never paste the actual password, API key, or seed.</p>
-  <p><strong>The save-time scanner:</strong> when you save a page, Ledger scans it for things that look like pasted secrets — <code>password: …</code>, <code>secret: …</code>, <code>api_key: …</code>, provider keys like <code>sk-…</code>, PEM private-key blocks, and seed-phrase-like strings. If it finds one, it warns you, names what it found, and asks you to confirm before saving. It's a guardrail, not a vault: you <em>can</em> override it, but the intended action is to remove the secret and link a vault item instead.</p>
-  <div class="callout warn">
-    <p style="margin:0"><strong>If your page got flagged but doesn't really contain a secret</strong> (e.g. the word "password" appears in a sentence with a colon), you can confirm and save anyway — the scanner is intentionally cautious. See <a href="troubleshooting.html#flagged">"My secret got flagged"</a>.</p>
-  </div>
+  <h2 id="local">The 100% local guarantee</h2>
+  <p>Ledger Governance does everything above on your own machine. There is <strong>no account, no token, and no network call</strong> — nothing is uploaded and nothing phones home. Your governance metadata lives in your notes' frontmatter, the audit log lives in your vault, and settings are stored in local plugin data. The plugin is free and open source under the <a href="https://github.com/jsdosanj/ledger/blob/main/LICENSE">MIT License</a>. For the full statement, see <a href="security-privacy.html">Security &amp; privacy</a>.</p>
 
   <h2 id="next">Related topics</h2>
   <ul>
-    <li><a href="account-and-cloud.html">Sign-in &amp; the cloud / Pro tier</a></li>
-    <li><a href="vault-sync.html">Obsidian vault sync (browser)</a></li>
-    <li><a href="ai.html">AI (bring your own key)</a></li>
-    <li><a href="how-do-i.html">"How do I…?" recipe index</a></li>
+    <li><a href="obsidian-plugin.html">The Obsidian plugin</a> — install and command reference.</li>
+    <li><a href="getting-started.html">Getting started</a>.</li>
+    <li><a href="security-privacy.html">Security &amp; privacy</a>.</li>
+    <li><a href="how-do-i.html">"How do I…?" recipe index</a>.</li>
   </ul>
 
 </section>
 
-<footer class="footer"><div class="wrap"><p>© 2026 DosanjhLabs · <a href="index.html">Help Center</a> · <a href="../../index.html">Ledger</a> · A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p></div></footer>
+<footer class="footer">
+  <div class="wrap grid g3">
+    <div>
+      <h4>Ledger Governance</h4>
+      <p>A free, local-only Obsidian plugin for document governance. Your notes stay portable plain Markdown.</p>
+      <p class="small">A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <p><a href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian</a><br><a href="../../obsidian-workflow.html">How it works</a><br><a href="index.html">Docs</a></p>
+    </div>
+    <div>
+      <h4>Open source</h4>
+      <p><a href="https://github.com/jsdosanj/ledger">View on GitHub</a><br><a href="https://github.com/jsdosanj/ledger/blob/main/LICENSE">MIT License</a></p>
+    </div>
+  </div>
+  <div class="wrap small" style="margin-top:1.4rem;opacity:.7">© 2026 DosanjhLabs · Ledger Governance is 100% local — no account, no network.</div>
+  <p class="legal-links" style="margin-top:.75rem;font-size:.8rem;opacity:.8"><a href="https://dosanjhlabs.com/legal/privacy">Privacy</a> · <a href="https://dosanjhlabs.com/legal/terms">Terms</a> · <a href="https://dosanjhlabs.com/legal/acceptable-use">Acceptable Use</a> · <a href="https://dosanjhlabs.com/legal/disclaimer">Disclaimer</a></p>
+</footer>
 </body>
 </html>

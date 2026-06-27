@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://ledger.dosanjhlabs.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://ledger.dosanjhlabs.com/pricing.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://ledger.dosanjhlabs.com/vs-it-glue.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://ledger.dosanjhlabs.com/vs-hudu.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ledger.dosanjhlabs.com/obsidian-workflow.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ledger.dosanjhlabs.com/self-host.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ledger.dosanjhlabs.com/docs/index.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ledger.dosanjhlabs.com/obsidian-workflow.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://ledger.dosanjhlabs.com/docs/index.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ledger.dosanjhlabs.com/docs/support/index.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ledger.dosanjhlabs.com/docs/support/getting-started.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://ledger.dosanjhlabs.com/docs/support/obsidian-plugin.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://ledger.dosanjhlabs.com/docs/support/vault-sync.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://ledger.dosanjhlabs.com/app/index.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ledger.dosanjhlabs.com/docs/support/features.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ledger.dosanjhlabs.com/docs/support/security-privacy.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ledger.dosanjhlabs.com/docs/support/troubleshooting.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ledger.dosanjhlabs.com/docs/support/how-do-i.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>

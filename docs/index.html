@@ -3,59 +3,127 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Docs — Ledger</title>
-<meta name="description" content="How to use Ledger: the doc tree, search, markdown editor with live preview, version history, templates, the no-secrets credential pattern, export, the optional cloud tier, and BYO-key AI.">
-<link rel="canonical" href="https://ledger.dosanjhlabs.com/docs/index.html">
+<title>Docs — Ledger Governance</title>
+<meta name="description" content="Quick reference for Ledger Governance, a free, local-only Obsidian plugin: the six commands, the frontmatter fields it uses, settings, and where the in-vault audit log lives. No account, no network.">
+<link rel="canonical" href="https://ledger.dosanjhlabs.com/docs/">
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
 <nav class="nav">
   <div class="nav-inner">
-    <a class="brand" href="../index.html"><svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2" fill="#F4EEE2" stroke="#13233A" stroke-width="1.7"/><rect x="6" y="4" width="4" height="24" rx="1" fill="#C9A227"/><path d="M14 11h8M14 15h8M14 19h6" stroke="#13233A" stroke-width="1.5" stroke-linecap="round"/></svg>Ledger</a>
-    <a href="../obsidian-workflow.html">Obsidian</a>
-    <a href="../self-host.html">Self-host</a>
-    <a href="../pricing.html">Pricing</a>
-    <a class="cta" href="../app/index.html">Open the app</a>
+    <a class="brand" href="../index.html">
+      <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2" fill="#F4EEE2" stroke="#13233A" stroke-width="1.7"/><rect x="6" y="4" width="4" height="24" rx="1" fill="#C9A227"/><path d="M14 11h8M14 15h8M14 19h6" stroke="#13233A" stroke-width="1.5" stroke-linecap="round"/></svg>
+      Ledger
+    </a>
+    <a href="../obsidian-workflow.html">How it works</a>
+    <a href="support/index.html">Docs</a>
+    <a href="https://github.com/jsdosanj/ledger">GitHub</a>
+    <a class="cta" href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian</a>
   </div>
 </nav>
 
-<header class="hero wrap"><div class="spine"><p class="kicker">Documentation</p><h1>Using Ledger</h1><p class="lede">Everything below works in the free, local-first tier — no account, no network.</p></div></header>
-
-<section class="wrap" style="max-width:760px">
-  <div class="callout">
-    <p style="margin:0"><strong>Looking for the full Help Center?</strong> The <a href="support/index.html">Ledger Help Center</a> is the exhaustive, self-service guide — <a href="support/getting-started.html">getting started</a>, <a href="support/features.html">every feature step by step</a>, <a href="support/vault-sync.html">Obsidian vault sync</a>, the <a href="support/obsidian-plugin.html">Obsidian plugin</a>, <a href="support/ai.html">AI</a>, the <a href="support/account-and-cloud.html">cloud/Pro tier</a>, <a href="support/security-privacy.html">security &amp; privacy</a>, <a href="support/pricing-billing.html">pricing</a>, <a href="support/troubleshooting.html">troubleshooting &amp; FAQ</a>, and a <a href="support/how-do-i.html">"How do I…?" recipe index</a>. The quick reference below covers the essentials.</p>
+<header class="hero wrap">
+  <div class="spine">
+    <p class="kicker">Docs · quick reference</p>
+    <h1>Ledger Governance — quick reference</h1>
+    <p class="lede">Ledger Governance is a <strong>free, MIT-licensed Obsidian plugin</strong> that adds document governance — owners, review dates, and lifecycle status — inside your vault. It runs <strong>100% locally</strong>: no account, no network calls, no servers. Governance lives in standard YAML frontmatter, so your notes stay portable plain Markdown.</p>
+    <div class="row" style="margin-top:1.6rem;gap:.7rem;flex-wrap:wrap">
+      <a class="btn primary" href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian →</a>
+      <a class="btn" href="https://github.com/jsdosanj/ledger">View on GitHub</a>
+    </div>
+    <p class="muted small" style="margin-top:.8rem">Need the full guide? The <a href="support/index.html">Help Center</a> has install steps, a first-run walkthrough, and troubleshooting.</p>
   </div>
+</header>
 
-  <h2>The doc tree &amp; search</h2>
-  <p>The left rail (the "spine") groups your pages by folder with a tag cloud beneath. Type in the search box to search-as-you-type across titles, paths, tags, frontmatter values, and body text. Click a result to open it.</p>
-
-  <h2>Reading a page</h2>
-  <p>Frontmatter renders as a tidy table at the top; the markdown body renders below with headings, tables, code, Mermaid blocks, task lists, and <code>[[wiki-links]]</code>. A meta bar shows tags and <strong>backlinks</strong> (which other pages link here).</p>
-
-  <h2>Editing</h2>
-  <p>The <strong>Edit</strong> tab is a split markdown editor with live preview. <kbd>Ctrl/Cmd+S</kbd> (or the Save button) commits — and snapshots the prior version into history. Set tags inline.</p>
-
-  <h2>Version history &amp; diff</h2>
-  <p>The <strong>History</strong> tab lists prior versions. View a line-level diff against the current version, or restore any prior version (the current one is kept too). Hosted mode adds full git history + pull-request review.</p>
-
-  <h2>Templates</h2>
-  <p>The <strong>Templates</strong> button starts a new page from a real IT-doc template: server/VM asset, network note, runbook/SOP, credential reference, SaaS app, onboarding/offboarding procedure.</p>
-
-  <div class="callout warn">
-    <h3 style="margin-top:0">We don't store passwords or secrets</h3>
-    <p><strong>Ledger holds zero secret material.</strong> Use a password manager (Bitwarden, 1Password, Keeper, Vaultwarden). For each credential, create a <em>credential reference</em> page that links the vault item by URL/ID — never paste the password, key, or seed. If you try to save a page that looks like it contains a secret, Ledger warns you and points you to the vault pattern.</p>
-  </div>
-
-  <h2>Export</h2>
-  <p>Export a single page as <code>.md</code>, or the whole KB as one portable markdown bundle. It's already files — there's nothing to "get out."</p>
-
-  <h2>Optional cloud tier</h2>
-  <p>The <strong>Cloud</strong> button opens sign-in (your DosanjhLabs account, via Clerk). Signed in, Pro features unlock: cross-device KB sync, PR review, MSP multi-client, and "doc reviewed / exists" evidence emission to Sightline. Signed out, Ledger makes zero network calls.</p>
-
-  <h2>BYO-key AI</h2>
-  <p>The <strong>AI</strong> button: paste your own OpenAI / Anthropic / OpenRouter key (stored locally; the browser calls the provider directly). Draft a doc from notes, summarize the open page, or ask questions over your docs with citations. A scrubber blocks pasted secrets before any request leaves your browser.</p>
+<section class="wrap">
+  <h2>Quick reference: the six commands</h2>
+  <p class="muted">Open the Command Palette (<span class="mono">Ctrl/Cmd-P</span>) and type <span class="mono">Ledger</span>.</p>
+  <table style="margin-top:1.2rem">
+    <thead>
+      <tr><th>Command</th><th>What it does</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>New governed document</strong></td><td>Scaffolds a note with governance frontmatter already in place — <span class="mono">owner</span>, <span class="mono">status: draft</span>, <span class="mono">type</span>, <span class="mono">reviewed_on</span>, <span class="mono">reviewer</span>, <span class="mono">review_cadence_days</span>.</td></tr>
+      <tr><td><strong>Set document status</strong></td><td>Move a note through its lifecycle: draft → in-review → approved → published.</td></tr>
+      <tr><td><strong>Set document owner</strong></td><td>Assign an owner by name or email.</td></tr>
+      <tr><td><strong>Mark current note reviewed</strong></td><td>Stamps <span class="mono">reviewed_on</span> with today's date.</td></tr>
+      <tr><td><strong>Governance dashboard</strong></td><td>Also the ribbon icon (book). Shows total docs, how many are ungoverned, review freshness (never / stale / fresh), and lifecycle mix. Click any row to open that note.</td></tr>
+      <tr><td><strong>Open governance audit log</strong></td><td>Opens <span class="mono">_ledger/audit.md</span> in your vault.</td></tr>
+    </tbody>
+  </table>
 </section>
 
-<footer class="footer"><div class="wrap"><p>© 2026 DosanjhLabs · <a href="../index.html">Ledger</a> · A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p></div></footer>
+<hr class="rule brass wrap">
+
+<section class="wrap">
+  <h2>Frontmatter fields</h2>
+  <p class="muted">Governance is stored in standard YAML frontmatter at the top of each note. Nothing proprietary — your notes stay portable Markdown.</p>
+  <div class="grid g2" style="margin-top:1.2rem">
+    <div class="feature">
+      <h3>Fields it uses</h3>
+      <table>
+        <tbody>
+          <tr><td class="mono">title</td><td>Document title.</td></tr>
+          <tr><td class="mono">owner</td><td>Who is responsible — name or email.</td></tr>
+          <tr><td class="mono">status</td><td>Lifecycle: draft / in-review / approved / published.</td></tr>
+          <tr><td class="mono">type</td><td>Document type (your own category).</td></tr>
+          <tr><td class="mono">reviewed_on</td><td>Date of the last review.</td></tr>
+          <tr><td class="mono">reviewer</td><td>Who reviewed it.</td></tr>
+          <tr><td class="mono">review_cadence_days</td><td>Per-note review interval; overrides the default stale threshold.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="feature">
+      <h3>How freshness is judged</h3>
+      <p>A note not reviewed within the stale threshold (default <strong>90 days</strong>, or its own <span class="mono">review_cadence_days</span>) shows as <strong>stale</strong>. A note never reviewed shows as <strong>never</strong>.</p>
+      <p><strong>Ungoverned</strong> means missing an owner (when "Require an owner" is on) or missing a lifecycle status (when "Require a status" is on).</p>
+      <p class="muted small">The status bar shows a live summary: <span class="mono">Ledger: N docs · X stale · Y ungoverned</span>.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule wrap">
+
+<section class="wrap">
+  <h2>Settings</h2>
+  <p class="muted">Settings → Community plugins → Ledger. All settings are local, stored in your vault's plugin data.</p>
+  <div class="grid g3" style="margin-top:1.2rem">
+    <div class="feature"><h3>Review-stale threshold (days)</h3><p>Default <strong>90</strong>. A per-note <span class="mono">review_cadence_days</span> overrides it for that note.</p></div>
+    <div class="feature"><h3>Require an owner</h3><p>Toggle. When on, ownerless notes are flagged as ungoverned.</p></div>
+    <div class="feature"><h3>Require a status</h3><p>Toggle. When on, notes without a lifecycle status are flagged as ungoverned.</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="callout">
+    <p style="margin:0"><strong>Where the audit log lives.</strong> Every governance action appends a row to <span class="mono">_ledger/audit.md</span> — a plain Markdown table (date | action | document | detail). You own it; it never leaves your vault.</p>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="callout brass">
+    <p style="margin:0"><strong>Need more?</strong> The full <a href="support/index.html">Help Center</a> covers installation, a first-run walkthrough, the plugin in depth, security &amp; privacy, and troubleshooting.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap grid g3">
+    <div>
+      <h4>Ledger Governance</h4>
+      <p>A free, local-only Obsidian plugin for document governance. Your notes stay portable plain Markdown.</p>
+      <p class="small">A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <p><a href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian</a><br><a href="../obsidian-workflow.html">How it works</a><br><a href="support/index.html">Docs</a></p>
+    </div>
+    <div>
+      <h4>Open source</h4>
+      <p><a href="https://github.com/jsdosanj/ledger">View on GitHub</a><br><a href="https://github.com/jsdosanj/ledger/blob/main/LICENSE">MIT License</a></p>
+    </div>
+  </div>
+  <div class="wrap small" style="margin-top:1.4rem;opacity:.7">© 2026 DosanjhLabs · Ledger Governance is 100% local — no account, no network.</div>
+  <p class="legal-links" style="margin-top:.75rem;font-size:.8rem;opacity:.8"><a href="https://dosanjhlabs.com/legal/privacy">Privacy</a> · <a href="https://dosanjhlabs.com/legal/terms">Terms</a> · <a href="https://dosanjhlabs.com/legal/acceptable-use">Acceptable Use</a> · <a href="https://dosanjhlabs.com/legal/disclaimer">Disclaimer</a></p>
+</footer>
 </body>
 </html>

@@ -3,97 +3,131 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Getting started — Ledger Help</title>
-<meta name="description" content="What Ledger is, the local-first vs cloud model, your first run, and the seeded sample knowledge base.">
+<title>Getting started — Ledger Governance</title>
+<meta name="description" content="Get started with Ledger Governance, a free, local-only Obsidian plugin: what it is, how to install it, your first governed document, how stale and ungoverned notes are flagged, and where to go next. No account, no network.">
 <link rel="canonical" href="https://ledger.dosanjhlabs.com/docs/support/getting-started.html">
 <link rel="stylesheet" href="../../assets/style.css">
 </head>
 <body>
 <nav class="nav">
   <div class="nav-inner">
-    <a class="brand" href="../../index.html"><svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2" fill="#F4EEE2" stroke="#13233A" stroke-width="1.7"/><rect x="6" y="4" width="4" height="24" rx="1" fill="#C9A227"/><path d="M14 11h8M14 15h8M14 19h6" stroke="#13233A" stroke-width="1.5" stroke-linecap="round"/></svg>Ledger</a>
-    <a href="index.html">Help Center</a>
-    <a href="features.html">Features</a>
-    <a href="troubleshooting.html">Troubleshooting</a>
-    <a class="cta" href="../../app/index.html">Open the app</a>
+    <a class="brand" href="../../index.html">
+      <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2" fill="#F4EEE2" stroke="#13233A" stroke-width="1.7"/><rect x="6" y="4" width="4" height="24" rx="1" fill="#C9A227"/><path d="M14 11h8M14 15h8M14 19h6" stroke="#13233A" stroke-width="1.5" stroke-linecap="round"/></svg>
+      Ledger
+    </a>
+    <a href="../../obsidian-workflow.html">How it works</a>
+    <a href="index.html" aria-current="page">Docs</a>
+    <a href="https://github.com/jsdosanj/ledger">GitHub</a>
+    <a class="cta" href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian</a>
   </div>
 </nav>
 
-<header class="hero wrap"><div class="spine"><p class="kicker"><a href="index.html">Help Center</a> · Getting started</p><h1>Getting started with Ledger</h1><p class="lede">What Ledger is, how the local-first and cloud tiers fit together, your very first run, and the sample knowledge base that's preloaded so you can explore everything immediately.</p></div></header>
-
-<section class="wrap" style="max-width:820px">
-
-  <h2 id="what">What is Ledger?</h2>
-  <p>Ledger is an <strong>IT documentation and knowledge hub</strong> for MSPs and internal IT teams. The idea in one line: <em>Obsidian is perfect for one person; Ledger makes it a company-grade documentation hub.</em></p>
-  <p>Concretely, Ledger:</p>
-  <ul>
-    <li>Stores your documentation as <strong>plain Markdown files</strong> with Obsidian-compatible YAML frontmatter and <code>[[wiki-links]]</code> — readable in any editor, never locked in.</li>
-    <li>Runs as a <strong>local-first static web app</strong> (plain HTML/CSS/JavaScript, no build step). It works entirely in your browser, with no account and no network, until you choose otherwise.</li>
-    <li>Adds the layer Obsidian lacks: a <strong>doc tree, org-wide search, a links/graph view, version history, review/approval governance, roles &amp; permissions, and read-only published portals</strong>.</li>
-    <li>Stores <strong>no passwords or secrets</strong> — credential pages link to your password manager by URL only.</li>
-  </ul>
-
-  <h2 id="local-vs-cloud">Local-first vs the cloud tier</h2>
-  <p>This is the most important concept to understand up front, because it explains where your data lives and when (if ever) anything leaves your machine.</p>
-  <table>
-    <thead><tr><th></th><th>Free / local-first (default)</th><th>Cloud / Pro (opt-in)</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Account</strong></td><td>None. Just open the app.</td><td>Sign in with your DosanjhLabs account (Clerk SSO).</td></tr>
-      <tr><td><strong>Where docs live</strong></td><td>Your browser's <code>localStorage</code>, on this device only.</td><td>Synced to a shared org vault in the cloud (still plain Markdown, no secrets).</td></tr>
-      <tr><td><strong>Network</strong></td><td><strong>Zero network calls</strong> while signed out.</td><td>Calls <code>api.dosanjhlabs.com</code> only when you act.</td></tr>
-      <tr><td><strong>What you get</strong></td><td>The full editor, search, governance, roles demo, portals, import/export, local version history.</td><td>Shared org vault across the team, SSO, and "doc reviewed / exists" evidence emission.</td></tr>
-    </tbody>
-  </table>
-  <p>You can use Ledger forever in the free local tier and never sign in. The cloud tier is purely additive — it never takes anything away. See <a href="account-and-cloud.html">Sign-in &amp; the cloud/Pro tier</a> for details.</p>
-
-  <div class="callout">
-    <p style="margin:0"><strong>Three places your docs could live, all under your control:</strong> (1) this browser's local storage — the default; (2) a real <a href="vault-sync.html">Obsidian vault folder</a> on disk that Ledger syncs two-way; (3) the <a href="account-and-cloud.html">shared org cloud vault</a> if you sign in. You choose which, and they all use the same portable Markdown.</p>
+<header class="hero wrap">
+  <div class="spine">
+    <p class="kicker"><a href="index.html">Help Center</a> · Getting started</p>
+    <h1>Getting started</h1>
+    <p class="lede">Ledger Governance adds document governance to Obsidian — owners, review dates, and lifecycle status — without taking you out of your vault. It is <strong>free, MIT-licensed, and 100% local</strong>: no account, no network, no servers.</p>
+    <div class="row" style="margin-top:1.6rem;gap:.7rem;flex-wrap:wrap">
+      <a class="btn primary" href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian →</a>
+      <a class="btn" href="https://github.com/jsdosanj/ledger">View on GitHub</a>
+    </div>
   </div>
+</header>
 
-  <h2 id="first-run">Your first run</h2>
-  <ol>
-    <li><strong>Open the app.</strong> Go to <a href="../../app/index.html">the app</a> (or, if you self-host, <code>http://localhost:8000/app/index.html</code> — see the note below about serving over HTTP). No signup screen appears; you land straight in the workbench.</li>
-    <li><strong>Meet the sample knowledge base.</strong> On first run Ledger seeds a realistic sample KB (see <a href="#sample-kb">below</a>) so every feature is explorable right away. You don't have to keep it.</li>
-    <li><strong>Look at the layout.</strong> The top bar has your KB name, a search box, and action buttons (New doc, Templates, Import vault, Vault sync, Export all, a role picker, AI, and Sign in). The left rail — the "spine" — is your doc tree grouped by folder, with a tag cloud beneath. The main pane shows the open page.</li>
-    <li><strong>Click a page</strong> in the left rail to read it. Try the tabs at the top of a page: <strong>Preview</strong>, <strong>Edit</strong>, <strong>Links</strong>, and <strong>History</strong>.</li>
-    <li><strong>Try a search.</strong> Type in the search box; results filter as you type across titles, paths, tags, frontmatter, and body text.</li>
-    <li><strong>Create your own.</strong> Click <strong>+ New doc</strong> or <strong>Templates</strong> to start a page. Replace the sample content with your own whenever you're ready (creating or importing your own pages does not auto-delete the samples; delete them individually if you want a clean slate).</li>
-  </ol>
-
-  <div class="callout warn">
-    <p style="margin:0"><strong>If the app shows "Loading…" forever or templates won't load:</strong> you're probably opening the file directly (<code>file://…</code>). Browsers block <code>fetch()</code> on <code>file://</code>, so the sample KB and templates can't load. Serve it over HTTP instead — see <a href="self-host.html">Self-hosting</a> for the one-line command. Full diagnosis in <a href="troubleshooting.html#loading">Troubleshooting</a>.</p>
+<section class="wrap" id="what">
+  <h2>What is Ledger Governance?</h2>
+  <p class="muted">A free, local-only Obsidian community plugin for document governance.</p>
+  <div class="grid g3" style="margin-top:1.2rem">
+    <div class="feature"><h3>Governance in frontmatter</h3><p>Owners, lifecycle status, and review dates are written into standard YAML frontmatter at the top of each note.</p></div>
+    <div class="feature"><h3>Portable Markdown</h3><p>Nothing proprietary. Your notes stay plain <span class="mono">.md</span> files you can read, edit, and take anywhere.</p></div>
+    <div class="feature"><h3>Free and MIT-licensed</h3><p>Open source under the <a href="https://github.com/jsdosanj/ledger/blob/main/LICENSE">MIT License</a>. No account, no token, no network calls.</p></div>
   </div>
-
-  <h2 id="sample-kb">The seeded sample knowledge base</h2>
-  <p>On first run, Ledger loads a sample KB for a fictional company, <strong>Northwind Clinic</strong> — 9 pages across 4 spaces (folders). It exists so the tree, search, wiki-links, backlinks, governance, roles, and portals all have real content to demonstrate. The pages are:</p>
-  <table>
-    <thead><tr><th>Space</th><th>Pages</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Assets</strong></td><td>Core Firewall · App Server</td></tr>
-      <tr><td><strong>Network</strong></td><td>Network — Main Office</td></tr>
-      <tr><td><strong>Runbooks</strong></td><td>Restore Internet After Outage · Backup &amp; Recovery Runbook · Firewall Admin Credential · Server Admin Credential</td></tr>
-      <tr><td><strong>Policies</strong></td><td>Access Control Policy · Staff Offboarding Policy</td></tr>
-    </tbody>
-  </table>
-  <p>Things worth noticing in the sample data:</p>
-  <ul>
-    <li>The two <strong>credential</strong> pages demonstrate the no-secrets pattern: they link a vault item by URL, they don't store a password.</li>
-    <li>The <strong>Access Control Policy</strong> has a recent <code>reviewed_on</code> date, so its governance status shows <em>reviewed (fresh)</em>.</li>
-    <li>The <strong>Staff Offboarding Policy</strong> has an old <code>reviewed_on</code>, so it shows <em>needs review (stale)</em> — a quick way to see governance in action.</li>
-    <li>Pages cross-reference each other with <code>[[wiki-links]]</code>, so the <strong>Links</strong> tab and backlinks have something to show.</li>
-  </ul>
-  <p><strong>Replacing the sample data:</strong> delete the sample pages individually (open a page → <strong>Delete</strong>, available to Admin/Editor roles), or <a href="features.html#import">import your own vault</a> alongside them and delete the samples afterward. To wipe everything and re-seed from scratch, see <a href="troubleshooting.html#reset">resetting Ledger</a>.</p>
-
-  <h2 id="next">Where to go next</h2>
-  <ul>
-    <li><a href="features.html">Every feature, step by step</a> — the complete tour.</li>
-    <li><a href="how-do-i.html">"How do I…?" recipe index</a> — jump straight to a task.</li>
-    <li><a href="vault-sync.html">Obsidian vault sync</a> — connect a real folder of <code>.md</code> files.</li>
-    <li><a href="security-privacy.html">Security &amp; privacy</a> — the no-secrets posture explained.</li>
-  </ul>
-
 </section>
 
-<footer class="footer"><div class="wrap"><p>© 2026 DosanjhLabs · <a href="index.html">Help Center</a> · <a href="../../index.html">Ledger</a> · A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p></div></footer>
+<hr class="rule brass wrap">
+
+<section class="wrap" id="install">
+  <h2>Install</h2>
+  <div class="grid g2" style="margin-top:1.2rem">
+    <div class="feature">
+      <h3>From Community Plugins</h3>
+      <p>The simplest path. Use <a href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian</a>, then in Obsidian go to <strong>Settings → Community plugins</strong>, install <strong>Ledger Governance</strong>, and enable it. No build step, no setup.</p>
+    </div>
+    <div class="feature">
+      <h3>Manual install</h3>
+      <p>Copy the plugin folder to:</p>
+      <p class="mono small">&lt;vault&gt;/.obsidian/plugins/ledger-governance/</p>
+      <p>The folder must contain <span class="mono">manifest.json</span> and <span class="mono">main.js</span>. Then open <strong>Settings → Community plugins</strong> and enable <strong>Ledger Governance</strong>.</p>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:1.4rem">
+    <p style="margin:0">Either way there is nothing to configure to begin — no account, no sign-up, no setup. The defaults work immediately.</p>
+  </div>
+</section>
+
+<hr class="rule wrap">
+
+<section class="wrap" id="first-run">
+  <h2>Your first governed doc</h2>
+  <p class="muted">Open the Command Palette (<span class="mono">Ctrl/Cmd-P</span>) and type <span class="mono">Ledger</span> to reach every command.</p>
+  <div class="card spine" style="margin-top:1.2rem">
+    <ol>
+      <li><strong>New governed document</strong> — scaffolds a note with governance frontmatter already in place: <span class="mono">owner</span>, <span class="mono">status: draft</span>, <span class="mono">type</span>, <span class="mono">reviewed_on</span>, <span class="mono">reviewer</span>, and <span class="mono">review_cadence_days</span>.</li>
+      <li><strong>Set document owner</strong> — assign an owner by name or email.</li>
+      <li><strong>Set document status</strong> — move it along its lifecycle: draft → in-review → approved → published.</li>
+      <li><strong>Mark current note reviewed</strong> — stamps <span class="mono">reviewed_on</span> with today's date.</li>
+      <li><strong>Governance dashboard</strong> — also the ribbon icon (book). It shows total docs, how many are ungoverned, review freshness (never / stale / fresh), and lifecycle mix. Click any row to open that note.</li>
+      <li><strong>Open governance audit log</strong> — opens <span class="mono">_ledger/audit.md</span>, where every governance action is appended as a row (date | action | document | detail). You own it; it never leaves your vault.</li>
+    </ol>
+  </div>
+  <p class="muted small" style="margin-top:.8rem">The status bar keeps a live summary: <span class="mono">Ledger: N docs · X stale · Y ungoverned</span>.</p>
+</section>
+
+<hr class="rule wrap">
+
+<section class="wrap">
+  <h2>How stale and ungoverned work</h2>
+  <div class="grid g2" style="margin-top:1.2rem">
+    <div class="feature">
+      <h3>Stale &amp; never</h3>
+      <p>A note not reviewed within the stale threshold — default <strong>90 days</strong>, or its own <span class="mono">review_cadence_days</span> — shows as <strong>stale</strong>. A note never reviewed shows as <strong>never</strong>. Use <strong>Mark current note reviewed</strong> to refresh it.</p>
+    </div>
+    <div class="feature">
+      <h3>Ungoverned</h3>
+      <p>A note is <strong>ungoverned</strong> when it is missing an owner (with "Require an owner" on) or missing a lifecycle status (with "Require a status" on). Both toggles live in <strong>Settings → Community plugins → Ledger</strong>, alongside the stale threshold.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule brass wrap">
+
+<section class="wrap" id="next">
+  <h2>Where to go next</h2>
+  <div class="grid g3" style="margin-top:1.2rem">
+    <a class="feature" href="features.html"><h3>Features</h3><p>The dashboard, lifecycle status, review freshness, and the audit trail in full.</p></a>
+    <a class="feature" href="obsidian-plugin.html"><h3>The Obsidian plugin</h3><p>Every command, the ribbon, the status bar, and the audit log, in depth.</p></a>
+    <a class="feature" href="security-privacy.html"><h3>Security &amp; privacy</h3><p>Why there are no network calls, no account, and no token — and what is stored where.</p></a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap grid g3">
+    <div>
+      <h4>Ledger Governance</h4>
+      <p>A free, local-only Obsidian plugin for document governance. Your notes stay portable plain Markdown.</p>
+      <p class="small">A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <p><a href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian</a><br><a href="../../obsidian-workflow.html">How it works</a><br><a href="index.html">Docs</a></p>
+    </div>
+    <div>
+      <h4>Open source</h4>
+      <p><a href="https://github.com/jsdosanj/ledger">View on GitHub</a><br><a href="https://github.com/jsdosanj/ledger/blob/main/LICENSE">MIT License</a></p>
+    </div>
+  </div>
+  <div class="wrap small" style="margin-top:1.4rem;opacity:.7">© 2026 DosanjhLabs · Ledger Governance is 100% local — no account, no network.</div>
+  <p class="legal-links" style="margin-top:.75rem;font-size:.8rem;opacity:.8"><a href="https://dosanjhlabs.com/legal/privacy">Privacy</a> · <a href="https://dosanjhlabs.com/legal/terms">Terms</a> · <a href="https://dosanjhlabs.com/legal/acceptable-use">Acceptable Use</a> · <a href="https://dosanjhlabs.com/legal/disclaimer">Disclaimer</a></p>
+</footer>
 </body>
 </html>
