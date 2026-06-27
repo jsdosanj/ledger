@@ -3,114 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Obsidian vault sync (browser) — Ledger Help</title>
-<meta name="description" content="Connect a real Obsidian vault folder via the File System Access API, the two-way sync model (push/pull/conflict/delete), auto-sync, and browser support with the Firefox/Safari fallback.">
-<link rel="canonical" href="https://ledger.dosanjhlabs.com/docs/support/vault-sync.html">
+<title>Page retired — Ledger Governance</title>
+<meta name="description" content="Ledger Governance is a free, 100%-local Obsidian plugin. Nothing leaves your vault. This page has been retired.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://ledger.dosanjhlabs.com/">
+<meta http-equiv="refresh" content="3; url=../../index.html">
 <link rel="stylesheet" href="../../assets/style.css">
 </head>
 <body>
 <nav class="nav">
   <div class="nav-inner">
     <a class="brand" href="../../index.html"><svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2" fill="#F4EEE2" stroke="#13233A" stroke-width="1.7"/><rect x="6" y="4" width="4" height="24" rx="1" fill="#C9A227"/><path d="M14 11h8M14 15h8M14 19h6" stroke="#13233A" stroke-width="1.5" stroke-linecap="round"/></svg>Ledger</a>
-    <a href="index.html">Help Center</a>
-    <a href="obsidian-plugin.html">Obsidian plugin</a>
-    <a href="troubleshooting.html">Troubleshooting</a>
-    <a class="cta" href="../../app/index.html">Open the app</a>
+    <a href="../../obsidian-workflow.html">How it works</a>
+    <a href="index.html">Docs</a>
+    <a href="https://github.com/jsdosanj/ledger">GitHub</a>
+    <a class="cta" href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian</a>
   </div>
 </nav>
-
-<header class="hero wrap"><div class="spine"><p class="kicker"><a href="index.html">Help Center</a> · Vault sync</p><h1>Obsidian vault sync (in the browser)</h1><p class="lede">Point Ledger at a real folder of <code>.md</code> files — your Obsidian vault — and keep both sides in step. Edit in Obsidian, edit in Ledger, and they converge, safely, at the file level. No secrets are ever written, and your files stay exactly as Obsidian writes them.</p></div></header>
-
-<section class="wrap" style="max-width:820px">
-
-  <div class="callout">
-    <p style="margin:0"><strong>Two ways to connect a vault, pick the one that fits:</strong> this page covers <strong>browser folder sync</strong> (best on Chrome/Edge/Brave/Arc). If you'd rather work inside Obsidian itself, use the <a href="obsidian-plugin.html">Obsidian plugin</a>. If your browser doesn't support folder access, use the <a href="#fallback">Import/Export fallback</a>.</p>
+<header class="hero wrap"><div class="spine">
+  <p class="kicker">Page retired</p>
+  <h1>Nothing to sync — your notes never leave your vault.</h1>
+  <p class="lede">Ledger Governance is 100% local. It makes no network calls and has no sync service. Governance lives in standard frontmatter inside your vault. You're being sent to the home page.</p>
+  <div class="row" style="margin-top:1.4rem;gap:.7rem;flex-wrap:wrap">
+    <a class="btn primary" href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian →</a>
+    <a class="btn" href="index.html">Help Center</a>
+    <a class="btn" href="https://github.com/jsdosanj/ledger">View on GitHub</a>
   </div>
-
-  <h2 id="what">What this does</h2>
-  <p>Browser vault sync connects Ledger directly to an Obsidian vault <strong>folder</strong> on your disk and syncs both directions at the granularity of individual <code>.md</code> files. Unlike <a href="features.html#import">Import vault</a> (a one-time paste) or <a href="features.html#export">Export</a> (a one-time download), this is a continuing link you can re-run anytime, or let run automatically.</p>
-  <p>It's the on-disk middle layer between your editor and the cloud: <strong>Obsidian (your editor) ↔ Ledger (governance) ↔ org cloud (your team)</strong>.</p>
-
-  <h2 id="connect">Connecting a vault</h2>
-  <ol>
-    <li>Click <strong>⇄ Vault sync</strong> in the top bar. The vault sync panel opens.</li>
-    <li>Click <strong>📂 Connect Obsidian vault</strong>.</li>
-    <li>Your browser asks you to pick a folder. Choose your Obsidian vault folder (the one containing your <code>.md</code> files).</li>
-    <li>Grant <strong>read &amp; write</strong> permission when the browser prompts. (Read-write is required so Ledger can push your Ledger-side edits back to the files.)</li>
-    <li>The panel shows <em>Connected vault: &lt;name&gt; · linked</em>. Click <strong>⇄ Sync now</strong> to run the first reconciliation.</li>
-  </ol>
-  <p>Ledger remembers the folder handle in the browser's IndexedDB, so it can reconnect across sessions. For security, the browser will <strong>re-ask permission</strong> when you return — that's expected, not a bug.</p>
-
-  <h2 id="model">The two-way sync model</h2>
-  <p>Sync is <strong>safe by construction</strong> — it never silently loses an unsynced edit. Ledger keeps a per-file content snapshot from the last sync and uses it to decide what changed on each side:</p>
-  <table>
-    <thead><tr><th>Situation</th><th>What Ledger does</th></tr></thead>
-    <tbody>
-      <tr><td>Both sides identical</td><td>Nothing — already in sync.</td></tr>
-      <tr><td>Only the vault changed</td><td><strong>Pull</strong> — copy the file's new content into Ledger.</td></tr>
-      <tr><td>Only Ledger changed</td><td><strong>Push</strong> — write Ledger's new content to the file.</td></tr>
-      <tr><td>Both sides changed (a conflict)</td><td><strong>The vault (file) wins</strong> — Ledger takes the file's version, and the prior Ledger version is kept in <a href="features.html#history">version history</a> so nothing is lost.</td></tr>
-      <tr><td>New file in the vault</td><td>Created as a page in Ledger.</td></tr>
-      <tr><td>New page in Ledger</td><td>Created as a file in the vault.</td></tr>
-      <tr><td>File deleted in the vault, Ledger page unchanged</td><td>The Ledger page is removed too.</td></tr>
-      <tr><td>Ledger page deleted, file unchanged</td><td>The file is removed too.</td></tr>
-      <tr><td>Deleted on one side but <em>edited</em> on the other</td><td>The <strong>edit wins</strong> — the surviving, edited copy is kept and re-created on the deleted side. An edit always beats a delete.</td></tr>
-    </tbody>
-  </table>
-  <p>After a sync, the panel shows a one-line summary, e.g. <em>"2 pulled · 1 pushed · 1 conflict (vault won; prior kept in history)."</em> If nothing changed it says <em>"already in sync."</em></p>
-  <div class="callout">
-    <p style="margin:0"><strong>Why does the vault win conflicts?</strong> Obsidian is your editor of record, so when both sides changed the same file, the on-disk file is treated as the source of truth. You never lose your Ledger edit, though — it's preserved in that page's version history, where you can diff and restore it.</p>
-  </div>
-
-  <h2 id="skipped">What's skipped &amp; the no-secrets guarantee</h2>
-  <ul>
-    <li><strong>Dot-folders are skipped:</strong> <code>.obsidian</code>, <code>.trash</code>, <code>.git</code>, and any other folder starting with a dot are ignored. Your Obsidian config, plugins, and themes are never touched.</li>
-    <li><strong>Only <code>.md</code> files</strong> are synced.</li>
-    <li><strong>No secrets, by construction:</strong> Ledger never stores passwords or keys, so syncing the vault writes none. Credential pages are vault links.</li>
-  </ul>
-
-  <h2 id="auto-sync">Auto-sync</h2>
-  <p>To keep the vault and Ledger continuously in step, turn on auto-sync:</p>
-  <ol>
-    <li>Open the vault sync panel (with a vault connected).</li>
-    <li>Tick <strong>Auto-sync (30s + on focus)</strong>.</li>
-  </ol>
-  <p>Ledger then reconciles automatically every 30 seconds and whenever you switch back to the browser tab/window. If an auto-sync moves anything, you get a quiet toast summarizing it. Auto-sync failures stay silent (so you're not nagged); run a manual <strong>Sync now</strong> any time you want to see errors surfaced.</p>
-
-  <h2 id="manage">Changing or disconnecting the folder</h2>
-  <ul>
-    <li><strong>Change folder</strong> — pick a different vault folder. This resets the snapshot, so the next sync reconciles the new folder from scratch.</li>
-    <li><strong>Disconnect</strong> — stops syncing and forgets the folder handle. <strong>Your files are untouched</strong> — disconnecting only severs the link; it never deletes anything on disk.</li>
-  </ul>
-
-  <h2 id="cloud">Pushing the synced KB to the org cloud</h2>
-  <p>If you're also <a href="account-and-cloud.html">signed in</a>, the vault sync panel shows a <strong>☁ Push to org cloud</strong> button, so after reconciling Obsidian ↔ Ledger you can push the merged result to your team's shared org vault in one more click.</p>
-
-  <h2 id="support">Browser support</h2>
-  <p>Direct two-way folder sync uses the browser's <strong>File System Access API</strong>, which is available in <strong>Chromium-class desktop browsers</strong>:</p>
-  <ul>
-    <li><strong>Supported:</strong> Chrome, Edge, Brave, Arc (and other Chromium-based desktop browsers).</li>
-    <li><strong>Not supported:</strong> Firefox and Safari (they don't implement the API). On these, use the fallback below.</li>
-  </ul>
-  <p>If your browser can't open a folder directly, the panel tells you so and points you to the Import/Export round-trip.</p>
-
-  <h2 id="fallback">Firefox / Safari fallback</h2>
-  <p>If folder sync isn't available, you can still move Markdown both ways manually:</p>
-  <ol>
-    <li><strong>Into Ledger:</strong> use <strong>Import vault</strong> — paste a single note, or paste a bundle exported from Ledger. See <a href="features.html#import">Import</a>.</li>
-    <li><strong>Out of Ledger:</strong> use <strong>Export all</strong> to get a bundle (or <strong>Export .md</strong> for one page), then drop the files into your vault. See <a href="features.html#export">Export</a>.</li>
-  </ol>
-  <p>It's a round-trip rather than a live link, but it's lossless — frontmatter, folders, tags, and wiki-links all carry over. Alternatively, switch to a Chromium browser for live folder sync, or use the <a href="obsidian-plugin.html">Obsidian plugin</a> to work inside Obsidian.</p>
-
-  <h2 id="next">Related topics</h2>
-  <ul>
-    <li><a href="obsidian-plugin.html">The Obsidian plugin</a> — work inside Obsidian instead</li>
-    <li><a href="account-and-cloud.html">Shared org vault</a></li>
-    <li><a href="troubleshooting.html#sync">Troubleshooting: "sync did nothing" &amp; permission denied</a></li>
-  </ul>
-
-</section>
-
-<footer class="footer"><div class="wrap"><p>© 2026 DosanjhLabs · <a href="index.html">Help Center</a> · <a href="../../index.html">Ledger</a> · A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p></div></footer>
+</div></header>
+<footer class="footer"><div class="wrap"><p>© 2026 DosanjhLabs · <a href="../../index.html">Ledger Governance</a> · A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product. Free, open source, 100% local.</p></div></footer>
 </body>
 </html>

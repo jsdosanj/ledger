@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Security &amp; privacy — Ledger Help</title>
-<meta name="description" content="Ledger's security posture: no passwords or secrets stored, zero-network when signed out, where your data actually lives, the save-time secret scanner, and how the cloud tier and tokens are handled.">
+<title>Security &amp; privacy — Ledger Governance</title>
+<meta name="description" content="Ledger Governance is 100% local: no network calls, no account, no token, no telemetry. Governance metadata lives in your own notes' frontmatter, the audit log lives in your vault, and the plugin is free and open source under the MIT license.">
 <link rel="canonical" href="https://ledger.dosanjhlabs.com/docs/support/security-privacy.html">
 <link rel="stylesheet" href="../../assets/style.css">
 </head>
@@ -12,68 +12,84 @@
 <nav class="nav">
   <div class="nav-inner">
     <a class="brand" href="../../index.html"><svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2" fill="#F4EEE2" stroke="#13233A" stroke-width="1.7"/><rect x="6" y="4" width="4" height="24" rx="1" fill="#C9A227"/><path d="M14 11h8M14 15h8M14 19h6" stroke="#13233A" stroke-width="1.5" stroke-linecap="round"/></svg>Ledger</a>
-    <a href="index.html">Help Center</a>
-    <a href="features.html">Features</a>
-    <a href="account-and-cloud.html">Cloud tier</a>
-    <a class="cta" href="../../app/index.html">Open the app</a>
+    <a href="../../obsidian-workflow.html">How it works</a>
+    <a href="index.html">Docs</a>
+    <a href="https://github.com/jsdosanj/ledger">GitHub</a>
+    <a class="cta" href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian</a>
   </div>
 </nav>
 
-<header class="hero wrap"><div class="spine"><p class="kicker"><a href="index.html">Help Center</a> · Security &amp; privacy</p><h1>Security &amp; privacy</h1><p class="lede">Ledger is built so a breach of Ledger leaks no credentials — because there are none to leak. This page explains the no-secrets posture, the zero-network-when-signed-out guarantee, exactly where your data lives, and how the optional cloud tier and tokens are handled.</p></div></header>
+<header class="hero wrap">
+  <div class="spine">
+    <p class="kicker"><a href="index.html">Help Center</a> · Security &amp; privacy</p>
+    <h1>Security &amp; privacy</h1>
+    <p class="lede">Ledger Governance runs entirely inside Obsidian, on your own machine. There is no account, no token, no server, and no network call. Your notes stay portable plain Markdown, and everything the plugin records is written into files you already own.</p>
+  </div>
+</header>
 
-<section class="wrap" style="max-width:820px">
+<section class="wrap" style="max-width:840px">
 
-  <h2 id="no-secrets">No passwords or secrets — by design</h2>
-  <p>Ledger stores <strong>zero secret material</strong>. It is not a password manager and never tries to be. Instead, credential pages <em>reference</em> an item in your real password manager (Bitwarden, 1Password, Keeper, Vaultwarden, etc.) by URL or ID — for example <code>vault://provider/item-id</code> — so the credential itself stays in the vault built to protect it.</p>
-  <p>This is a deliberate security stance with a simple payoff: if Ledger (local storage, the org vault, an exported file, or a published portal) were ever exposed, it would contain <strong>no passwords, keys, or seeds</strong>, because none were ever stored.</p>
-
-  <h2 id="scanner">The save-time secret scanner</h2>
-  <p>People sometimes paste a secret by reflex. To catch that, Ledger scans each page <strong>when you save</strong> for things that look like secrets — <code>password:</code>, <code>secret:</code>, <code>api_key:</code>, provider keys (<code>sk-…</code>), PEM private-key blocks, and seed-phrase-like strings. If it finds one, it warns you, names what it matched, and asks you to confirm before saving, nudging you toward a vault link instead.</p>
-  <p>It's a guardrail, not a vault — you can override it for a false positive (see <a href="troubleshooting.html#flagged">"My secret got flagged"</a>) — but the intended action is to remove the secret. The <a href="ai.html#scrubber">AI scrubber</a> applies the same idea to AI prompts, redacting or blocking likely secrets before any request leaves your browser.</p>
-
-  <h2 id="zero-network">Zero network when signed out</h2>
-  <p>While you're signed out, Ledger makes <strong>no non-local network calls</strong>. The only network-capable code (the cloud module) loads separately and only does anything when you click "Sign in." Until then, no third-party scripts (including the sign-in provider) are loaded, and your docs never leave your machine. This is verified by the project's test suite, which asserts the entire signed-out flow makes zero network calls.</p>
-
-  <h2 id="where-data-lives">Where your data lives</h2>
-  <table>
-    <thead><tr><th>Data</th><th>Where it's stored</th><th>Leaves your machine?</th></tr></thead>
-    <tbody>
-      <tr><td>Your documents (Markdown)</td><td>Browser <code>localStorage</code>, on this device</td><td>Only if you sign in and sync, or sync to a vault folder, or export.</td></tr>
-      <tr><td>Active page, selected role, sync state</td><td>Browser <code>localStorage</code> / IndexedDB</td><td>No.</td></tr>
-      <tr><td>AI provider key</td><td>Browser <code>localStorage</code></td><td>No — never sent to DosanjhLabs. Used only to call your chosen provider directly.</td></tr>
-      <tr><td>Connected vault folder handle</td><td>Browser IndexedDB</td><td>No — it's a permission handle, not your files.</td></tr>
-      <tr><td>On-disk Obsidian vault</td><td>Your disk (the folder you connected)</td><td>It's already on your machine; sync reads/writes those files.</td></tr>
-      <tr><td>Shared org vault (if signed in)</td><td>Your org's tenant store on the DosanjhLabs platform</td><td>Yes — but it's Markdown only, with no secrets.</td></tr>
-      <tr><td>Obsidian plugin access token</td><td><code>.obsidian/plugins/ledger-enterprise/data.json</code> in your vault</td><td>No (sent only as a bearer to authenticate API calls).</td></tr>
-    </tbody>
-  </table>
-  <div class="callout warn">
-    <p style="margin:0"><strong>Local storage is per-browser and not a backup.</strong> Clearing your browser data, using a different browser/profile, or a private window will not show your docs. Keep your own backups by <a href="features.html#export">exporting</a> or by <a href="vault-sync.html">syncing to a vault folder</a> or the cloud. See <a href="troubleshooting.html#dataloss">data loss &amp; recovery</a>.</p>
+  <div class="callout">
+    <p style="margin:0"><strong>The short version:</strong> nothing is sent anywhere. Ledger reads and writes Markdown files in your vault and stores its settings in your vault's local plugin data. That is the whole footprint.</p>
   </div>
 
-  <h2 id="cloud-security">Cloud tier &amp; tenant isolation</h2>
+  <h2 id="local">100% local — no network calls</h2>
+  <p>Ledger makes <strong>no network requests</strong>. It does not call home, check for licenses, fetch remote content, or report usage. There is <strong>no account to create</strong>, <strong>no token to paste</strong>, and <strong>no telemetry</strong> of any kind. You can confirm this for yourself: the full source is on <a href="https://github.com/jsdosanj/ledger">GitHub</a>, and the plugin behaves identically with networking disabled.</p>
   <ul>
-    <li>Sign-in uses your DosanjhLabs account (Clerk SSO), loaded only on demand.</li>
-    <li>Every API call carries a short-lived bearer token. The <strong>tenant (your org) is always derived server-side</strong> from your verified session — there is no header a client can set to act as another tenant.</li>
-    <li>The shared org vault and evidence both carry <strong>Markdown / structural signals only</strong>. Page bodies are never sent in evidence; secrets are never stored anywhere.</li>
-    <li>For MSPs, the <code>msp</code> entitlement adds hard per-client isolation.</li>
+    <li><strong>No cloud, no sync service.</strong> Ledger never uploads or downloads your notes. It is not a hosted product and has no companion web service.</li>
+    <li><strong>No background processes.</strong> It only does work when you run one of its commands or open the dashboard.</li>
   </ul>
 
-  <h2 id="portals-security">Published portals</h2>
-  <p>A <a href="features.html#portals">published portal</a> is a static, read-only HTML file with no editing controls and no embedded credentials (there are none to embed). The Markdown is sanitized when rendered (HTML is escaped), so a portal can't be used to inject scripts. Treat the file like any shared document — it's a point-in-time snapshot of the space you published.</p>
+  <h2 id="data">Where your data lives</h2>
+  <p>Everything Ledger touches stays in your Obsidian vault, in plain text you can read, edit, and version-control yourself.</p>
 
-  <h2 id="disclaimer">What Ledger is not</h2>
-  <p>Ledger is a <strong>documentation aid</strong>. It is not a password manager, not a backup system, and not a compliance program. Keep your secrets in a real vault, keep your own backups, and run your own compliance controls — Ledger documents and governs your knowledge; it doesn't replace those tools.</p>
+  <h3>Governance metadata: your notes' frontmatter</h3>
+  <p>Governance lives in standard YAML frontmatter at the top of each note — fields like <code>title</code>, <code>owner</code>, <code>status</code>, <code>type</code>, <code>reviewed_on</code>, <code>reviewer</code>, and <code>review_cadence_days</code>. Because it is ordinary frontmatter, your notes remain portable plain Markdown that reads fine with or without the plugin installed.</p>
 
-  <h2 id="next">Related topics</h2>
-  <ul>
-    <li><a href="features.html#nosecrets">The no-secrets posture &amp; the scanner</a></li>
-    <li><a href="account-and-cloud.html">The cloud tier</a></li>
-    <li><a href="troubleshooting.html#dataloss">Data loss &amp; recovery</a></li>
-  </ul>
+  <h3 id="audit">The audit log: <code>_ledger/audit.md</code></h3>
+  <p>Every governance action appends a row to <code>_ledger/audit.md</code> — a plain Markdown table (date, action, document, detail) inside your vault. You own that file. It never leaves your machine, and you can read, edit, archive, or delete it like any other note.</p>
+
+  <h3>Settings: local plugin data</h3>
+  <p>Your settings — the review-stale threshold, "Require an owner," and "Require a status" — are stored in the vault's local plugin data folder (<code>.obsidian/plugins/ledger-governance/</code>). They travel with your vault and nowhere else.</p>
+
+  <h2 id="secrets">No secrets, no passwords</h2>
+  <p>Ledger stores <strong>no passwords and no secrets</strong>. It records governance metadata only — who owns a document, its status, and when it was last reviewed. If you keep credential notes in your vault, link them to an item in your password manager rather than pasting the secret into the note. Ledger has no feature that reads, scans, or stores secret values.</p>
+
+  <h2 id="open">Free and open source</h2>
+  <p>Ledger Governance is free and licensed under the permissive <a href="https://github.com/jsdosanj/ledger/blob/main/LICENSE">MIT License</a>. You can read every line, audit exactly what it does, fork it, or contribute. There is no paid tier and nothing is gated.</p>
+
+  <div class="callout warn">
+    <p style="margin:0"><strong>A governance aid — not a backup or a security control.</strong> Ledger helps you track ownership, status, and review freshness across your own notes. It is not a substitute for your own backups, your password manager, or your organization's security and compliance controls.</p>
+  </div>
+
+  <h2 id="next">Keep reading</h2>
+  <p><a href="troubleshooting.html#privacy">Troubleshooting &amp; FAQ: is anything sent anywhere?</a> · <a href="features.html">Every feature explained</a> · <a href="how-do-i.html">"How do I…?" recipes</a></p>
+
+  <p>
+    <a class="btn primary" href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian</a>
+    <a class="btn" href="https://github.com/jsdosanj/ledger">View on GitHub</a>
+  </p>
 
 </section>
 
-<footer class="footer"><div class="wrap"><p>© 2026 DosanjhLabs · <a href="index.html">Help Center</a> · <a href="../../index.html">Ledger</a> · A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p></div></footer>
+<footer class="footer">
+  <div class="wrap grid g3">
+    <div>
+      <h4>Ledger Governance</h4>
+      <p>A free, local-only Obsidian plugin for document governance. Your notes stay portable plain Markdown.</p>
+      <p class="small">A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <p><a href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian</a><br><a href="../../obsidian-workflow.html">How it works</a><br><a href="index.html">Docs</a></p>
+    </div>
+    <div>
+      <h4>Open source</h4>
+      <p><a href="https://github.com/jsdosanj/ledger">View on GitHub</a><br><a href="https://github.com/jsdosanj/ledger/blob/main/LICENSE">MIT License</a></p>
+    </div>
+  </div>
+  <div class="wrap small" style="margin-top:1.4rem;opacity:.7">© 2026 DosanjhLabs · Ledger Governance is 100% local — no account, no network.</div>
+  <p class="legal-links" style="margin-top:.75rem;font-size:.8rem;opacity:.8"><a href="https://dosanjhlabs.com/legal/privacy">Privacy</a> · <a href="https://dosanjhlabs.com/legal/terms">Terms</a> · <a href="https://dosanjhlabs.com/legal/acceptable-use">Acceptable Use</a> · <a href="https://dosanjhlabs.com/legal/disclaimer">Disclaimer</a></p>
+</footer>
 </body>
 </html>

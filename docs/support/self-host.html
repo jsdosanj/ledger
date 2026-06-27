@@ -3,73 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Self-hosting — Ledger Help</title>
-<meta name="description" content="Run the free Ledger engine on your own infrastructure: serve the static app over HTTP, deploy as a subpath, what's included for $0, and the relationship to the cloud tier.">
-<link rel="canonical" href="https://ledger.dosanjhlabs.com/docs/support/self-host.html">
+<title>Page retired — Ledger Governance</title>
+<meta name="description" content="Ledger Governance is a free, 100%-local Obsidian plugin. There's nothing to host — it runs inside your vault. This page has been retired.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://ledger.dosanjhlabs.com/">
+<meta http-equiv="refresh" content="3; url=../../index.html">
 <link rel="stylesheet" href="../../assets/style.css">
 </head>
 <body>
 <nav class="nav">
   <div class="nav-inner">
     <a class="brand" href="../../index.html"><svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2" fill="#F4EEE2" stroke="#13233A" stroke-width="1.7"/><rect x="6" y="4" width="4" height="24" rx="1" fill="#C9A227"/><path d="M14 11h8M14 15h8M14 19h6" stroke="#13233A" stroke-width="1.5" stroke-linecap="round"/></svg>Ledger</a>
-    <a href="index.html">Help Center</a>
-    <a href="../../self-host.html">Self-host overview</a>
-    <a href="pricing-billing.html">Pricing</a>
-    <a class="cta" href="../../app/index.html">Open the app</a>
+    <a href="../../obsidian-workflow.html">How it works</a>
+    <a href="index.html">Docs</a>
+    <a href="https://github.com/jsdosanj/ledger">GitHub</a>
+    <a class="cta" href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian</a>
   </div>
 </nav>
-
-<header class="hero wrap"><div class="spine"><p class="kicker"><a href="index.html">Help Center</a> · Self-hosting</p><h1>Self-hosting Ledger</h1><p class="lede">The Ledger engine is a static app — plain HTML, CSS, and JavaScript with no build step and no server requirement. Serve the files from anywhere, open the app, and you own the whole stack. No per-seat fee, no proprietary database.</p></div></header>
-
-<section class="wrap" style="max-width:820px">
-
-  <h2 id="quickstart">Quickstart</h2>
-  <p>The only hard requirement is to serve the files over <strong>HTTP</strong> (not <code>file://</code>), because browsers block <code>fetch()</code> on the <code>file://</code> protocol and the app needs to load its templates and sample data.</p>
-  <div class="card spine">
-    <pre><code># Clone, then serve the static files with any static server:
-cd ledger
-python3 -m http.server 8000
-
-# Marketing home:  http://localhost:8000/index.html
-# The app:         http://localhost:8000/app/index.html</code></pre>
+<header class="hero wrap"><div class="spine">
+  <p class="kicker">Page retired</p>
+  <h1>Nothing to host — it runs inside Obsidian.</h1>
+  <p class="lede">There are no servers to deploy. Ledger Governance is a free, MIT-licensed Obsidian plugin that works 100% locally inside your vault. You're being sent to the home page.</p>
+  <div class="row" style="margin-top:1.4rem;gap:.7rem;flex-wrap:wrap">
+    <a class="btn primary" href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian →</a>
+    <a class="btn" href="index.html">Help Center</a>
+    <a class="btn" href="https://github.com/jsdosanj/ledger">View on GitHub</a>
   </div>
-  <p>Any static host works — an internal Nginx/Apache, a static bucket (S3/R2/GCS), GitHub Pages, Netlify, Cloudflare Pages, or a one-line Python/Node static server. No backend, no database, no environment variables for the free local tier.</p>
-
-  <h2 id="subpath">Deploying as a subpath</h2>
-  <p>Ledger uses <strong>relative asset paths</strong> throughout (no leading-slash absolute references), so it deploys cleanly under a subpath — for example <code>https://yourdomain.com/ledger/</code>. Drop the folder under that path and it just works; you don't need to host it at the domain root.</p>
-
-  <h2 id="included">What you get for $0</h2>
-  <ul>
-    <li>The full engine: Markdown editor + live preview, the doc tree, instant search, version history, tags, wiki-links &amp; backlinks, the Links view, templates, governance, the roles demo, import/export, and read-only published portals.</li>
-    <li><a href="vault-sync.html">Browser folder sync</a> to a local Obsidian vault (in a Chromium browser).</li>
-    <li><a href="ai.html">BYO-key AI</a> (your key, your provider, your cost).</li>
-    <li>Your own git remote, if you want shared, versioned docs: export to Markdown and commit to GitHub/GitLab/Gitea. Diff, blame, branch, and PR are just your repo's commits and PRs.</li>
-    <li>No per-seat fee, ever.</li>
-  </ul>
-
-  <h2 id="verify">Verifying a build</h2>
-  <p>If you want to confirm the engine is intact after a change or a download, the repo includes a verifier:</p>
-  <div class="card spine">
-    <pre><code>node scripts/verify.js</code></pre>
-  </div>
-  <p>It parses the content packs, boots the app under a DOM shim, exercises the core flow (seed → create → search → governance → portal → evidence), and asserts the signed-out path makes <strong>zero non-local network calls</strong>.</p>
-
-  <h2 id="cloud">Relationship to the cloud tier</h2>
-  <p>Self-hosting gives you the entire local-first experience for free. The <a href="account-and-cloud.html">cloud tier</a> (sign-in, the shared org vault across the team, SSO, cross-device sync, and evidence emission) is opt-in and additive on top — it talks to the DosanjhLabs platform. If you don't sign in, your self-hosted instance never makes a network call.</p>
-
-  <div class="callout warn">
-    <p style="margin:0"><strong>Self-host support is community-only.</strong> Want managed hosting, SSO, and an SLA? See <a href="pricing-billing.html">Pro / Teams</a>.</p>
-  </div>
-
-  <h2 id="next">Related topics</h2>
-  <ul>
-    <li><a href="security-privacy.html">Security &amp; privacy</a> — where data lives</li>
-    <li><a href="account-and-cloud.html">The cloud tier</a></li>
-    <li><a href="troubleshooting.html#loading">Troubleshooting: app won't load</a></li>
-  </ul>
-
-</section>
-
-<footer class="footer"><div class="wrap"><p>© 2026 DosanjhLabs · <a href="index.html">Help Center</a> · <a href="../../index.html">Ledger</a> · A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p></div></footer>
+</div></header>
+<footer class="footer"><div class="wrap"><p>© 2026 DosanjhLabs · <a href="../../index.html">Ledger Governance</a> · A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product. Free, open source, 100% local.</p></div></footer>
 </body>
 </html>

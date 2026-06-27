@@ -3,15 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ledger — Obsidian, governed for your whole company | DosanjhLabs</title>
-<meta name="description" content="Your team already loves Obsidian. Ledger turns it into a company-grade documentation hub — now with real two-way vault sync and an Obsidian community plugin that brings the enterprise layer inside Obsidian. Shared org vault, roles & permissions, review/approval governance, org-wide search, read-only portals, audit trail. Portable Markdown with [[wikilinks]] and YAML frontmatter. Never locked in.">
+<title>Ledger Governance — document governance for Obsidian, 100% local | DosanjhLabs</title>
+<meta name="description" content="A free, open-source Obsidian community plugin that brings document governance to your vault: a status lifecycle, owner and review tracking, a governance dashboard, and an in-vault audit log. 100% local — no account, no network. Governance lives in standard frontmatter, so your notes stay portable plain Markdown.">
 <link rel="canonical" href="https://ledger.dosanjhlabs.com/">
-<meta property="og:title" content="Ledger — Obsidian for your whole company">
-<meta property="og:description" content="Obsidian for one person → Ledger for your whole company. Governed, searchable, permissioned, audit-ready — and still plain Markdown you can open in Obsidian and take with you.">
+<meta property="og:title" content="Ledger Governance — document governance for Obsidian">
+<meta property="og:description" content="Free, MIT-licensed Obsidian plugin: status lifecycle, owner and review tracking, a governance dashboard, and an in-vault audit log. 100% local — no account, no network, no servers.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://ledger.dosanjhlabs.com/">
 <link rel="stylesheet" href="assets/style.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Ledger","applicationCategory":"BusinessApplication","operatingSystem":"Web, Obsidian","description":"Turns an Obsidian vault into a governed, company-grade documentation hub: real two-way vault sync, an Obsidian community plugin for the enterprise layer inside Obsidian, a shared org vault, roles & permissions, review/approval governance, org-wide search, read-only published portals, and audit trail. Obsidian-compatible Markdown — no lock-in.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"DosanjhLabs"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Ledger Governance","applicationCategory":"BusinessApplication","operatingSystem":"Obsidian","description":"A free, open-source Obsidian community plugin for document governance: a status lifecycle (draft to published), owner and review tracking, a governance dashboard, and an in-vault audit log. 100% local — no account, no network. Governance lives in standard frontmatter, so notes stay portable plain Markdown.","url":"https://ledger.dosanjhlabs.com/","downloadUrl":"https://community.obsidian.md/plugins/ledger-governance","license":"https://github.com/jsdosanj/ledger/blob/main/LICENSE","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"DosanjhLabs","url":"https://dosanjhlabs.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Ledger Governance free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is free and open source under the MIT license, with no paid tier and no upsell."}},{"@type":"Question","name":"Does it send my notes anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. The plugin makes no network calls and stores no account or token. Everything stays in your vault on your machine."}},{"@type":"Question","name":"Will I get locked in?","acceptedAnswer":{"@type":"Answer","text":"No. Governance is written into standard YAML frontmatter (owner, status, reviewed_on), so your notes stay portable plain Markdown you can open in any editor."}},{"@type":"Question","name":"How do I install it?","acceptedAnswer":{"@type":"Answer","text":"Install it from the Obsidian Community Plugins directory, then enable it. No account, no setup."}}]}
 </script>
 </head>
 <body>
@@ -25,102 +29,87 @@
       </svg>
       Ledger
     </a>
-    <a href="obsidian-workflow.html">Obsidian</a>
-    <a href="vs-it-glue.html">vs IT Glue</a>
-    <a href="vs-hudu.html">vs Hudu</a>
-    <a href="self-host.html">Self-host</a>
-    <a href="pricing.html">Pricing</a>
-    <a class="cta" href="app/index.html">Open the app</a>
+    <a href="obsidian-workflow.html">How it works</a>
+    <a href="docs/index.html">Docs</a>
+    <a href="https://github.com/jsdosanj/ledger">GitHub</a>
+    <a class="cta" href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian</a>
   </div>
 </nav>
 
 <header class="hero wrap">
   <div class="spine">
-    <p class="kicker">Obsidian, governed for your whole company</p>
-    <h1>Your team already loves Obsidian. Ledger makes it a company-grade documentation hub.</h1>
-    <p class="lede">Point Ledger at a real <strong>Obsidian vault folder</strong> and it syncs <strong>both ways</strong> — edit in Obsidian, edit in Ledger, and they converge, conflict-aware, never losing an edit. Or load the new <strong>Obsidian community plugin</strong> and get the enterprise layer <em>inside</em> Obsidian. Your docs stay portable Markdown with <code>[[wikilinks]]</code> and YAML frontmatter. Ledger adds the layer Obsidian lacks: a shared org vault, <strong>roles &amp; permissions</strong>, <strong>review/approval governance</strong>, org-wide search, and <strong>read-only published portals</strong> for auditors. Governed, searchable, permissioned, audit-ready — never locked in.</p>
+    <p class="kicker">Document governance for Obsidian</p>
+    <h1>Govern your vault without leaving Obsidian.</h1>
+    <p class="lede">Ledger Governance is a free, open-source Obsidian plugin that adds the layer a growing vault needs: a clear <strong>status lifecycle</strong>, an <strong>owner</strong> on every document, <strong>review tracking</strong> that flags what's gone stale, a <strong>governance dashboard</strong>, and an <strong>in-vault audit log</strong>. It's <strong>100% local</strong> — no account, no token, no network. Governance lives in standard frontmatter (<code>owner</code>, <code>status</code>, <code>reviewed_on</code>), so your notes stay portable plain Markdown.</p>
     <div class="row" style="margin-top:1.6rem;gap:.7rem;flex-wrap:wrap">
-      <a class="btn primary" href="app/index.html">Try it free — sync your vault →</a>
-      <a class="btn" href="obsidian-workflow.html">See the Obsidian workflow</a>
+      <a class="btn primary" href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian →</a>
+      <a class="btn" href="https://github.com/jsdosanj/ledger">View on GitHub</a>
     </div>
-    <p class="muted small" style="margin-top:.8rem">No signup. The free tier runs entirely in your browser — your docs never leave your machine until you choose to sync.</p>
+    <p class="muted small" style="margin-top:.8rem">Free and open source (MIT). Installs from the Obsidian Community Plugins directory — no sign-up, no setup.</p>
   </div>
 </header>
 
 <section class="wrap">
   <div class="callout">
-    <p class="mono small" style="margin:0"><strong>Obsidian for one person → Ledger for your whole company</strong> — now delivered as a plugin you load <em>into</em> Obsidian. Same Markdown files. Open in Obsidian, govern in Ledger, share a read-only portal.</p>
+    <p class="mono small" style="margin:0"><strong>Obsidian is excellent for one person.</strong> The moment a team depends on those notes, you need to know who owns each one, whether it's current, and where it sits in its lifecycle. Ledger Governance adds exactly that — and nothing that takes your notes out of your vault.</p>
   </div>
 </section>
 
 <section class="wrap">
-  <h2>New: two ways to bring Obsidian to your whole company</h2>
-  <div class="grid g2" style="margin-top:1.2rem">
-    <div class="feature">
-      <h3>Real two-way vault sync <span class="badge brass">new</span></h3>
-      <p>Point Ledger at an actual Obsidian <strong>vault folder</strong> on disk and it syncs <strong>both directions, file by file</strong>. Edit a note in Obsidian, edit the same page in Ledger, and they converge. It's <strong>conflict-aware and never loses an edit</strong>: when both sides change a file, Obsidian (the file) wins and your prior Ledger version is kept in version history to diff and restore. New notes create on the other side; an edit always beats a delete. Optional auto-sync every 30 seconds and on focus.</p>
-      <p class="muted small">Uses the browser's File System Access API in Chromium-class browsers (Chrome, Edge, Brave, Arc). On Firefox/Safari, use the lossless Import/Export round-trip. <a href="obsidian-workflow.html#sync">How sync works →</a></p>
-    </div>
-    <div class="feature">
-      <h3>The Obsidian community plugin <span class="badge brass">new</span></h3>
-      <p>Don't want to leave Obsidian? Load the Ledger plugin and get the <strong>enterprise layer inside Obsidian</strong> — on Mac, Windows, Linux, or mobile. Push and pull your team's <strong>shared org vault</strong>, stamp <code>reviewed_on</code> reviews, run a <strong>governance report</strong> of stale and never-reviewed notes, and publish <strong>compliance evidence</strong> (structural signals only, never note bodies). It shares the same org vault as the web app, so they interoperate.</p>
-      <p class="muted small">You sign in by pasting a DosanjhLabs access token (the standard Obsidian-plugin pattern); the token lives only in local plugin data, never in a note. <a href="obsidian-workflow.html#plugin">About the plugin →</a></p>
-    </div>
-  </div>
-</section>
-
-<section class="wrap">
-  <h2>The enterprise layer Obsidian doesn't have</h2>
-  <p class="muted">Obsidian is brilliant for a single person. The moment a company depends on those notes, you need governance Obsidian was never built to give. That layer is the product.</p>
+  <h2>What it does</h2>
   <div class="grid g3" style="margin-top:1.4rem">
-    <div class="feature"><h3>Shared org vault + roles</h3><p>One company vault with real <strong>roles &amp; permissions</strong> — who can read, edit, approve, or publish each space. Admin, Editor, Reviewer, Viewer, Portal. Obsidian has no concept of who's allowed to touch what.</p></div>
-    <div class="feature"><h3>Review &amp; approval governance</h3><p>Every page carries an <strong>owner</strong> and a <strong>last-reviewed</strong> date. Ledger flags stale docs, records sign-off, and an edit re-opens approval. Documentation auditors will actually trust.</p></div>
-    <div class="feature"><h3>Read-only published portals</h3><p>Share a space with non-editors and auditors as a <strong>self-contained read-only portal</strong> — they read, they can't change a thing, and they need no account.</p></div>
-    <div class="feature"><h3>Org-wide search + links graph</h3><p>Search-as-you-type across every space — titles, tags, frontmatter, body. Plus a <strong>links/graph view</strong>: backlinks and "what depends on this?", the connection map Obsidian draws, made navigable.</p></div>
-    <div class="feature"><h3>Audit trail &amp; SSO</h3><p>The cloud tier adds an append-only <strong>audit trail</strong> and <strong>single sign-on</strong> (one login across the suite) — the controls a company needs and a personal vault can't provide.</p></div>
-    <div class="feature"><h3>Still no secret storage</h3><p>Ledger holds <strong>zero passwords or secrets</strong>. Credential pages link to your password manager by item URL. A breach of Ledger leaks no credentials, because there are none to leak.</p></div>
-  </div>
-</section>
-
-<hr class="rule wrap">
-
-<section class="wrap">
-  <h2>Obsidian-compatible by design — never locked in</h2>
-  <div class="grid g3" style="margin-top:1.2rem">
-    <div class="feature"><h3>Import your vault</h3><p>Point Ledger at a folder of <code>.md</code> files. Frontmatter, folders, tags and <code>[[wikilinks]]</code> all carry over. Keep editing in Obsidian; Ledger is the convenience-and-governance layer, not a cage.</p></div>
-    <div class="feature"><h3>Portable Markdown</h3><p>Every page is a plain <code>.md</code> file. If we vanished tomorrow, you'd still have a clean, human-readable vault you can open in Obsidian and take with you. A trust advantage IT Glue, Hudu and Confluence structurally can't copy.</p></div>
-    <div class="feature"><h3>Version history, free</h3><p>Every save snapshots the prior version — view a diff, restore any point. Hosted mode adds full git history and pull-request review from the web UI.</p></div>
+    <div class="feature">
+      <h3>Governed-document template</h3>
+      <p><strong>New governed document</strong> scaffolds a note with the governance frontmatter already in place — <code>owner</code>, <code>status</code>, <code>reviewed_on</code>, and a review cadence — so a document starts governed instead of being patched later.</p>
+    </div>
+    <div class="feature">
+      <h3>Status lifecycle</h3>
+      <p><strong>Set document status</strong> moves a doc through <code>draft → in-review → approved → published</code>. Anyone reading the note can see exactly where it stands.</p>
+    </div>
+    <div class="feature">
+      <h3>Ownership &amp; review tracking</h3>
+      <p>Assign an <strong>owner</strong> to any note, and <strong>Mark current note reviewed</strong> stamps <code>reviewed_on</code> with today's date. Docs past their review cadence (default 90 days) are flagged stale.</p>
+    </div>
+    <div class="feature">
+      <h3>Governance dashboard</h3>
+      <p>The ribbon icon opens a dashboard of your whole vault: the status mix, review freshness (never / stale / fresh), and which docs are <strong>ungoverned</strong> — missing an owner or a status. Click any row to open it.</p>
+    </div>
+    <div class="feature">
+      <h3>In-vault audit log</h3>
+      <p>Every governance action is appended to <code>_ledger/audit.md</code> — a plain-Markdown trail of what changed and when, that lives in your vault and that you own.</p>
+    </div>
+    <div class="feature">
+      <h3>100% local</h3>
+      <p>No network calls, no account, no token. Settings live in the vault's local plugin data. A breach of some server can't touch your notes, because nothing leaves your machine.</p>
+    </div>
   </div>
 </section>
 
 <hr class="rule brass wrap">
 
 <section class="wrap">
-  <h2>The Obsidian → company-grade flow</h2>
+  <h2>How it works in Obsidian</h2>
   <div class="grid g2" style="margin-top:1.2rem">
     <div class="card spine">
       <ol>
-        <li><strong>Connect your vault</strong> — point Ledger at a real Obsidian vault <strong>folder</strong> for live two-way sync, or paste/import a bundle. Frontmatter, folders, tags and <code>[[wikilinks]]</code> carry over. (A sample KB is preloaded to explore.)</li>
-        <li><strong>Sign in</strong> — a first-class <strong>Sign in</strong> button in the top bar adds the shared org vault; signed-out stays fully local and makes zero network calls.</li>
-        <li><strong>Browse spaces</strong> on the left rail — the "spine" — grouped by folder, with a tag cloud and org-wide search.</li>
-        <li><strong>Open a page</strong> — rendered Markdown, a frontmatter table, wiki-links, backlinks, and a <strong>Links view</strong> showing what depends on it.</li>
-        <li><strong>Govern it</strong> — see the <strong>owner</strong> and <strong>last-reviewed</strong> status; mark reviewed today; a Reviewer approves the version.</li>
-        <li><strong>Switch roles</strong> (Admin / Editor / Reviewer / Viewer / Portal) to see exactly what each can do — edit, approve, publish, or read-only.</li>
-        <li><strong>Publish a space</strong> as a read-only portal — one self-contained HTML file an auditor opens with no account, no editing.</li>
-        <li><strong>Export</strong> any page or the whole vault as portable Markdown — open it back in Obsidian. No lock-in by design.</li>
+        <li><strong>Install it</strong> from Obsidian's Community Plugins directory and enable it. No account, no sign-up.</li>
+        <li><strong>Start a governed doc</strong> — run <em>New governed document</em> from the Command Palette (<kbd>Ctrl/Cmd-P</kbd>, type "Ledger"), or add the same frontmatter to an existing note.</li>
+        <li><strong>Assign an owner</strong> and <strong>set a status</strong> — the document now says who's responsible and where it is in its lifecycle.</li>
+        <li><strong>Mark it reviewed</strong> when you've checked it; the plugin stamps <code>reviewed_on</code> and tracks the cadence.</li>
+        <li><strong>Open the dashboard</strong> from the ribbon to see status mix, what's gone stale, and which docs are still ungoverned.</li>
+        <li><strong>Read the audit log</strong> any time — <code>_ledger/audit.md</code> records every action as plain Markdown.</li>
       </ol>
     </div>
     <div class="card">
-      <h3>vs IT Glue / Hudu / Confluence</h3>
-      <p>IT Glue, Hudu and Confluence trap your knowledge in a proprietary database — the only way out is a clumsy API dump. Ledger's source of truth is <strong>your folder of Markdown files</strong>, Obsidian-native, that you can <code>git clone</code> and walk away with.</p>
+      <h3>It stays Obsidian, by design</h3>
+      <p>Governance is just <strong>standard YAML frontmatter</strong> Obsidian already understands. There's no proprietary database and nothing to export.</p>
       <ul>
-        <li><strong>Portable Markdown</strong> — not a proprietary DB. Open in Obsidian anytime.</li>
-        <li><strong>Obsidian-native</strong> — wikilinks, frontmatter, backlinks, graph.</li>
-        <li><strong>Cheaper</strong> — no 5-user minimum, no onboarding fee; free read-only portal users.</li>
-        <li><strong>No secret honeypot</strong> — we store zero passwords by design.</li>
+        <li><strong>Portable Markdown</strong> — every note remains a plain <code>.md</code> file you can open anywhere.</li>
+        <li><strong>Standard fields</strong> — <code>owner</code>, <code>status</code>, <code>reviewed_on</code>, <code>reviewer</code>, <code>review_cadence_days</code>.</li>
+        <li><strong>Live status bar</strong> — a running <code>N docs · X stale · Y ungoverned</code> summary.</li>
+        <li><strong>No lock-in</strong> — uninstall and your notes (and their frontmatter) are untouched.</li>
       </ul>
-      <p class="muted small">Opt-in cloud tier (DosanjhLabs SSO) adds the shared org vault, cross-device sync, PR review, MSP multi-client, audit trail, and "doc reviewed" evidence emission to Sightline — reachable from the web app or the new Obsidian plugin. BYO-key AI drafts, summarizes, or answers over your docs — your key, called from your browser.</p>
-      <a class="btn primary" href="app/index.html" style="margin-top:.6rem">Open the app →</a>
+      <a class="btn primary" href="obsidian-workflow.html" style="margin-top:.6rem">See the full workflow →</a>
     </div>
   </div>
 </section>
@@ -128,32 +117,51 @@
 <hr class="rule wrap">
 
 <section class="wrap">
-  <h2>One price, no surprises</h2>
-  <p class="muted">Obsidian-portable, governed, and cheaper than IT Glue, Hudu or Confluence — no user minimum, no onboarding fee. <a href="pricing.html">Full pricing →</a></p>
-  <div class="grid g3" style="margin-top:1rem">
-    <div class="feature"><h3>Open source</h3><p class="stat">$0</p><p class="small">Self-host the markdown-on-git engine. No per-seat fee, ever.</p></div>
-    <div class="feature"><h3>Pro</h3><p class="stat">$26<span class="small">/editor/mo</span></p><p class="small">Unlimited companies, AI, PR review, sync. No minimum.</p></div>
-    <div class="feature"><h3>Reader / portal</h3><p class="stat">Free</p><p class="small">Read-only client &amp; portal users never inflate the bill.</p></div>
+  <h2>Free &amp; open source — forever</h2>
+  <p class="muted">No tiers, no seats, no upsell. Ledger Governance is released under the MIT license, runs entirely on your machine, and always will.</p>
+  <div class="grid g3" style="margin-top:1.2rem">
+    <div class="feature"><h3>Free</h3><p class="stat">$0</p><p class="small">No account, no subscription, no paid features held back.</p></div>
+    <div class="feature"><h3>Open source</h3><p class="stat">MIT</p><p class="small">Read the code, fork it, contribute. <a href="https://github.com/jsdosanj/ledger">On GitHub →</a></p></div>
+    <div class="feature"><h3>Local</h3><p class="stat">100%</p><p class="small">No network calls. Your notes never leave your vault.</p></div>
+  </div>
+  <div class="row" style="margin-top:1.4rem;gap:.7rem;flex-wrap:wrap">
+    <a class="btn primary" href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian →</a>
+    <a class="btn" href="https://github.com/jsdosanj/ledger">View on GitHub</a>
+  </div>
+</section>
+
+<hr class="rule wrap">
+
+<section class="wrap">
+  <h2>Questions, answered honestly</h2>
+  <div class="grid g2" style="margin-top:1.2rem">
+    <div class="feature"><h3>Is it really free?</h3><p>Yes — free and open source under the MIT license. There's no paid tier, no trial, and no upsell.</p></div>
+    <div class="feature"><h3>Does it send my notes anywhere?</h3><p>No. The plugin makes no network calls and stores no account or token. Governance metadata is written into your own notes, and the audit log lives in your vault.</p></div>
+    <div class="feature"><h3>Will I get locked in?</h3><p>No. Governance is plain YAML frontmatter. Disable or remove the plugin and your notes — and their <code>owner</code>, <code>status</code>, and <code>reviewed_on</code> fields — are exactly as you left them.</p></div>
+    <div class="feature"><h3>How do I install it?</h3><p>Open Obsidian → Settings → Community plugins, browse for <strong>Ledger Governance</strong>, install, and enable it. Or use the <a href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian</a> link. Manual install steps are in the <a href="docs/support/getting-started.html">docs</a>.</p></div>
+    <div class="feature"><h3>Does it work on mobile?</h3><p>Yes. It's not desktop-only — it runs wherever Obsidian does.</p></div>
+    <div class="feature"><h3>What counts as "stale"?</h3><p>A document not reviewed within its cadence — 90 days by default, or a per-note <code>review_cadence_days</code> — shows as stale in the dashboard and status bar.</p></div>
   </div>
 </section>
 
 <footer class="footer">
   <div class="wrap grid g3">
     <div>
-      <h4>Ledger</h4>
-      <p>IT documentation &amp; knowledge hub. Plain markdown in git — beautiful, searchable, yours.</p>
+      <h4>Ledger Governance</h4>
+      <p>A free, local-only Obsidian plugin for document governance. Your notes stay portable plain Markdown.</p>
       <p class="small">A <a href="https://dosanjhlabs.com">DosanjhLabs</a> product.</p>
     </div>
     <div>
       <h4>Product</h4>
-      <p><a href="app/index.html">Open the app</a><br><a href="obsidian-workflow.html">Obsidian workflow</a><br><a href="self-host.html">Self-host</a><br><a href="pricing.html">Pricing</a></p>
+      <p><a href="https://community.obsidian.md/plugins/ledger-governance">Add to Obsidian</a><br><a href="obsidian-workflow.html">How it works</a><br><a href="docs/index.html">Docs</a></p>
     </div>
     <div>
-      <h4>Compare</h4>
-      <p><a href="vs-it-glue.html">vs IT Glue</a><br><a href="vs-hudu.html">vs Hudu</a><br><a href="docs/index.html">Docs</a></p>
+      <h4>Open source</h4>
+      <p><a href="https://github.com/jsdosanj/ledger">View on GitHub</a><br><a href="https://github.com/jsdosanj/ledger/blob/main/LICENSE">MIT License</a></p>
     </div>
   </div>
-  <div class="wrap small" style="margin-top:1.4rem;opacity:.7">© 2026 DosanjhLabs · Ledger stores no passwords or secrets by design.</div>
-<p class="legal-links" style="margin-top:.75rem;font-size:.8rem;opacity:.8"><a href="https://dosanjhlabs.com/legal/privacy">Privacy</a> · <a href="https://dosanjhlabs.com/legal/terms">Terms</a> · <a href="https://dosanjhlabs.com/legal/acceptable-use">Acceptable Use</a> · <a href="https://dosanjhlabs.com/legal/disclaimer">Disclaimer</a> · <a href="https://dosanjhlabs.com/legal/refunds">Refunds</a></p></footer>
+  <div class="wrap small" style="margin-top:1.4rem;opacity:.7">© 2026 DosanjhLabs · Ledger Governance is 100% local — no account, no network.</div>
+  <p class="legal-links" style="margin-top:.75rem;font-size:.8rem;opacity:.8"><a href="https://dosanjhlabs.com/legal/privacy">Privacy</a> · <a href="https://dosanjhlabs.com/legal/terms">Terms</a> · <a href="https://dosanjhlabs.com/legal/acceptable-use">Acceptable Use</a> · <a href="https://dosanjhlabs.com/legal/disclaimer">Disclaimer</a></p>
+</footer>
 </body>
 </html>
