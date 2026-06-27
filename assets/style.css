@@ -199,4 +199,4 @@ tbody tr:hover { background: var(--parch-d); }
 .integr { display: flex; gap: .8rem; align-items: flex-start; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; margin: .7rem 0; }
 .stat { font-family: "Fraunces", serif; font-size: 1.5rem; color: var(--ink); }
 .empty { text-align: center; padding: 3rem 1rem; color: var(--slate); }
-.hidden { display: none !important; }
+.hidden { display: none; }
