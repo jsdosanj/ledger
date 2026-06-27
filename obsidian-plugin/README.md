@@ -1,28 +1,31 @@
-# Ledger — enterprise governance for Obsidian
+# Ledger — governance for Obsidian
 
 An Obsidian community plugin that turns a personal vault into a **governed,
-company-grade** one — without leaving Obsidian. Obsidian is already the
-cross-platform desktop host; this plugin adds the enterprise layer Obsidian
-lacks, against the same DosanjhLabs / Keystone platform the [Ledger web
-app](../) uses.
+company-grade** one — without leaving Obsidian and **without an account**.
+
+Ledger is **100% local**: no login, no tokens, no network, no servers. Governance
+lives in standard frontmatter (`owner`, `status`, `reviewed_on`), so your notes
+stay portable plain markdown. Free and open source (MIT).
 
 ## What you get
 
-- **Sign in** with a DosanjhLabs access token (Settings → Ledger → *Access
-  token* → *Verify*). The status bar shows your org once verified.
-- **Shared org vault sync** — *Push vault to org cloud* / *Pull vault from org
-  cloud*. It interoperates with the Ledger web app (same `kb-state` store), and
-  pull never deletes local notes.
-- **Doc-review governance** — *Mark current note reviewed* stamps `reviewed_on`
-  into frontmatter; *Show governance report* lists never-reviewed and stale
-  notes (owner + age), click to open.
-- **Compliance evidence** — *Publish documentation evidence* sends **structural
-  signals only** (paths, titles, type, `reviewed_on`, counts — never note
-  bodies) into the shared evidence graph so Sightline can map "docs exist &
-  reviewed in the last 90 days" to controls.
+- **Governed-document template** — *New governed document* scaffolds a note with
+  the governance frontmatter (owner, status, review cadence) already in place.
+- **Status lifecycle** — *Set document status* moves a doc through
+  `draft → in-review → approved → published`.
+- **Ownership** — *Set document owner* assigns an owner (name or email).
+- **Review tracking** — *Mark current note reviewed* stamps `reviewed_on`; docs
+  past their cadence (default 90 days, or a per-note `review_cadence_days`) show
+  as stale.
+- **Governance dashboard** — *Governance dashboard* (also the ribbon icon) shows
+  the status mix, review freshness (never / stale / fresh), and which docs are
+  **ungoverned** (missing an owner or a status). Click any row to open it. The
+  status bar keeps a live `N docs · X stale · Y ungoverned` summary.
+- **In-vault audit log** — every governance action is appended to
+  `_ledger/audit.md`, a plain-markdown audit trail you own. *Open governance
+  audit log* jumps to it.
 
-All commands are in the Command Palette (`Ctrl/Cmd-P`, type "Ledger"). There's a
-ribbon icon for one-click push.
+All commands are in the Command Palette (`Ctrl/Cmd-P`, type "Ledger").
 
 ## Install (manual, until listed in Community Plugins)
 
@@ -30,28 +33,15 @@ ribbon icon for one-click push.
    (it must contain `manifest.json` and `main.js`).
 2. Obsidian → Settings → Community plugins → enable **Ledger — enterprise
    governance**.
-3. Open the plugin settings, paste your access token, click **Verify**.
 
-No build step — Obsidian loads `main.js` directly.
+No build step — Obsidian loads `main.js` directly. No setup, no sign-in.
 
-## Security & privacy
+## Privacy
 
-- **No secrets in notes.** Credential notes should *link* a password manager
-  item; never paste a secret. The org sync carries no secret material by design.
-- Your **access token** is stored only in this vault's local plugin data
-  (`.obsidian/plugins/ledger-enterprise/data.json`) — never in a note, never
-  logged. Treat the vault folder accordingly.
-- Network goes through Obsidian's `requestUrl` (no CORS) to
-  `api.dosanjhlabs.com` with a bearer token; the **tenant is always derived
-  server-side** — the client can't act as another org.
-
-## Auth model (and the one Keystone dependency)
-
-Plugins can't run Clerk's hosted redirect sign-in cleanly inside Obsidian, so
-this uses the standard **pasted access token** pattern. That requires Keystone
-to issue personal/plugin access tokens accepted as `Authorization: Bearer` on
-the existing `/whoami`, `/store`, `/evidence`, and `/billing/entitled`
-endpoints. Everything else here is complete and verified.
+Nothing leaves your machine. The plugin makes **no network calls** and stores no
+account or token. Governance metadata is written into your own notes' frontmatter
+and the audit log lives in your vault. Settings (review-stale threshold, whether
+an owner/status is required) are stored in the vault's local plugin data.
 
 ## Verify
 
@@ -59,6 +49,7 @@ endpoints. Everything else here is complete and verified.
 node verify.js
 ```
 
-Static checks: manifest shape, `main.js` parses, all six commands present,
-bearer auth + `requestUrl` used, evidence payload is body-free, and the sync key
-matches the web app for interop.
+Static checks: manifest shape, `main.js` parses and exports a Plugin subclass,
+all six commands present, the **local-only** guarantee (no fetch / requestUrl /
+auth token / http URLs anywhere), and the governance layer (status lifecycle,
+frontmatter writes, audit log).

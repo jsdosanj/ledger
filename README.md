@@ -6,6 +6,16 @@ Ledger is the DosanjhLabs product for **MSPs and internal IT teams** — the IT 
 
 It is a **local-first static browser app** (vanilla HTML/CSS/JS, no build step, deployable as a subpath). All docs live in the browser's `localStorage` as plain markdown; nothing leaves the machine until you opt into the cloud tier.
 
+> **Free and open source, forever.** Ledger is MIT-licensed (see [LICENSE](LICENSE)) and self-hostable with zero dependencies. The cloud tier is optional; signed out, the app makes no network calls.
+
+## Obsidian, governed for the enterprise
+
+Ledger's thesis: **turn Obsidian into a proper, governed corporate documentation hub.** Obsidian is perfect for one person; the moment a company depends on those notes you need governance Obsidian was never built to give. Ledger keeps docs Obsidian-native — portable markdown with `[[wikilinks]]`, YAML frontmatter, folders/tags, backlinks — and adds the enterprise layer: a shared org vault, review/approval + ownership/"last reviewed" governance, org-wide search, read-only published portals, and compliance evidence.
+
+*"Obsidian for one person → Ledger for your whole company."*
+
+The cross-platform desktop experience ships as an **Obsidian community plugin** in [`obsidian-plugin/`](obsidian-plugin/) — enable it, paste a DosanjhLabs access token, and get the enterprise layer **inside Obsidian** (shared org-vault sync, doc-review governance, compliance evidence). See [`obsidian-plugin/README.md`](obsidian-plugin/README.md) for install instructions.
+
 ## What it does (Wave 1 MVP)
 
 - **Markdown doc hub** — create/edit/organize asset pages, runbooks, network/config notes, and procedures. Obsidian-compatible YAML frontmatter.
@@ -62,3 +72,13 @@ scripts/verify.js       Data + core-flow verifier
 "The bound ledger book / archive." Ink navy `#13233A` + aged parchment `#F4EEE2` + brass/gold-leaf `#C9A227` + oxblood `#7A2E2E`, Fraunces display, JetBrains Mono for the git/markdown story, a recurring left-rail "spine" and pages-turn motif. See `STATUS.md` for what's built vs. roadmap.
 
 A documentation aid — not a substitute for your own backups or compliance program. Ledger stores **no passwords or secrets** by design.
+
+## Contributing & security
+
+- [CONTRIBUTING.md](CONTRIBUTING.md) — how to set up, the no-build verify loop, and PR flow.
+- [SECURITY.md](SECURITY.md) — how to report a vulnerability privately.
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) — Contributor Covenant.
+
+## License
+
+**MIT** — see [LICENSE](LICENSE). Copyright (c) 2026 Jasvant Dosanjh. Free and open source forever; self-host without restriction.
