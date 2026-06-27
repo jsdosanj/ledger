@@ -3,7 +3,7 @@
   "name": "Ledger Governance",
   "version": "1.0.0",
   "minAppVersion": "1.4.0",
-  "description": "Governance for Obsidian: a document status lifecycle (draft to published), owner and review tracking, a governance dashboard, and an in-vault audit log. 100% local — no account, no login, no network. Your notes stay plain markdown.",
+  "description": "Governance for Obsidian: a document status lifecycle (draft to published), owner and review tracking, a governance dashboard, and an in-vault audit log. 100% local - no account, no network.",
   "author": "DosanjhLabs",
   "authorUrl": "https://ledger.dosanjhlabs.com/",
   "isDesktopOnly": false
