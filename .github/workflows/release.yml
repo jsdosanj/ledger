@@ -1,0 +1,43 @@
+name: Release Obsidian plugin
+
+# Build a release from the tag's source tree and attach attested assets.
+# Push a tag that exactly matches manifest.json "version" (e.g. 1.0.1).
+on:
+  push:
+    tags:
+      - "*"
+
+permissions:
+  contents: write        # create the release
+  id-token: write        # for provenance signing
+  attestations: write    # GitHub artifact attestations
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Tag must match manifest version
+        run: |
+          tag="${GITHUB_REF_NAME}"
+          ver=$(node -p "require('./manifest.json').version")
+          echo "tag=$tag manifest.version=$ver"
+          if [ "$tag" != "$ver" ]; then
+            echo "::error::Tag ($tag) does not equal manifest version ($ver)"; exit 1
+          fi
+
+      - name: Attest build provenance for release assets
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: |
+            main.js
+            manifest.json
+
+      - name: Create GitHub release with assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" main.js manifest.json \
+            --title "${GITHUB_REF_NAME}" \
+            --notes "Ledger Governance ${GITHUB_REF_NAME} — local-only Obsidian governance plugin (no account, no network). Assets carry GitHub artifact attestations."
