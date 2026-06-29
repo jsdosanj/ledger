@@ -1,7 +1,7 @@
 {
   "id": "ledger-governance",
   "name": "Ledger Governance",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "minAppVersion": "1.4.0",
   "description": "Document governance for your vault: a status lifecycle (draft to published), owner and review tracking, a governance dashboard, and an in-vault audit log. 100% local - no account, no network.",
   "author": "DosanjhLabs",
