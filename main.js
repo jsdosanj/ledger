@@ -29,6 +29,11 @@ const DEFAULTS = { reviewStaleDays: 90, requireOwner: true, requireStatus: true 
 
 function todayISO() { return new Date().toISOString().slice(0, 10); }
 
+// Sanitize a value before it goes into a markdown-table cell: escape pipes so a
+// value can't break out into new columns, and flatten CR/LF so it can't inject a
+// whole fabricated audit row.
+function auditCell(v) { return String(v == null ? "" : v).replace(/\|/g, "\\|").replace(/[\r\n]+/g, " "); }
+
 module.exports = class LedgerPlugin extends Plugin {
   async onload() {
     this.settings = Object.assign({}, DEFAULTS, await this.loadData());
@@ -168,7 +173,7 @@ module.exports = class LedgerPlugin extends Plugin {
 
   // Append-only in-vault audit trail (plain markdown table). No network.
   async logAudit(action, path, detail) {
-    const line = "| " + todayISO() + " | " + action + " | " + path + " | " + (detail || "") + " |\n";
+    const line = "| " + auditCell(todayISO()) + " | " + auditCell(action) + " | " + auditCell(path) + " | " + auditCell(detail || "") + " |\n";
     const existing = this.app.vault.getAbstractFileByPath(AUDIT_PATH);
     if (existing instanceof TFile) {
       await this.app.vault.append(existing, line);
