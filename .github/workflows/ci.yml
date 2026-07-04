@@ -27,8 +27,5 @@ jobs:
         run: |
           find . -path ./node_modules -prune -o -type f \( -name '*.js' -o -name '*.mjs' \) -print \
             | while read -r f; do node --check "$f" || exit 1; done
-      - name: Product verify harness (if present)
-        run: |
-          if [ -f verify.mjs ]; then node verify.mjs; fi
-          if [ -f scripts/verify.js ]; then node scripts/verify.js; fi
-          if [ -f scripts/verify.mjs ]; then node scripts/verify.mjs; fi
+      - name: Verify Ledger plugin (structure, commands, local-only, governance)
+        run: node verify.js
