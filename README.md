@@ -27,13 +27,26 @@ stay portable plain markdown. Free and open source (MIT).
 
 All commands are in the Command Palette (`Ctrl/Cmd-P`, type "Ledger").
 
-## Install (manual, until listed in Community Plugins)
+## Install
+
+Ledger Governance is live in the Obsidian **Community Plugins** directory:
+
+1. Open Obsidian → **Settings → Community plugins** → **Browse**.
+2. Search for **"Ledger"**, open **Ledger Governance**, and click **Install**.
+3. Click **Enable**.
+
+That's it — no build step, no setup, no sign-in.
+
+<details>
+<summary>Manual install (older Obsidian versions)</summary>
 
 1. Copy this folder to your vault: `<vault>/.obsidian/plugins/ledger-governance/`
    (it must contain `manifest.json` and `main.js`).
 2. Settings → Community plugins → enable **Ledger Governance**.
 
-No build step — the plugin loads `main.js` directly. No setup, no sign-in.
+The plugin loads `main.js` directly — nothing to build.
+
+</details>
 
 ## Privacy
 
