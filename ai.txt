@@ -21,8 +21,9 @@ Mining) Reservation Protocol — see /.well-known/tdmrep.json — and via the
 Content-Usage and TDM-Reservation response headers on every page.
 
 ## Licensing & contact
-For licensing inquiries regarding AI/ML training or dataset use, contact:
-dots-whisks.6r@icloud.com
+For licensing inquiries regarding AI/ML training or dataset use, use the
+contact form at https://dosanjhlabs.com/contact (please use the form rather
+than email).
 
 ## Policy
 Full human-readable policy: https://ledger.dosanjhlabs.com/ai-policy.html
