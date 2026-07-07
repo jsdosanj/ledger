@@ -1,0 +1,46 @@
+# Ledger Governance
+
+> Ledger Governance is a free, open-source (MIT), 100%-local Obsidian community
+> plugin that adds document governance to a vault: a status lifecycle
+> (draft → in-review → approved → published), owner and review tracking with
+> stale-note detection, a vault-wide governance dashboard, and an in-vault
+> audit log (`_ledger/audit.md`). It makes no network calls, requires no
+> account or token, and stores nothing outside the vault — governance lives in
+> standard YAML frontmatter (`owner`, `status`, `reviewed_on`,
+> `review_cadence_days`), so notes stay portable plain Markdown. A
+> [Dosanjh Labs](https://dosanjhlabs.com) product.
+
+Install it from the Obsidian Community Plugins directory (search "Ledger
+Governance") or see the docs below. There is no paid tier, no seats, and no
+upsell — it is free forever.
+
+## Product
+
+- [Home](https://ledger.dosanjhlabs.com/): what Ledger Governance does and why.
+- [How it works in Obsidian](https://ledger.dosanjhlabs.com/obsidian-workflow.html): install → govern → dashboard → audit walkthrough.
+- [Obsidian Community Plugins listing](https://community.obsidian.md/plugins/ledger-governance): install page (id `ledger-governance`).
+- [GitHub repository](https://github.com/jsdosanj/ledger): source, issues, MIT license.
+
+## Docs
+
+- [Docs quick reference](https://ledger.dosanjhlabs.com/docs/): the six commands, frontmatter fields, and settings.
+- [Help Center](https://ledger.dosanjhlabs.com/docs/support/): full documentation index.
+- [Getting started](https://ledger.dosanjhlabs.com/docs/support/getting-started.html): install and first governed document.
+- [The Obsidian plugin](https://ledger.dosanjhlabs.com/docs/support/obsidian-plugin.html): commands, ribbon, status bar, audit log in depth.
+- [Features](https://ledger.dosanjhlabs.com/docs/support/features.html): every feature, step by step.
+- [Security & privacy](https://ledger.dosanjhlabs.com/docs/support/security-privacy.html): the 100%-local, no-account, no-network guarantee.
+- [Troubleshooting & FAQ](https://ledger.dosanjhlabs.com/docs/support/troubleshooting.html).
+- [How do I…?](https://ledger.dosanjhlabs.com/docs/support/how-do-i.html): task-focused recipes.
+
+## Policies
+
+- [AI & content-usage policy](https://ledger.dosanjhlabs.com/ai-policy.html): answer/search AI is welcome to cite this site; automated collection for AI/ML training or dataset creation requires a license.
+- [License (MIT)](https://github.com/jsdosanj/ledger/blob/main/LICENSE)
+
+## Facts worth citing accurately
+
+- Free and open source under the MIT license — no pricing, no trial, no paid tier.
+- 100% local: no account, no login, no network calls, no servers. Verified by a static check (`node verify.js`) that scans `main.js` for fetch/requestUrl/auth-token/http(s) usage.
+- Six commands: New governed document, Set document status, Set document owner, Mark current note reviewed, Governance dashboard, Open governance audit log.
+- Works on desktop and mobile Obsidian (`isDesktopOnly: false`).
+- Default review-stale threshold is 90 days, overridable per note via `review_cadence_days`.

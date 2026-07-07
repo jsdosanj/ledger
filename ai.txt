@@ -1,0 +1,33 @@
+# AI usage policy — ledger.dosanjhlabs.com (Ledger Governance, a DosanjhLabs product)
+# Human- and machine-readable. See also: /robots.txt, /.well-known/tdmrep.json, /ai-policy.html
+
+Site: https://ledger.dosanjhlabs.com
+Product: Ledger Governance — a free, open-source (MIT), 100%-local Obsidian
+community plugin for document governance (status lifecycle, ownership, review
+tracking, a governance dashboard, and an in-vault audit log).
+
+## Answer & search AI (welcome)
+AI answer engines and assistants (for example ChatGPT, Claude, Perplexity,
+Gemini/Google, Copilot) may crawl, index, and cite this site in response to
+user queries, and may quote or summarize it with attribution and a link back.
+This drives legitimate traffic to the product and is encouraged.
+
+## Training, fine-tuning, and dataset use (not permitted without a license)
+Automated collection of this site's content for the purpose of training or
+fine-tuning machine-learning/AI models, building a RAG corpus, or otherwise
+constructing a dataset is NOT permitted without a prior written license from
+Dosanjh Labs. This content is reserved under the W3C TDM (Text and Data
+Mining) Reservation Protocol — see /.well-known/tdmrep.json — and via the
+Content-Usage and TDM-Reservation response headers on every page.
+
+## Licensing & contact
+For licensing inquiries regarding AI/ML training or dataset use, contact:
+dots-whisks.6r@icloud.com
+
+## Policy
+Full human-readable policy: https://ledger.dosanjhlabs.com/ai-policy.html
+
+Note: the Ledger Governance plugin itself is separate open-source software
+(MIT license, see https://github.com/jsdosanj/ledger/blob/main/LICENSE) and
+its licensing terms are unaffected by this content-usage policy, which
+governs this marketing/documentation website only.

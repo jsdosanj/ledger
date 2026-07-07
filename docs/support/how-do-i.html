@@ -22,6 +22,12 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TechArticle","headline":"How do I…? — Ledger Governance","description":"A short recipe index for the Ledger Governance Obsidian plugin: create a governed document, assign an owner, move a doc through the lifecycle, mark it reviewed, find stale or ungoverned docs, read the audit log, change the stale threshold, and require an owner or status.","url":"https://ledger.dosanjhlabs.com/docs/support/how-do-i.html","isAccessibleForFree":true,"about":"Document governance for Obsidian","publisher":{"@type":"Organization","name":"DosanjhLabs","url":"https://dosanjhlabs.com"}}
 </script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ledger Governance","item":"https://ledger.dosanjhlabs.com/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://ledger.dosanjhlabs.com/docs/"},{"@type":"ListItem","position":3,"name":"Help Center","item":"https://ledger.dosanjhlabs.com/docs/support/"},{"@type":"ListItem","position":4,"name":"How do I…?","item":"https://ledger.dosanjhlabs.com/docs/support/how-do-i.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I create a governed document?","acceptedAnswer":{"@type":"Answer","text":"Run New governed document from the Command Palette. It scaffolds a note with governance frontmatter already in place — owner, status: draft, type, reviewed_on, reviewer, and review_cadence_days."}},{"@type":"Question","name":"How do I set or assign an owner?","acceptedAnswer":{"@type":"Answer","text":"Open the note, run Set document owner, and enter a name or email. This writes the owner field into the note's frontmatter."}},{"@type":"Question","name":"How do I move a document through the lifecycle?","acceptedAnswer":{"@type":"Answer","text":"Open the note and run Set document status, then pick the next stage: draft, in-review, approved, or published."}},{"@type":"Question","name":"How do I mark a document reviewed?","acceptedAnswer":{"@type":"Answer","text":"Open the note you reviewed and run Mark current note reviewed. It stamps reviewed_on with today's date and resets the note's freshness."}},{"@type":"Question","name":"How do I find stale or ungoverned documents?","acceptedAnswer":{"@type":"Answer","text":"Open the Governance dashboard from the Command Palette or the ribbon book icon. It lists total docs, ungoverned count, review freshness, and lifecycle mix; the status bar also shows a live summary."}},{"@type":"Question","name":"How do I change the stale threshold?","acceptedAnswer":{"@type":"Answer","text":"Go to Settings → Community plugins → Ledger and adjust Review-stale threshold (days), default 90. A single note can override it with its own review_cadence_days frontmatter value."}}]}
+</script>
 <link rel="stylesheet" href="../../assets/style.css">
 </head>
 <body>
@@ -110,7 +116,7 @@
     </div>
   </div>
   <div class="wrap small" style="margin-top:1.4rem;opacity:.7">© 2026 DosanjhLabs · Ledger Governance is 100% local — no account, no network.</div>
-  <p class="legal-links" style="margin-top:.75rem;font-size:.8rem;opacity:.8"><a href="https://dosanjhlabs.com/legal/privacy">Privacy</a> · <a href="https://dosanjhlabs.com/legal/terms">Terms</a> · <a href="https://dosanjhlabs.com/legal/acceptable-use">Acceptable Use</a> · <a href="https://dosanjhlabs.com/legal/disclaimer">Disclaimer</a></p>
+  <p class="legal-links" style="margin-top:.75rem;font-size:.8rem;opacity:.8"><a href="https://dosanjhlabs.com/legal/privacy">Privacy</a> · <a href="https://dosanjhlabs.com/legal/terms">Terms</a> · <a href="https://dosanjhlabs.com/legal/acceptable-use">Acceptable Use</a> · <a href="https://dosanjhlabs.com/legal/disclaimer">Disclaimer</a> · <a href="../../ai-policy.html">AI &amp; content policy</a></p>
 </footer>
 </body>
 </html>
